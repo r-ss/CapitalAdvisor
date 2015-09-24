@@ -19,6 +19,21 @@ class StockTableViewCell: UITableViewCell {
 
     @IBOutlet weak var colorRectangleView: UIView!
     
+    // These two methods for preventing transparent cell background while rearrange cells in table view.
+    override var alpha: CGFloat {
+        didSet {
+            super.alpha = 1
+        }
+    }
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        
+        self.backgroundView = UIView()
+        self.backgroundView!.backgroundColor = UIColor.whiteColor()
+    }
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
