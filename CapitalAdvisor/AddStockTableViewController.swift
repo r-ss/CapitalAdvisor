@@ -69,7 +69,7 @@ class AddStockTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForCell(selectedTypeCell)!
 
                 //let selectedStockType = indexPath.row
-                stockEditViewController.selectedType = typeForInt(indexPath.row)
+                stockEditViewController.selectedType = intToType(indexPath.row)
             }
         }
     }

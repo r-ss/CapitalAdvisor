@@ -6,7 +6,7 @@
 //  Copyright © 2015 Alex Antipov. All rights reserved.
 //
 
-func nameForType(type:Type) -> String {
+func nameToType(type:Type) -> String {
     switch type {
     case .Bank:
         return "Счёт"
@@ -25,7 +25,7 @@ func nameForType(type:Type) -> String {
     }
 }
 
-func intForType(type:Type) -> Int {
+func typeToInt(type:Type) -> Int {
     switch type {
     case .Bank:
         return 1
@@ -44,7 +44,7 @@ func intForType(type:Type) -> Int {
     }
 }
 
-func typeForInt(int:Int) -> Type {
+func intToType(int:Int) -> Type {
     switch int {
     case 1:
         return .Bank

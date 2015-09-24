@@ -8,11 +8,58 @@
 
 import UIKit
 
+import RealmSwift
+
+
+class RealmStock: Object {
+    dynamic var name:String = ""
+    dynamic var type_int:Int = 0
+    dynamic var currency_int:Int = 0
+    dynamic var value:Double = 0.0
+    dynamic var percent:Double = 0.0
+}
+
+//let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
+
+var type:Type = .Cash
+var type_name:String {
+    switch type {
+    case .Bank:
+        return typeNamesArray[1]
+    case .Deposit:
+        return typeNamesArray[2]
+    case .Debit:
+        return typeNamesArray[3]
+    case .Credit:
+        return typeNamesArray[4]
+    case .Asset:
+        return typeNamesArray[5]
+    case .Income:
+        return typeNamesArray[6]
+    default:
+        return typeNamesArray[0]
+    }
+}
+
+var name: String = ""
+var value: Double = 0.0
+var currency:Currency = .RUB
+var percent: Double = 0.0
+var color: UIColor = UIColor.whiteColor()
+
+let valueFormat:ValueFormat = ValueFormat()!
+let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+
+
+
 class StocksContainer {
     
     // MARK: Properties
     var stocks = [Stock]()
     var selectedStockIndex: Int = 0 // я нуб
+    
+    let realm = try!Realm()
     
     
     let stocksTypesArray = ["Наличные",         // 0
@@ -48,6 +95,13 @@ class StocksContainer {
         saveStocks()
     }
     
+    func rearrangeStock(oldIndex:Int, newIndex:Int) {
+        let stock = self.stocks[oldIndex]
+        self.stocks.removeAtIndex(oldIndex)
+        self.stocks.insert(stock, atIndex: newIndex)
+        saveStocks()
+    }
+    
     func setSelectedStockIndex(index:Int){
         self.selectedStockIndex = index
     }
@@ -58,19 +112,39 @@ class StocksContainer {
     
     // MARK: NSCoding
     func saveStocks() {
-        //let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stocks, toFile: Stock.ArchiveURL.path!)
-        //if !isSuccessfulSave {
-        //    print("ERROR: Failed to save stocks...")
-        //}
+        print("Stock Container > saveStocks")
+        
+        // Delete all objects from the realm
+        realm.write {
+            self.realm.deleteAll()
+        }
+     
+        for stock in stocks {
+            let rs:RealmStock = RealmStock()
+            rs.name = stock.name
+            rs.type_int = typeToInt(stock.type)
+            rs.currency_int = currencyToInt(stock.currency)
+            rs.value = stock.value
+            rs.percent = stock.percent
+            
+            realm.write {
+                self.realm.add(rs)
+            }
+        }
     }
     func loadStocks() {
-        //print(Stock.ArchiveURL.path!)
-        
-        //if let archivedStocks = NSKeyedUnarchiver.unarchiveObjectWithFile(Stock.ArchiveURL.path!) as! [Stock]? {
-        //    self.stocks += archivedStocks
-        //} else {
-            loadSampleStocks()
-        //}
+        print("Stock Container > loadStocks")
+        let realmStocks = try!Realm().objects(RealmStock)
+        //print(realmStocks)
+        for rs in realmStocks {
+            //print(rs.value)
+            let stock = Stock(type: intToType(rs.type_int),
+                name: rs.name,
+                value: rs.value,
+                currency: intToCurrency(rs.currency_int),
+                percent: rs.percent)!
+            self.stocks += [stock]
+        }
     }
     
     func loadSampleStocks() {

@@ -4,5 +4,6 @@ use_frameworks!
 target 'CapitalAdvisor' do
   pod 'Alamofire', '2.0'
   pod 'Charts', '~> 2.1'
+  pod 'RealmSwift'
 end
 

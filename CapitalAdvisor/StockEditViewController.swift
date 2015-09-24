@@ -72,9 +72,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             //stockTypePicker.selectRow(stock.type, inComponent: 0, animated: false)
             editMode = true
         } else {
-            nameTextField.text = nameForType(selectedType)
+            nameTextField.text = nameToType(selectedType)
             currencySegmentedControl.selectedSegmentIndex = currencyToInt(defaultCurrency)
-            navigationItem.title = nameForType(selectedType)
+            navigationItem.title = nameToType(selectedType)
         }
         
         addDoneButtonToKeyboard()

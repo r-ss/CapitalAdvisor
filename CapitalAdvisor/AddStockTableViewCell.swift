@@ -12,8 +12,24 @@ class AddStockTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     
+    override var alpha: CGFloat {
+        didSet {
+            super.alpha = 1
+        }
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        
+        self.backgroundView = UIView()
+        self.backgroundView!.backgroundColor = UIColor.whiteColor()
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    
+        
         // Initialization code
     }
 

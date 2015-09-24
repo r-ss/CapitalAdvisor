@@ -45,12 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //exchangeRates.load()
         
         for type in typesArray {
-            typeNamesArray.append(nameForType(type))
+            typeNamesArray.append(nameToType(type))
         }
-        
-        print (typeNamesArray)
-
-        
+                
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
             defaultCurrency = intToCurrency(loadedDefaultCurrency)
         } else {
