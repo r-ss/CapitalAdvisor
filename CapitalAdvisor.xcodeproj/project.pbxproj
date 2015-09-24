@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D008A0B61BA96F44008B79CA /* CapitalViewController.swift */; };
+		D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0142A711BB1517A0006CC54 /* StocksContainer.swift */; };
+		D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05467C71BB06C9F00768626 /* ColorTools.swift */; };
+		D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361D31BA94029008FB1ED /* ExchangeRates.swift */; };
+		D06361FA1BA94EA7008FB1ED /* ValueFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361F91BA94EA7008FB1ED /* ValueFormat.swift */; };
+		D06B803E1BA5599D00258C0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B803D1BA5599D00258C0D /* AppDelegate.swift */; };
+		D06B80401BA5599D00258C0D /* StockEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B803F1BA5599D00258C0D /* StockEditViewController.swift */; };
+		D06B80431BA5599D00258C0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06B80411BA5599D00258C0D /* Main.storyboard */; };
+		D06B80451BA5599D00258C0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06B80441BA5599D00258C0D /* Assets.xcassets */; };
+		D06B80481BA5599D00258C0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06B80461BA5599D00258C0D /* LaunchScreen.storyboard */; };
+		D06B80501BA599B200258C0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B804F1BA599B200258C0D /* Stock.swift */; };
+		D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B80511BA59BF800258C0D /* StockTableViewCell.swift */; };
+		D06B80541BA59E2200258C0D /* StockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B80531BA59E2200258C0D /* StockTableViewController.swift */; };
+		D0D848F61BB02DF400C90AB5 /* AddStockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848F51BB02DF400C90AB5 /* AddStockTableViewController.swift */; };
+		D0D848FC1BB02E2200C90AB5 /* AddStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848FB1BB02E2200C90AB5 /* AddStockTableViewCell.swift */; };
+		D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5839A1BAEE1BD00739767 /* StockViewController.swift */; };
+		D0F9B1441BB00D670012D7D3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */; };
+		DE424DEE3F4E537297C01A9D /* Pods_CapitalAdvisor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D03607BA1BA7F40200B0E147 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00B67DBBD3616D04E96D80AE /* Pods-CapitalAdvisor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapitalAdvisor.release.xcconfig"; path = "Pods/Target Support Files/Pods-CapitalAdvisor/Pods-CapitalAdvisor.release.xcconfig"; sourceTree = "<group>"; };
+		B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapitalAdvisor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D008A0B61BA96F44008B79CA /* CapitalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalViewController.swift; sourceTree = "<group>"; };
+		D0142A711BB1517A0006CC54 /* StocksContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StocksContainer.swift; sourceTree = "<group>"; };
+		D05467C71BB06C9F00768626 /* ColorTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTools.swift; sourceTree = "<group>"; };
+		D06361D31BA94029008FB1ED /* ExchangeRates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRates.swift; sourceTree = "<group>"; };
+		D06361F91BA94EA7008FB1ED /* ValueFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueFormat.swift; sourceTree = "<group>"; };
+		D06B803A1BA5599D00258C0D /* CapitalAdvisor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapitalAdvisor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D06B803D1BA5599D00258C0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D06B803F1BA5599D00258C0D /* StockEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockEditViewController.swift; sourceTree = "<group>"; };
+		D06B80421BA5599D00258C0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D06B80441BA5599D00258C0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D06B80471BA5599D00258C0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D06B80491BA5599D00258C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D06B804F1BA599B200258C0D /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		D06B80511BA59BF800258C0D /* StockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
+		D06B80531BA59E2200258C0D /* StockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTableViewController.swift; sourceTree = "<group>"; };
+		D0D848F51BB02DF400C90AB5 /* AddStockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStockTableViewController.swift; sourceTree = "<group>"; };
+		D0D848FB1BB02E2200C90AB5 /* AddStockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStockTableViewCell.swift; sourceTree = "<group>"; };
+		D0E5839A1BAEE1BD00739767 /* StockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
+		D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D40BFBD3ABD5834BE0E7FB54 /* Pods-CapitalAdvisor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapitalAdvisor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CapitalAdvisor/Pods-CapitalAdvisor.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D06B80371BA5599D00258C0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE424DEE3F4E537297C01A9D /* Pods_CapitalAdvisor.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96925200F07748565B53F9EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D06B80311BA5599D00258C0D = {
+			isa = PBXGroup;
+			children = (
+				D06B803C1BA5599D00258C0D /* CapitalAdvisor */,
+				D06B803B1BA5599D00258C0D /* Products */,
+				D6E6FC654B2533D7E8155AD1 /* Pods */,
+				96925200F07748565B53F9EC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D06B803B1BA5599D00258C0D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D06B803A1BA5599D00258C0D /* CapitalAdvisor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D06B803C1BA5599D00258C0D /* CapitalAdvisor */ = {
+			isa = PBXGroup;
+			children = (
+				D06B803D1BA5599D00258C0D /* AppDelegate.swift */,
+				D0E5839A1BAEE1BD00739767 /* StockViewController.swift */,
+				D06B803F1BA5599D00258C0D /* StockEditViewController.swift */,
+				D06B80411BA5599D00258C0D /* Main.storyboard */,
+				D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */,
+				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
+				D0D848F51BB02DF400C90AB5 /* AddStockTableViewController.swift */,
+				D0D848FB1BB02E2200C90AB5 /* AddStockTableViewCell.swift */,
+				D06B80531BA59E2200258C0D /* StockTableViewController.swift */,
+				D06B80511BA59BF800258C0D /* StockTableViewCell.swift */,
+				D06B804F1BA599B200258C0D /* Stock.swift */,
+				D0142A711BB1517A0006CC54 /* StocksContainer.swift */,
+				D06361D31BA94029008FB1ED /* ExchangeRates.swift */,
+				D06361F91BA94EA7008FB1ED /* ValueFormat.swift */,
+				D05467C71BB06C9F00768626 /* ColorTools.swift */,
+				D06B80441BA5599D00258C0D /* Assets.xcassets */,
+				D06B80461BA5599D00258C0D /* LaunchScreen.storyboard */,
+				D06B80491BA5599D00258C0D /* Info.plist */,
+			);
+			path = CapitalAdvisor;
+			sourceTree = "<group>";
+		};
+		D6E6FC654B2533D7E8155AD1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D40BFBD3ABD5834BE0E7FB54 /* Pods-CapitalAdvisor.debug.xcconfig */,
+				00B67DBBD3616D04E96D80AE /* Pods-CapitalAdvisor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D06B80391BA5599D00258C0D /* CapitalAdvisor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D06B804C1BA5599D00258C0D /* Build configuration list for PBXNativeTarget "CapitalAdvisor" */;
+			buildPhases = (
+				09E31A82D8989DBC4301D03E /* Check Pods Manifest.lock */,
+				D06B80361BA5599D00258C0D /* Sources */,
+				D06B80371BA5599D00258C0D /* Frameworks */,
+				D06B80381BA5599D00258C0D /* Resources */,
+				D03607BA1BA7F40200B0E147 /* Embed Frameworks */,
+				92644FF12601941ADDEE3A02 /* Embed Pods Frameworks */,
+				6461EEF5BB4F9D72614A36D0 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CapitalAdvisor;
+			productName = Capital;
+			productReference = D06B803A1BA5599D00258C0D /* CapitalAdvisor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D06B80321BA5599D00258C0D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Alex Antipov";
+				TargetAttributes = {
+					D06B80391BA5599D00258C0D = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 7R7Q2CDK95;
+					};
+				};
+			};
+			buildConfigurationList = D06B80351BA5599D00258C0D /* Build configuration list for PBXProject "CapitalAdvisor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D06B80311BA5599D00258C0D;
+			productRefGroup = D06B803B1BA5599D00258C0D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D06B80391BA5599D00258C0D /* CapitalAdvisor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D06B80381BA5599D00258C0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D06B80481BA5599D00258C0D /* LaunchScreen.storyboard in Resources */,
+				D06B80451BA5599D00258C0D /* Assets.xcassets in Resources */,
+				D06B80431BA5599D00258C0D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09E31A82D8989DBC4301D03E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6461EEF5BB4F9D72614A36D0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CapitalAdvisor/Pods-CapitalAdvisor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92644FF12601941ADDEE3A02 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CapitalAdvisor/Pods-CapitalAdvisor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D06B80361BA5599D00258C0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D06B80401BA5599D00258C0D /* StockEditViewController.swift in Sources */,
+				D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */,
+				D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */,
+				D06B803E1BA5599D00258C0D /* AppDelegate.swift in Sources */,
+				D0D848F61BB02DF400C90AB5 /* AddStockTableViewController.swift in Sources */,
+				D0F9B1441BB00D670012D7D3 /* SettingsViewController.swift in Sources */,
+				D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */,
+				D0D848FC1BB02E2200C90AB5 /* AddStockTableViewCell.swift in Sources */,
+				D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */,
+				D06B80541BA59E2200258C0D /* StockTableViewController.swift in Sources */,
+				D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */,
+				D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */,
+				D06B80501BA599B200258C0D /* Stock.swift in Sources */,
+				D06361FA1BA94EA7008FB1ED /* ValueFormat.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D06B80411BA5599D00258C0D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D06B80421BA5599D00258C0D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D06B80461BA5599D00258C0D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D06B80471BA5599D00258C0D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D06B804A1BA5599D00258C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D06B804B1BA5599D00258C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D06B804D1BA5599D00258C0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D40BFBD3ABD5834BE0E7FB54 /* Pods-CapitalAdvisor.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/CapitalAdvisor/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.CapitalAdvisor;
+				PRODUCT_NAME = CapitalAdvisor;
+			};
+			name = Debug;
+		};
+		D06B804E1BA5599D00258C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00B67DBBD3616D04E96D80AE /* Pods-CapitalAdvisor.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/CapitalAdvisor/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.CapitalAdvisor;
+				PRODUCT_NAME = CapitalAdvisor;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D06B80351BA5599D00258C0D /* Build configuration list for PBXProject "CapitalAdvisor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D06B804A1BA5599D00258C0D /* Debug */,
+				D06B804B1BA5599D00258C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D06B804C1BA5599D00258C0D /* Build configuration list for PBXNativeTarget "CapitalAdvisor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D06B804D1BA5599D00258C0D /* Debug */,
+				D06B804E1BA5599D00258C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D06B80321BA5599D00258C0D /* Project object */;
+}
