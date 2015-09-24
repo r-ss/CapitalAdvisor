@@ -48,7 +48,7 @@ class AddStockTableViewController: UITableViewController {
         
         let stockTypeName = appDelegate.container.stocksTypesArray[indexPath.row]
         
-        cell.nameLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.nameLabel.textColor = UIColor.whiteColor()
         cell.nameLabel.text = stockTypeName
         
         let colorTools:ColorTools = ColorTools()
@@ -69,7 +69,7 @@ class AddStockTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForCell(selectedTypeCell)!
 
                 //let selectedStockType = indexPath.row
-                stockEditViewController.selectedType = indexPath.row
+                stockEditViewController.selectedType = typeForInt(indexPath.row)
             }
         }
     }

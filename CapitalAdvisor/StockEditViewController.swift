@@ -28,7 +28,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     */
     var stock: Stock?
     
-    var selectedType:Int = 0
+    var selectedType:Type = .Cash
     
     var editMode:Bool = false // Are we editing or adding new Stock
     var nameTextFieldWasTouchedByUser:Bool = false
@@ -67,14 +67,14 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             nameTextField.text = stock.name
             valueTextField.text = "\(stock.value)"
             percentTextField.text = "\(stock.percent * 100)"
-            currencySegmentedControl.selectedSegmentIndex = appDelegate.currencyToInt(stock.currency)
+            currencySegmentedControl.selectedSegmentIndex = currencyToInt(stock.currency)
             
             //stockTypePicker.selectRow(stock.type, inComponent: 0, animated: false)
             editMode = true
         } else {
-            nameTextField.text = appDelegate.container.stocksTypesArray[selectedType]
-            currencySegmentedControl.selectedSegmentIndex = appDelegate.currencyToInt(defaultCurrency)
-            navigationItem.title = appDelegate.container.stocksTypesArray[selectedType]
+            nameTextField.text = nameForType(selectedType)
+            currencySegmentedControl.selectedSegmentIndex = currencyToInt(defaultCurrency)
+            navigationItem.title = nameForType(selectedType)
         }
         
         addDoneButtonToKeyboard()
@@ -179,7 +179,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             
             let value = valueTextField.text ?? "0"
             let percent = percentTextField.text ?? "0"
-            let currency = appDelegate.intToCurrency(currencySegmentedControl.selectedSegmentIndex);
+            let currency = intToCurrency(currencySegmentedControl.selectedSegmentIndex);
             
             let percentCleaned = percent.stringByReplacingOccurrencesOfString(",", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
             

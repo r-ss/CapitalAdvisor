@@ -10,11 +10,20 @@ import UIKit
 
 enum Currency {
     case RUB, USD, EUR
+    init () {
+        self = .RUB
+    }
 }
 enum Type {
     case Cash, Bank, Deposit, Debit, Credit, Asset, Income
+    init () {
+        self = .Cash
+    }
 }
-let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
+
+let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
+var typeNamesArray = [String]()
+
 var defaultCurrency:Currency = .RUB
 
 
@@ -34,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //exchangeRates.load()
+        
+        for type in typesArray {
+            typeNamesArray.append(nameForType(type))
+        }
+        
+        print (typeNamesArray)
 
         
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
@@ -61,29 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     }
-       
-    func currencyToInt(currency: Currency) -> Int {
-        switch currency {
-        case .USD:
-            return 1
-        case .EUR:
-            return 2
-        default:
-            return 0
-        }
-    }
-    
-    func intToCurrency(int: Int) -> Currency {
-        switch int {
-        case 1:
-            return .USD
-        case 2:
-            return .EUR
-        default:
-            return .RUB
-        }
-    }
-    
 
     func applicationWillResignActive(application: UIApplication) {
         print("AppDelegate > applicationWillResignActive")

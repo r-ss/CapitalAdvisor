@@ -19,9 +19,24 @@ class Stock {
 
     //let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
     
-    var type:Int = 0
+    var type:Type = .Cash
     var type_name:String {
-        return typeNamesArray[type]
+        switch type {
+        case .Bank:
+            return typeNamesArray[1]
+        case .Deposit:
+            return typeNamesArray[2]
+        case .Debit:
+            return typeNamesArray[3]
+        case .Credit:
+            return typeNamesArray[4]
+        case .Asset:
+            return typeNamesArray[5]
+        case .Income:
+            return typeNamesArray[6]
+        default:
+            return typeNamesArray[0]
+        }
     }
     
     var name: String = ""
@@ -73,7 +88,7 @@ class Stock {
     }
 */
     // MARK: Initialization
-    init?(  type: Int,
+    init?(  type: Type,
             name: String,
             value: Double,
             currency:Currency,

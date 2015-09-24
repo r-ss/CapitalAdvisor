@@ -75,8 +75,8 @@ class StocksContainer {
     
     func loadSampleStocks() {
         
-        let stock1 = Stock(type: 0, name: "Наличн.", value: 3290.0, currency:.RUB)!
-        let stock2 = Stock(type: 1, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
+        let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
+        let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
         
         self.stocks += [stock1, stock2]
         

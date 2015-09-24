@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        defaultCurrencyControl.selectedSegmentIndex = appDelegate.currencyToInt(defaultCurrency)
+        defaultCurrencyControl.selectedSegmentIndex = currencyToInt(defaultCurrency)
         
         defaultCurrencyControl.addTarget(self, action: "currencyControlPressed:", forControlEvents:.ValueChanged)
         defaultCurrencyControl.addTarget(self, action: "currencyControlPressed:", forControlEvents:.TouchUpInside)
@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController {
         appDelegate.userDefaults.setObject(sender.selectedSegmentIndex, forKey: "defaultCurrency")
         appDelegate.userDefaults.synchronize()
         
-        defaultCurrency = appDelegate.intToCurrency(sender.selectedSegmentIndex)
+        defaultCurrency = intToCurrency(sender.selectedSegmentIndex)
         
         //appDelegate.updateDefaultCurrency()
     }
