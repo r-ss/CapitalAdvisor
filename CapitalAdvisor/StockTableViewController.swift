@@ -101,7 +101,7 @@ class StockTableViewController: UITableViewController {
         pieChartView.usePercentValuesEnabled = false
         pieChartView.holeTransparent = true
         pieChartView.centerTextFont = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
-        pieChartView.centerText = valueFormat.format(totalStocksValue, currency: appDelegate.defaultCurrency, adaptive: true) as String
+        pieChartView.centerText = valueFormat.format(totalStocksValue, currency: defaultCurrency, adaptive: true) as String
         pieChartView.legend.enabled = false
         pieChartView.rotationEnabled = false
         pieChartView.holeRadiusPercent = 0.90
@@ -144,9 +144,9 @@ class StockTableViewController: UITableViewController {
             totalStocksValue += Double(stock.getValueInDefaultCurrency())
             
             switch stock.currency {
-            case 1:
+            case .USD:
                 totalUSD += stock.value
-            case 2:
+            case .EUR:
                 totalEUR += stock.value
             default:
                 totalRUR += stock.value
@@ -162,7 +162,7 @@ class StockTableViewController: UITableViewController {
         }
         
         
-        totalsLabel.text = "\(valueFormat.format(totalRUR, currency: 0))    \(valueFormat.format(totalUSD, currency: 1))    \(valueFormat.format(totalEUR, currency: 2))"
+        totalsLabel.text = "\(valueFormat.format(totalRUR, currency: .RUB))    \(valueFormat.format(totalUSD, currency: .USD))    \(valueFormat.format(totalEUR, currency: .EUR))"
         
         updateDevidends()
         
@@ -185,9 +185,9 @@ class StockTableViewController: UITableViewController {
         for stock in appDelegate.container.stocks {
             let devident:Double = stock.value * stock.percent
             switch stock.currency {
-            case 1:
+            case .USD:
                 totalUSD += devident
-            case 2:
+            case .EUR:
                 totalEUR += devident
             default:
                 totalRUR += devident
@@ -199,10 +199,10 @@ class StockTableViewController: UITableViewController {
         let totalEURinRoubles:Double = totalEUR * exchangeRates.EURRUR
         
         var totalDevidents: Double
-        switch appDelegate.defaultCurrency {
-        case 1:
+        switch defaultCurrency {
+        case .USD:
             totalDevidents = (totalRUR + totalUSDinRoubles + totalEURinRoubles) / exchangeRates.USDRUR
-        case 2:
+        case .EUR:
             totalDevidents = (totalRUR + totalUSDinRoubles + totalEURinRoubles) / exchangeRates.EURRUR
         default:
             totalDevidents = totalRUR + totalUSDinRoubles + totalEURinRoubles
@@ -211,9 +211,9 @@ class StockTableViewController: UITableViewController {
         let inMonth = totalDevidents / 12
         let inDay = totalDevidents / 365
         
-        let totalDevidentsString:NSString = valueFormat.format(totalDevidents, currency: appDelegate.defaultCurrency) as String
-        let inMonthString:NSString = valueFormat.format(inMonth, currency: appDelegate.defaultCurrency) as String
-        let inDayString:NSString = valueFormat.format(inDay, currency: appDelegate.defaultCurrency) as String
+        let totalDevidentsString:NSString = valueFormat.format(totalDevidents, currency: defaultCurrency) as String
+        let inMonthString:NSString = valueFormat.format(inMonth, currency: defaultCurrency) as String
+        let inDayString:NSString = valueFormat.format(inDay, currency: defaultCurrency) as String
         
         devidendsLabel.text = "+ \(totalDevidentsString) в год\n+ \(inMonthString) в месяц\n+ \(inDayString) в день"
         

@@ -8,13 +8,22 @@
 
 import UIKit
 
+enum Currency {
+    case RUB, USD, EUR
+}
+enum Type {
+    case Cash, Bank, Deposit, Debit, Credit, Asset, Income
+}
+let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
+var defaultCurrency:Currency = .RUB
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let exchangeRates:ExchangeRates = ExchangeRates()!
     let container:StocksContainer = StocksContainer()
     let valueFormat:ValueFormat = ValueFormat()!
-    var defaultCurrency:Int = 0
 
     var window: UIWindow?
     let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -27,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //exchangeRates.load()
 
         
-        if let defaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
-            self.defaultCurrency = defaultCurrency
+        if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
+            defaultCurrency = intToCurrency(loadedDefaultCurrency)
         } else {
             userDefaults.setObject(0, forKey: "defaultCurrency")
             userDefaults.synchronize()
@@ -52,12 +61,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     }
-    
-    func updateDefaultCurrency(){
-        if let defaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
-            self.defaultCurrency = defaultCurrency
+       
+    func currencyToInt(currency: Currency) -> Int {
+        switch currency {
+        case .USD:
+            return 1
+        case .EUR:
+            return 2
+        default:
+            return 0
         }
     }
+    
+    func intToCurrency(int: Int) -> Currency {
+        switch int {
+        case 1:
+            return .USD
+        case 2:
+            return .EUR
+        default:
+            return .RUB
+        }
+    }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         print("AppDelegate > applicationWillResignActive")

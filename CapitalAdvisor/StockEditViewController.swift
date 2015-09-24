@@ -67,13 +67,13 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             nameTextField.text = stock.name
             valueTextField.text = "\(stock.value)"
             percentTextField.text = "\(stock.percent * 100)"
-            currencySegmentedControl.selectedSegmentIndex = stock.currency
+            currencySegmentedControl.selectedSegmentIndex = appDelegate.currencyToInt(stock.currency)
             
             //stockTypePicker.selectRow(stock.type, inComponent: 0, animated: false)
             editMode = true
         } else {
             nameTextField.text = appDelegate.container.stocksTypesArray[selectedType]
-            currencySegmentedControl.selectedSegmentIndex = appDelegate.defaultCurrency
+            currencySegmentedControl.selectedSegmentIndex = appDelegate.currencyToInt(defaultCurrency)
             navigationItem.title = appDelegate.container.stocksTypesArray[selectedType]
         }
         
@@ -179,7 +179,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             
             let value = valueTextField.text ?? "0"
             let percent = percentTextField.text ?? "0"
-            let currency = currencySegmentedControl.selectedSegmentIndex;
+            let currency = appDelegate.intToCurrency(currencySegmentedControl.selectedSegmentIndex);
             
             let percentCleaned = percent.stringByReplacingOccurrencesOfString(",", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
             

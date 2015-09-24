@@ -18,7 +18,7 @@ class ValueFormat {
     }
     
     // MARK: Actions
-    func format(number: Double, currency: Int, adaptive: Bool = false) -> NSString{
+    func format(number: Double, currency: Currency, adaptive: Bool = false) -> NSString{
         // format value based on currency
         let formatter = NSNumberFormatter()
         formatter.groupingSize = 3
@@ -44,11 +44,11 @@ class ValueFormat {
         
         
         switch currency {
-        case 1:
+        case .USD:
             formatter.locale = NSLocale(localeIdentifier: "en_US")
             //formatter.positivePrefix = "$"
             //formatter.maximumFractionDigits = 3
-        case 2:
+        case .EUR:
             formatter.locale = NSLocale(localeIdentifier: "de_DE")
             //formatter.positivePrefix = "€"
             //formatter.maximumFractionDigits = 3

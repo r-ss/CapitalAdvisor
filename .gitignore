@@ -1,6 +1,7 @@
 _gfx/
 Podfile.lock
 Pods/
+*.xcuserstate
 
 # OS generated files #
 ######################

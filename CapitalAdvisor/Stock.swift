@@ -8,10 +8,16 @@
 
 import UIKit
 
-class Stock: NSObject, NSCoding {
+//class Stock: NSObject, NSCoding {
+class Stock {
 
     // MARK: Properties
-    let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
+    
+//    enum Type {
+//        case Cash, Bank, Deposit, Debit, Credit, Asset, Income
+//    }
+
+    //let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
     
     var type:Int = 0
     var type_name:String {
@@ -20,14 +26,14 @@ class Stock: NSObject, NSCoding {
     
     var name: String = ""
     var value: Double = 0.0
-    var currency: Int = 0 // 0=RUB, 1=USD, 2=EUR
+    var currency:Currency = .RUB
     var percent: Double = 0.0
-    var color: UIColor = UIColor.blackColor()
+    var color: UIColor = UIColor.whiteColor()
 
     let valueFormat:ValueFormat = ValueFormat()!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-
+/*
     // MARK: Archiving Paths
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("stocks")
@@ -65,12 +71,12 @@ class Stock: NSObject, NSCoding {
                     percent: percent
                     )
     }
-
+*/
     // MARK: Initialization
     init?(  type: Int,
             name: String,
             value: Double,
-            currency: Int,
+            currency:Currency,
             percent: Double = 0.0,
             color:UIColor = UIColor.blackColor())
     {
@@ -81,7 +87,7 @@ class Stock: NSObject, NSCoding {
         self.percent = percent
         self.color = color
         
-        super.init()
+        //super.init()
     
         if value == 0.0 {
             return nil
@@ -95,33 +101,32 @@ class Stock: NSObject, NSCoding {
     
     func getValueInDefaultCurrency() -> Double {
         let exchangeRates:ExchangeRates = appDelegate.exchangeRates
-        let defaultCurrency:Int = appDelegate.defaultCurrency
-        
-        
+        //let defaultCurrency:Int = appDelegate.defaultCurrency
+
         switch self.currency {
-        case 1:
+        case .USD:
             switch defaultCurrency {
-            case 1:
+            case .USD:
                 return self.value
-            case 2:
+            case .EUR:
                 return self.value / exchangeRates.EURUSD
             default:
                 return self.value * exchangeRates.USDRUR
             }
-        case 2:
+        case .EUR:
             switch defaultCurrency {
-            case 2:
+            case .USD:
                 return self.value * exchangeRates.EURUSD
-            case 1:
+            case .EUR:
                 return self.value
             default:
                 return self.value / exchangeRates.USDRUR
             }
         default:
             switch defaultCurrency {
-            case 1:
+            case .USD:
                 return self.value / exchangeRates.USDRUR
-            case 2:
+            case .EUR:
                 return self.value / exchangeRates.EURRUR
             default:
                 return self.value

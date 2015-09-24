@@ -58,25 +58,25 @@ class StocksContainer {
     
     // MARK: NSCoding
     func saveStocks() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stocks, toFile: Stock.ArchiveURL.path!)
-        if !isSuccessfulSave {
-            print("ERROR: Failed to save stocks...")
-        }
+        //let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stocks, toFile: Stock.ArchiveURL.path!)
+        //if !isSuccessfulSave {
+        //    print("ERROR: Failed to save stocks...")
+        //}
     }
     func loadStocks() {
         //print(Stock.ArchiveURL.path!)
         
-        if let archivedStocks = NSKeyedUnarchiver.unarchiveObjectWithFile(Stock.ArchiveURL.path!) as! [Stock]? {
-            self.stocks += archivedStocks
-        } else {
+        //if let archivedStocks = NSKeyedUnarchiver.unarchiveObjectWithFile(Stock.ArchiveURL.path!) as! [Stock]? {
+        //    self.stocks += archivedStocks
+        //} else {
             loadSampleStocks()
-        }
+        //}
     }
     
     func loadSampleStocks() {
         
-        let stock1 = Stock(type: 0, name: "Наличн.", value: 3290.0, currency:0)!
-        let stock2 = Stock(type: 1, name: "Сбер", value: 500000.0, currency:0, percent: 0.125)!
+        let stock1 = Stock(type: 0, name: "Наличн.", value: 3290.0, currency:.RUB)!
+        let stock2 = Stock(type: 1, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
         
         self.stocks += [stock1, stock2]
         
