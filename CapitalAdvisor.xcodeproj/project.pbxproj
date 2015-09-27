@@ -21,7 +21,6 @@
 		D06B80501BA599B200258C0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B804F1BA599B200258C0D /* Stock.swift */; };
 		D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B80511BA59BF800258C0D /* StockTableViewCell.swift */; };
 		D06B80541BA59E2200258C0D /* StockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B80531BA59E2200258C0D /* StockTableViewController.swift */; };
-		D0AB79C01BB552C200DA55AB /* SwiftFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AB79BF1BB552C200DA55AB /* SwiftFormViewController.swift */; };
 		D0D848F61BB02DF400C90AB5 /* AddStockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848F51BB02DF400C90AB5 /* AddStockTableViewController.swift */; };
 		D0D848FC1BB02E2200C90AB5 /* AddStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848FB1BB02E2200C90AB5 /* AddStockTableViewCell.swift */; };
 		D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5839A1BAEE1BD00739767 /* StockViewController.swift */; };
@@ -61,7 +60,6 @@
 		D06B804F1BA599B200258C0D /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		D06B80511BA59BF800258C0D /* StockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
 		D06B80531BA59E2200258C0D /* StockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTableViewController.swift; sourceTree = "<group>"; };
-		D0AB79BF1BB552C200DA55AB /* SwiftFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFormViewController.swift; sourceTree = "<group>"; };
 		D0D848F51BB02DF400C90AB5 /* AddStockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStockTableViewController.swift; sourceTree = "<group>"; };
 		D0D848FB1BB02E2200C90AB5 /* AddStockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStockTableViewCell.swift; sourceTree = "<group>"; };
 		D0E5839A1BAEE1BD00739767 /* StockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				D0E5839A1BAEE1BD00739767 /* StockViewController.swift */,
 				D06B803F1BA5599D00258C0D /* StockEditViewController.swift */,
 				D06B80411BA5599D00258C0D /* Main.storyboard */,
-				D0AB79BF1BB552C200DA55AB /* SwiftFormViewController.swift */,
 				D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */,
 				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
 				D0D848F51BB02DF400C90AB5 /* AddStockTableViewController.swift */,
@@ -274,7 +271,6 @@
 				D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */,
 				D06B803E1BA5599D00258C0D /* AppDelegate.swift in Sources */,
 				D0D848F61BB02DF400C90AB5 /* AddStockTableViewController.swift in Sources */,
-				D0AB79C01BB552C200DA55AB /* SwiftFormViewController.swift in Sources */,
 				D0F9B1441BB00D670012D7D3 /* SettingsViewController.swift in Sources */,
 				D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */,
 				D0D848FC1BB02E2200C90AB5 /* AddStockTableViewCell.swift in Sources */,

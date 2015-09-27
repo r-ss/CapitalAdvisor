@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 enum Currency {
     case RUB, USD, EUR
     init () {

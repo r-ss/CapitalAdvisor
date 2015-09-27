@@ -8,8 +8,6 @@
 
 import UIKit
 
-import XLForm
-
 class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
@@ -20,11 +18,13 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var percentTextField: UITextField!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var notesTextView: UITextView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
     
     /*
     @IBOutlet weak var scrollView: UIScrollView!
@@ -35,7 +35,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     var selectedType:Type = .Cash
     
-    //var activeField: UITextField? // for scrolling in case of keyboard overlapping
+    var activeField: UITextField? // for scrolling in case of keyboard overlapping
     
     
     var editMode:Bool = false // Are we editing or adding new Stock
@@ -47,11 +47,6 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        
-        
-        
         
         
         notesTextView.layer.backgroundColor = UIColor.whiteColor().CGColor
@@ -99,18 +94,28 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        //registerForKeyboardNotifications()
-        
+        registerForKeyboardNotifications()
+             
 
         addDoneButtonToKeyboard()
         
         checkValidData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        //print("viewWillAppear")
+        self.nameTextField.becomeFirstResponder()
+        
+       // self.scrollView.
+        
+        self.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+
+    }
+    
     func registerForKeyboardNotifications() {
         //Adding notifies on keyboard appearing
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -119,7 +124,30 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
-
+    
+    
+    func keyboardWillShow(notification:NSNotification){
+        print("keyboardWillShow")
+        let info:NSDictionary = notification.userInfo!
+        let kbSize:CGSize = (info.objectForKey(UIKeyboardFrameBeginUserInfoKey)?.CGRectValue.size)!
+        let contentInsets:UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        var aRect:CGRect = self.view.frame
+        aRect.size.height -= kbSize.height
+        if (!CGRectContainsPoint(aRect, activeField!.frame.origin) ) {
+            let scrollPoint:CGPoint = CGPointMake(0.0, activeField!.frame.origin.y-kbSize.height)
+            scrollView.setContentOffset(scrollPoint, animated: false)
+        }
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        print("keyboardWillHide")
+        let contentInsets:UIEdgeInsets  = UIEdgeInsetsZero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
     
     func cancelPressed() {
         print("> StockEditViewController > cancelPressed")
@@ -177,16 +205,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             nameTextFieldWasTouchedByUser = true
         }
         
-        //activeField = sender
-    }
-    
-    func checkValidData() {
-        // Disable the Save button if the text field is empty.
-        let name = nameTextField.text ?? ""
-        saveButton.enabled = !name.isEmpty
-        
-        let value = valueTextField.text ?? ""
-        saveButton.enabled = !value.isEmpty
+        activeField = sender
     }
     
     func textFieldDidEndEditing(sender: UITextField) {
@@ -198,6 +217,17 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         //activeField = nil
     }
+    
+    func checkValidData() {
+        // Disable the Save button if the text field is empty.
+        let name = nameTextField.text ?? ""
+        saveButton.enabled = !name.isEmpty
+        
+        let value = valueTextField.text ?? ""
+        saveButton.enabled = !value.isEmpty
+    }
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
