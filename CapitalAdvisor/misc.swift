@@ -6,24 +6,24 @@
 //  Copyright © 2015 Alex Antipov. All rights reserved.
 //
 
-func nameToType(type:Type) -> String {
-    switch type {
-    case .Bank:
-        return "Счёт"
-    case .Deposit:
-        return "Депозит"
-    case .Debit:
-        return "Дебетовая карта"
-    case .Credit:
-        return "Кредитная карта"
-    case .Asset:
-        return "Актив"
-    case .Income:
-        return "Доход"
-    default:
-        return "Наличные"
-    }
-}
+//func nameToType(type:Type) -> String {
+//    switch type {
+//    case .Bank:
+//        return "Счёт"
+//    case .Deposit:
+//        return "Депозит"
+//    case .Debit:
+//        return "Дебетовая карта"
+//    case .Credit:
+//        return "Кредитная карта"
+//    case .Asset:
+//        return "Актив"
+//    case .Income:
+//        return "Доход"
+//    default:
+//        return "Наличные"
+//    }
+//}
 
 func typeToInt(type:Type) -> Int {
     switch type {

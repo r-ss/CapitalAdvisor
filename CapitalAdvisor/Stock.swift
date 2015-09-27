@@ -21,22 +21,7 @@ class Stock {
     
     var type:Type = .Cash
     var type_name:String {
-        switch type {
-        case .Bank:
-            return typeNamesArray[1]
-        case .Deposit:
-            return typeNamesArray[2]
-        case .Debit:
-            return typeNamesArray[3]
-        case .Credit:
-            return typeNamesArray[4]
-        case .Asset:
-            return typeNamesArray[5]
-        case .Income:
-            return typeNamesArray[6]
-        default:
-            return typeNamesArray[0]
-        }
+        return typeToName(self.type)!
     }
     
     var name: String = ""

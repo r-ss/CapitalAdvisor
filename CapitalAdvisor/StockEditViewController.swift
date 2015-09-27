@@ -8,6 +8,7 @@
 
 import UIKit
 
+import XLForm
 
 class StockEditViewController: UIViewController, UITextFieldDelegate {
     
@@ -21,14 +22,21 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
+    @IBOutlet weak var notesTextView: UITextView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     /*
+    @IBOutlet weak var scrollView: UIScrollView!
     This value is either passed by `StockTableViewController` in `prepareForSegue(_:sender:)`
     or constructed as part of adding a new stock.
     */
     var stock: Stock?
     
     var selectedType:Type = .Cash
+    
+    //var activeField: UITextField? // for scrolling in case of keyboard overlapping
+    
     
     var editMode:Bool = false // Are we editing or adding new Stock
     var nameTextFieldWasTouchedByUser:Bool = false
@@ -39,6 +47,19 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        
+        
+        
+        
+        notesTextView.layer.backgroundColor = UIColor.whiteColor().CGColor
+        notesTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
+        notesTextView.layer.borderWidth = 1.0
+        notesTextView.layer.cornerRadius = 5
+        
+        
         
         nameTextField.delegate = self
         valueTextField.delegate = self
@@ -72,15 +93,33 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             //stockTypePicker.selectRow(stock.type, inComponent: 0, animated: false)
             editMode = true
         } else {
-            nameTextField.text = nameToType(selectedType)
+            nameTextField.text = typeToName(selectedType)
             currencySegmentedControl.selectedSegmentIndex = currencyToInt(defaultCurrency)
-            navigationItem.title = nameToType(selectedType)
+            navigationItem.title = typeToName(selectedType)
         }
         
+        
+        //registerForKeyboardNotifications()
+        
+
         addDoneButtonToKeyboard()
         
         checkValidData()
     }
+    
+    func registerForKeyboardNotifications() {
+        //Adding notifies on keyboard appearing
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    
+    func deregisterFromKeyboardNotifications() {
+        //Removing notifies on keyboard appearing
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+
     
     func cancelPressed() {
         print("> StockEditViewController > cancelPressed")
@@ -137,6 +176,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             }
             nameTextFieldWasTouchedByUser = true
         }
+        
+        //activeField = sender
     }
     
     func checkValidData() {
@@ -154,6 +195,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         if sender === nameTextField {
             navigationItem.title = sender.text
         }
+        
+        //activeField = nil
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -173,9 +216,6 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         if saveButton === sender {
             print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
             let name = nameTextField.text ?? ""
-            
-            //selectedType = .Cash
-            //let type:Int = self.selectedType
             
             let value = valueTextField.text ?? "0"
             let percent = percentTextField.text ?? "0"

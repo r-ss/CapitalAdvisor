@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 enum Currency {
     case RUB, USD, EUR
     init () {
@@ -25,6 +26,13 @@ let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
 var typeNamesArray = [String]()
 
 var defaultCurrency:Currency = .RUB
+
+let typesNamesDictionary = [Type.Cash:"Наличные", .Bank:"Счёт", .Deposit:"Депозит", .Debit:"Дебетовая карта", .Credit:"Кредитная карта", .Asset:"Актив", .Income:"Доход"]
+
+func typeToName(type:Type) -> String? {
+    return typesNamesDictionary[type]
+}
+
 
 
 @UIApplicationMain
@@ -44,9 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //exchangeRates.load()
         
-        for type in typesArray {
-            typeNamesArray.append(nameToType(type))
-        }
                 
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
             defaultCurrency = intToCurrency(loadedDefaultCurrency)
