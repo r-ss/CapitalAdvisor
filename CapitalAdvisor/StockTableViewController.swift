@@ -22,7 +22,7 @@ class StockTableViewController: UITableViewController {
     @IBOutlet var tableStocks: UITableView!
     @IBOutlet weak var devidendsLabel: UILabel!
     
-    let valueFormat:ValueFormat = ValueFormat()!
+    let valueFormat:ValueFormat = ValueFormat()
     //var stocks = [Stock]()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -278,11 +278,14 @@ class StockTableViewController: UITableViewController {
         print("> StockTableViewController > unwindToStockList")
         if let sourceViewController = sender.sourceViewController as? StockEditViewController, stock = sourceViewController.stock {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                
+                print("AA")
                 // Update an existing stock.
                 //stocks[selectedIndexPath.row] = stock
                 appDelegate.container.updateStock(stock, atIndex: selectedIndexPath.row)
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
-            } else {                
+            } else {
+                print("BB")
                 // Add a new stock.
                 let newIndexPath = NSIndexPath(forRow: appDelegate.container.stocksCount, inSection: 0)
                 appDelegate.container.addStock(stock)

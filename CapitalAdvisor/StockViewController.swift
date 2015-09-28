@@ -40,9 +40,9 @@ class StockViewController: UIViewController {
             
             var inOtherCurrencies:String = ""
             
-            let RUB = ValueFormat()!.format(stock.getValueInCurrency(.RUB), currency: .RUB)
-            let USD = ValueFormat()!.format(stock.getValueInCurrency(.USD), currency: .USD)
-            let EUR = ValueFormat()!.format(stock.getValueInCurrency(.EUR), currency: .EUR)
+            let RUB = ValueFormat().format(stock.getValueInCurrency(.RUB), currency: .RUB)
+            let USD = ValueFormat().format(stock.getValueInCurrency(.USD), currency: .USD)
+            let EUR = ValueFormat().format(stock.getValueInCurrency(.EUR), currency: .EUR)
             
             switch stock.currency {
             case .RUB:

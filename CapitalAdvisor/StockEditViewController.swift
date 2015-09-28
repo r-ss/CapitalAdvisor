@@ -15,6 +15,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var valueTextField: UITextField!
     @IBOutlet weak var currencySegmentedControl: UISegmentedControl!
+    
+    
+    @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var percentTextField: UITextField!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -105,6 +108,17 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         //print("viewWillAppear")
         self.nameTextField.becomeFirstResponder()
+        
+        
+        switch self.selectedType {
+        case .Cash, .Bank:
+            self.percentLabel.hidden = true
+            self.percentTextField.hidden = true
+        default:
+            self.percentLabel.hidden = false
+            self.percentTextField.hidden = false
+        }
+        
         
        // self.scrollView.
         

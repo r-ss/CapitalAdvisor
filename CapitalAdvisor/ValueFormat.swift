@@ -9,14 +9,6 @@
 import UIKit
 
 class ValueFormat {
-    
-    // MARK: Properties
-    
-    // MARK: Initialization
-    init?() {
-        
-    }
-    
     // MARK: Actions
     func format(number: Double, currency: Currency, adaptive: Bool = false) -> String {
         // format value based on currency
@@ -26,23 +18,16 @@ class ValueFormat {
         formatter.usesGroupingSeparator = true
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         
-        //doubleValF.maximumSignificantDigits = 30;
-        //formatter.minimumFractionDigits = 0
-        
+       
         formatter.usesSignificantDigits = false
-        
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 2
         
-        
         formatter.roundingMode = NSNumberFormatterRoundingMode.RoundFloor
-
         
         //formatter.minimumSignificantDigits = 0;
         //formatter.maximumSignificantDigits = 2;
-        
-        
-        
+
         switch currency {
         case .USD:
             formatter.locale = NSLocale(localeIdentifier: "en_US")
@@ -58,11 +43,9 @@ class ValueFormat {
             //formatter.maximumFractionDigits = 3
         }
         
-        
         if adaptive {
             formatter.maximumFractionDigits = 0
         }
-        
         
         return formatter.stringFromNumber(number)!
     }

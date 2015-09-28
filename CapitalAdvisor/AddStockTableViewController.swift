@@ -70,7 +70,7 @@ class AddStockTableViewController: UITableViewController {
             // Get the cell that generated this segue.
             if let selectedTypeCell = sender as? AddStockTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedTypeCell)!
-
+                //print(indexPath.row)
                 //let selectedStockType = indexPath.row
                 stockEditViewController.selectedType = intToType(indexPath.row)
             }

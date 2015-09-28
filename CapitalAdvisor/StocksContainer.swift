@@ -47,7 +47,7 @@ var currency:Currency = .RUB
 var percent: Double = 0.0
 var color: UIColor = UIColor.whiteColor()
 
-let valueFormat:ValueFormat = ValueFormat()!
+let valueFormat:ValueFormat = ValueFormat()
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 

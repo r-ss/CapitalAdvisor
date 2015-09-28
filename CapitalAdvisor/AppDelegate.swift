@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let exchangeRates:ExchangeRates = ExchangeRates()!
     let container:StocksContainer = StocksContainer()
-    let valueFormat:ValueFormat = ValueFormat()!
+    let valueFormat:ValueFormat = ValueFormat()
 
     var window: UIWindow?
     let userDefaults = NSUserDefaults.standardUserDefaults()
