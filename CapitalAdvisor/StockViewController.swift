@@ -35,6 +35,31 @@ class StockViewController: UIViewController {
             let percentsString:String = String(stock.percent * 100)
             valueLabel.text = valueFormattedString
             percentsLabel.text = "@ \(percentsString)% годовых"
+            
+            let formattedPercentInAssets = NSString(format:"%.2f", stock.getPercentInTotalStocksValue() * 100)
+            
+            var inOtherCurrencies:String = ""
+            
+            let RUB = ValueFormat()!.format(stock.getValueInCurrency(.RUB), currency: .RUB)
+            let USD = ValueFormat()!.format(stock.getValueInCurrency(.USD), currency: .USD)
+            let EUR = ValueFormat()!.format(stock.getValueInCurrency(.EUR), currency: .EUR)
+            
+            switch stock.currency {
+            case .RUB:
+                inOtherCurrencies = "\(USD)\n\(EUR)"
+            case .USD:
+                inOtherCurrencies = "\(RUB)\n\(EUR)"
+            case .EUR:
+                inOtherCurrencies = "\(RUB)\n\(USD)"
+            }
+            
+            
+            
+            infoLabel.text = "\(formattedPercentInAssets)% от активов\n\n\(inOtherCurrencies)"
+            
+            //infoLabel.text += "f"
+            
+            
         } else {
             print(">>> NO STOCK <<< (StockViewController)")
         }

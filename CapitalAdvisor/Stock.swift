@@ -57,6 +57,11 @@ class Stock {
         }
     }
     
+    func getPercentInTotalStocksValue() -> Double {
+        let totalStocksValue = appDelegate.container.totalStocksValueInCurrency(defaultCurrency)
+        let valueOfThisStock = getValueInCurrency(defaultCurrency)
+        return valueOfThisStock / totalStocksValue
+    }
     
     func getValueInDefaultCurrency() -> Double {
         return self.getValueInCurrency(defaultCurrency)
@@ -67,31 +72,31 @@ class Stock {
         //let defaultCurrency:Int = appDelegate.defaultCurrency
         
         switch self.currency {
-        case .USD:
+        case .RUB:
             switch requiredCurrency {
-            case .USD:
+            case .RUB:
                 return self.value
-            case .EUR:
-                return self.value / exchangeRates.EURUSD
-            default:
-                return self.value * exchangeRates.USDRUR
-            }
-        case .EUR:
-            switch requiredCurrency {
-            case .USD:
-                return self.value * exchangeRates.EURUSD
-            case .EUR:
-                return self.value
-            default:
-                return self.value / exchangeRates.USDRUR
-            }
-        default:
-            switch requiredCurrency {
             case .USD:
                 return self.value / exchangeRates.USDRUR
             case .EUR:
                 return self.value / exchangeRates.EURRUR
-            default:
+            }
+        case .USD:
+            switch requiredCurrency {
+            case .RUB:
+                return self.value * exchangeRates.USDRUR
+            case .USD:
+                return self.value
+            case .EUR:
+                return self.value / exchangeRates.EURUSD
+            }
+        case .EUR:
+            switch requiredCurrency {
+            case .RUB:
+                return self.value * exchangeRates.EURRUR
+            case .USD:
+                return self.value * exchangeRates.EURUSD
+            case .EUR:
                 return self.value
             }
         }
