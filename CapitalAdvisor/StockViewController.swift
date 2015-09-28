@@ -55,7 +55,7 @@ class StockViewController: UIViewController {
             
             
             
-            infoLabel.text = "\(formattedPercentInAssets)% от активов\n\n\(inOtherCurrencies)"
+            infoLabel.text = "\(formattedPercentInAssets)% от активов\n\n\(inOtherCurrencies)\n\n\(stock.formattedDevidendYear)\n\(stock.formattedDevidendMonth)\n\(stock.formattedDevidendDay)"
             
             //infoLabel.text += "f"
             
