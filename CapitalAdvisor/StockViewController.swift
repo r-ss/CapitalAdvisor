@@ -16,6 +16,7 @@ class StockViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var percentsLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
    
     var stock: Stock?
     
@@ -23,25 +24,20 @@ class StockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {        
         // Set up views if editing an existing Stock.
         if let stock = stock {
-            //navigationItem.title = stocksTypesArray[stock.type]
             navigationItem.title = stock.type_name
             nameLabel.text = stock.name
-            
             let valueFormattedString:String = appDelegate.valueFormat.format(stock.value, currency: stock.currency) as String
             let percentsString:String = String(stock.percent * 100)
-            
-            //valueLabel.text = "\(stock.value)"
             valueLabel.text = valueFormattedString
             percentsLabel.text = "@ \(percentsString)% годовых"
-            
         } else {
             print(">>> NO STOCK <<< (StockViewController)")
         }
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     
@@ -54,18 +50,12 @@ class StockViewController: UIViewController {
             
             self.stock = stock
             
-            print(parentViewController)
+            //print(parentViewController)
 
-            
             self.viewDidLoad()
-            
-            //print(stock.value)
-            
             if let selectedStockIndex:Int = appDelegate.container.getSelectedStockIndex()! {
                 appDelegate.container.updateStock(stock, atIndex: selectedStockIndex)
             }
-           
-        
         }
     }
     

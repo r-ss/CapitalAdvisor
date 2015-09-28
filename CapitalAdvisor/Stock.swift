@@ -8,16 +8,8 @@
 
 import UIKit
 
-//class Stock: NSObject, NSCoding {
 class Stock {
 
-    // MARK: Properties
-    
-//    enum Type {
-//        case Cash, Bank, Deposit, Debit, Credit, Asset, Income
-//    }
-
-    //let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
     
     var type:Type = .Cash
     var type_name:String {
@@ -33,45 +25,16 @@ class Stock {
     let valueFormat:ValueFormat = ValueFormat()!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-/*
-    // MARK: Archiving Paths
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("stocks")
+    var devidendYear:Double { return self.value * self.percent }
+    var devidendMonth:Double { return devidendYear / 12 }
+    var devidendDay:Double { return devidendYear / 365 }
+    var formattedDevidendYear:String { return "+ \(valueFormat.format(self.devidendYear, currency: self.currency)) в год" }
+    var formattedDevidendMonth:String { return "+ \(valueFormat.format(self.devidendMonth, currency: self.currency)) в месяц" }
+    var formattedDevidendDay:String { return "+ \(valueFormat.format(self.devidendDay, currency: self.currency)) в день" }
     
-    // MARK: Types
-    struct PropertyKey {
-        static let typeKey = "type"
-        static let nameKey = "name"
-        static let valueKey = "value"
-        static let currencyKey = "currency"
-        static let percentKey = "percent"
-    }
+    var formattedValue:String { return valueFormat.format(self.value, currency: self.currency) }
+    var formattedPercent:String { return "\(self.percent * 100)%" }
     
-    // MARK: NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(type, forKey: PropertyKey.typeKey)
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(value, forKey: PropertyKey.valueKey)
-        aCoder.encodeObject(currency, forKey: PropertyKey.currencyKey)
-        aCoder.encodeObject(percent, forKey: PropertyKey.percentKey)
-    }
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        let type = aDecoder.decodeObjectForKey(PropertyKey.typeKey) as! Int
-        let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        let value = aDecoder.decodeObjectForKey(PropertyKey.valueKey) as! Double
-        let currency = aDecoder.decodeObjectForKey(PropertyKey.currencyKey) as! Int
-        let percent = aDecoder.decodeObjectForKey(PropertyKey.percentKey) as! Double
-               
-        
-        self.init(  type: type,
-                    name: name,
-                    value: value,
-                    currency: currency,
-                    percent: percent
-                    )
-    }
-*/
     // MARK: Initialization
     init?(  type: Type,
             name: String,
@@ -94,18 +57,18 @@ class Stock {
         }
     }
     
-//    func getTypeValue() -> NSString {
-//        return type_name
-//        //return self.stocksTypesArray[self.type]
-//    }
     
     func getValueInDefaultCurrency() -> Double {
+        return self.getValueInCurrency(defaultCurrency)
+    }
+    
+    func getValueInCurrency(requiredCurrency:Currency) -> Double {
         let exchangeRates:ExchangeRates = appDelegate.exchangeRates
         //let defaultCurrency:Int = appDelegate.defaultCurrency
-
+        
         switch self.currency {
         case .USD:
-            switch defaultCurrency {
+            switch requiredCurrency {
             case .USD:
                 return self.value
             case .EUR:
@@ -114,7 +77,7 @@ class Stock {
                 return self.value * exchangeRates.USDRUR
             }
         case .EUR:
-            switch defaultCurrency {
+            switch requiredCurrency {
             case .USD:
                 return self.value * exchangeRates.EURUSD
             case .EUR:
@@ -123,7 +86,7 @@ class Stock {
                 return self.value / exchangeRates.USDRUR
             }
         default:
-            switch defaultCurrency {
+            switch requiredCurrency {
             case .USD:
                 return self.value / exchangeRates.USDRUR
             case .EUR:
@@ -132,27 +95,6 @@ class Stock {
                 return self.value
             }
         }
-    
-    
-        
-        
-    }
-    
-    func getDisplayValue() -> NSString {
-        return valueFormat.format(self.value, currency: self.currency)
-    }
-    
-    func getDisplayPercent() -> NSString{
-        return "\(self.percent * 100)%"
-    }
-    
-    func getDisplayMonthlyReturn() -> NSString{
-        
-        let monthlyReturn:Double = (self.value * self.percent) / 12
-        let monthlyReturnString:NSString = valueFormat.format(monthlyReturn, currency: self.currency)
-        
-        return "+ \(monthlyReturnString) в месяц"
-        
     }
     
 }

@@ -22,7 +22,8 @@ enum Type {
 }
 
 let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
-var typeNamesArray = [String]()
+//var typeNamesArray = [String]()
+let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
 
 var defaultCurrency:Currency = .RUB
 
@@ -50,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //exchangeRates.load()
-        
+                
                 
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
             defaultCurrency = intToCurrency(loadedDefaultCurrency)

@@ -18,7 +18,7 @@ class ValueFormat {
     }
     
     // MARK: Actions
-    func format(number: Double, currency: Currency, adaptive: Bool = false) -> NSString{
+    func format(number: Double, currency: Currency, adaptive: Bool = false) -> String {
         // format value based on currency
         let formatter = NSNumberFormatter()
         formatter.groupingSize = 3

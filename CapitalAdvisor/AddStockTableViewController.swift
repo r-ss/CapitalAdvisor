@@ -46,7 +46,10 @@ class AddStockTableViewController: UITableViewController {
         //let cellIdentifier = "AddStockTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier("AddStockTableViewCell", forIndexPath: indexPath) as! AddStockTableViewCell
         
-        let stockTypeName = appDelegate.container.stocksTypesArray[indexPath.row]
+        //let stockTypeName = appDelegate.container.stocksTypesArray[indexPath.row]
+        
+        let stockTypeName = typeNamesArray[indexPath.row]
+        
         
         cell.nameLabel.textColor = UIColor.whiteColor()
         cell.nameLabel.text = stockTypeName

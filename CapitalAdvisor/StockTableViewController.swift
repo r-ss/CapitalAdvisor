@@ -24,8 +24,6 @@ class StockTableViewController: UITableViewController {
     
     let valueFormat:ValueFormat = ValueFormat()!
     //var stocks = [Stock]()
-    var totalStocksValue:Double = 0.0
-    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     //var container:StocksContainer?
@@ -37,39 +35,16 @@ class StockTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //print("viewDidLoad")
-        
-        //container = AppDelegate.container
-        
-        
-        //appDelegate.stocksTableViewControler = self
-        
- 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "exchangeRatesLoaded:", name: "Notification.exchangeRatesLoaded", object: nil)
-        
-        //loadSampleStocks()
     }
     
     override func viewWillAppear(animated: Bool) {
-        //print("viewWillAppear")
         showInitialExchangeRates()
         updateData()
-        //self.seguesBlocked = false
     }
-    
-//    override func viewWillDisappear(animated: Bool) {
-//        self.seguesBlocked = true
-//    }
-    
+
     
     func showInitialExchangeRates(){
         let exchangeRates:ExchangeRates = appDelegate.exchangeRates
@@ -96,6 +71,8 @@ class StockTableViewController: UITableViewController {
         let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Stocks")
         let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
         
+        let totalStocksValue:Double = appDelegate.container.totalStocksValueInCurrency(defaultCurrency)
+        
         pieChartView.data = pieChartData
         pieChartView.descriptionText = ""
         pieChartView.usePercentValuesEnabled = false
@@ -109,49 +86,28 @@ class StockTableViewController: UITableViewController {
         pieChartView.drawSliceTextEnabled = false
         pieChartView.userInteractionEnabled = false
         
-        
-        //var colors: [UIColor] = []
         var colors = [UIColor]()
-        //var i = 1;
         for stock in appDelegate.container.stocks {
             colors.append(stock.color)
-            //i+=1
         }
         pieChartDataSet.colors = colors
     }
     
     func updateData(){
-        //print(">>> UPDATE DATA")
-        var totalRUR:Double = 0.0
-        var totalUSD:Double = 0.0
-        var totalEUR:Double = 0.0
-        
         var names = [String]()
         var values = [Double]()
-        totalStocksValue = 0.0
-        let totalStocksCount:Int = appDelegate.container.stocksCount()
+        //totalStocksValue = 0.0
+        let totalStocksCount:Int = appDelegate.container.stocksCount
         
-        var i = 0;
+        var i = 0
         for stock in appDelegate.container.stocks {
-            
             let colorTools:ColorTools = ColorTools()
             stock.color = colorTools.stepGradientColorForIndex(i, total: totalStocksCount)
 
-            
-            
             names.append(stock.name)
             values.append(Double(stock.getValueInDefaultCurrency()))
-            totalStocksValue += Double(stock.getValueInDefaultCurrency())
-            
-            switch stock.currency {
-            case .USD:
-                totalUSD += stock.value
-            case .EUR:
-                totalEUR += stock.value
-            default:
-                totalRUR += stock.value
-            }
-            
+            //totalStocksValue += Double(stock.getValueInDefaultCurrency())
+        
             i+=1
         }
         
@@ -161,8 +117,10 @@ class StockTableViewController: UITableViewController {
             values.append(0.0)
         }
         
-        
-        totalsLabel.text = "\(valueFormat.format(totalRUR, currency: .RUB))    \(valueFormat.format(totalUSD, currency: .USD))    \(valueFormat.format(totalEUR, currency: .EUR))"
+        let totalRUB:Double = appDelegate.container.totalByCurrencies[.RUB]!
+        let totalUSD:Double = appDelegate.container.totalByCurrencies[.USD]!
+        let totalEUR:Double = appDelegate.container.totalByCurrencies[.EUR]!
+        totalsLabel.text = "\(valueFormat.format(totalRUB, currency: .RUB))    \(valueFormat.format(totalUSD, currency: .USD))    \(valueFormat.format(totalEUR, currency: .EUR))"
         
         updateDevidends()
         
@@ -174,7 +132,6 @@ class StockTableViewController: UITableViewController {
         } else {
             self.navigationItem.leftBarButtonItem = nil
         }
-        
     }
     
     func updateDevidends(){
@@ -233,7 +190,7 @@ class StockTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.container.stocksCount()
+        return appDelegate.container.stocksCount
     }
 
     
@@ -248,9 +205,9 @@ class StockTableViewController: UITableViewController {
         
         
         cell.nameLabel.text = stock.name
-        cell.valueLabel.text = stock.getDisplayValue() as String
-        cell.percentLabel.text = "\(stock.type_name) \(stock.getDisplayPercent() as String)"
-        cell.profitLabel.text = stock.getDisplayMonthlyReturn() as String
+        cell.valueLabel.text = stock.formattedValue
+        cell.percentLabel.text = "\(stock.type_name) \(stock.formattedPercent)"
+        cell.profitLabel.text = stock.formattedDevidendMonth
         cell.colorRectangleView.backgroundColor = stock.color
 
         return cell
@@ -327,7 +284,7 @@ class StockTableViewController: UITableViewController {
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
             } else {                
                 // Add a new stock.
-                let newIndexPath = NSIndexPath(forRow: appDelegate.container.stocksCount(), inSection: 0)
+                let newIndexPath = NSIndexPath(forRow: appDelegate.container.stocksCount, inSection: 0)
                 appDelegate.container.addStock(stock)
                 //stocks.append(stock)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)

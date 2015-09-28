@@ -22,24 +22,24 @@ class RealmStock: Object {
 //let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
 
 var type:Type = .Cash
-var type_name:String {
-    switch type {
-    case .Bank:
-        return typeNamesArray[1]
-    case .Deposit:
-        return typeNamesArray[2]
-    case .Debit:
-        return typeNamesArray[3]
-    case .Credit:
-        return typeNamesArray[4]
-    case .Asset:
-        return typeNamesArray[5]
-    case .Income:
-        return typeNamesArray[6]
-    default:
-        return typeNamesArray[0]
-    }
-}
+//var type_name:String {
+//    switch type {
+//    case .Bank:
+//        return typeNamesArray[1]
+//    case .Deposit:
+//        return typeNamesArray[2]
+//    case .Debit:
+//        return typeNamesArray[3]
+//    case .Credit:
+//        return typeNamesArray[4]
+//    case .Asset:
+//        return typeNamesArray[5]
+//    case .Income:
+//        return typeNamesArray[6]
+//    default:
+//        return typeNamesArray[0]
+//    }
+//}
 
 var name: String = ""
 var value: Double = 0.0
@@ -61,23 +61,37 @@ class StocksContainer {
     
     let realm = try!Realm()
     
-    
-    let stocksTypesArray = ["Наличные",         // 0
-        "Счёт",             // 1
-        "Депозит",          // 2
-        "Дебетовая карта",  // 3
-        "Кредитная карта",  // 4
-        "Актив",            // 5
-        "Доход"]            // 6
-    
-    var numberOfStocksTypes:Int {
-        return self.stocksTypesArray.count
+    var totalByCurrencies:[Currency:Double]  {
+        var totalRUB:Double = 0.0
+        var totalUSD:Double = 0.0
+        var totalEUR:Double = 0.0
+        for stock in self.stocks {
+            switch stock.currency {
+            case .USD:
+                totalUSD += stock.value
+            case .EUR:
+                totalEUR += stock.value
+            default:
+                totalRUB += stock.value
+            }
+        }
+        return [.RUB:totalRUB, .USD:totalUSD, .EUR:totalEUR]
     }
     
-
-    // MARK: Functions
-    func stocksCount() -> Int {
+    var numberOfStocksTypes:Int {
+        return typesArray.count
+    }
+    
+    var stocksCount: Int {
         return self.stocks.count
+    }
+    
+    func totalStocksValueInCurrency(currency:Currency) -> Double {
+        var totalValue:Double = 0.0
+        for stock in self.stocks {
+            totalValue += stock.getValueInCurrency(currency)
+        }
+        return totalValue
     }
     
     func addStock(newStock:Stock) {

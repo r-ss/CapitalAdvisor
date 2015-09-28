@@ -22,8 +22,8 @@ class ColorTools {
         //print(stocks.count)
         
         let A:[CGFloat] = [11, 72, 107]
-        //let B:[CGFloat] = [207, 240, 158]
-        let B:[CGFloat] = [78, 205, 196]
+        let B:[CGFloat] = [207, 240, 158]
+        //let B:[CGFloat] = [78, 205, 196]
         
         if (total > 1){
             let itemCount = total - 1

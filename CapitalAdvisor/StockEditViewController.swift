@@ -97,7 +97,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         registerForKeyboardNotifications()
              
 
-        addDoneButtonToKeyboard()
+        //addDoneButtonToKeyboard()
         
         checkValidData()
     }
@@ -108,7 +108,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
        // self.scrollView.
         
-        self.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        //self.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
 
     }
     
@@ -130,6 +130,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         print("keyboardWillShow")
         let info:NSDictionary = notification.userInfo!
         let kbSize:CGSize = (info.objectForKey(UIKeyboardFrameBeginUserInfoKey)?.CGRectValue.size)!
+        //print(kbSize)
         let contentInsets:UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
