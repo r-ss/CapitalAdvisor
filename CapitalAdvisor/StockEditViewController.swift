@@ -8,6 +8,8 @@
 
 import UIKit
 
+import EasyAnimation
+
 class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
@@ -26,29 +28,11 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     let labelNote = UILabel()
     let textViewNote = UITextView()
 
-    
-    
-//    @IBOutlet weak var nameTextField: UITextField!
-//    @IBOutlet weak var valueTextField: UITextField!
-//    @IBOutlet weak var currencySegmentedControl: UISegmentedControl!
-//    
-//    
-//    @IBOutlet weak var percentLabel: UILabel!
-//    @IBOutlet weak var percentTextField: UITextField!
-//    
+
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-//    
-//    @IBOutlet weak var scrollView: UIScrollView!
-//    
-//    @IBOutlet weak var notesTextView: UITextView!
+
     
-    
-    /*
-    @IBOutlet weak var scrollView: UIScrollView!
-    This value is either passed by `StockTableViewController` in `prepareForSegue(_:sender:)`
-    or constructed as part of adding a new stock.
-    */
     var stock: Stock?
     
     var selectedType:Type = .Cash
@@ -57,13 +41,30 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     var activeField: UITextField? // for scrolling in case of keyboard overlapping
     
+    let formatter = NSNumberFormatter()
+    let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+    
     
     var editMode:Bool = false // Are we editing or adding new Stock
     var nameTextFieldWasTouchedByUser:Bool = false
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-
+    
+    struct Data {
+        var name:String = ""
+        var value:Double = 0.0
+        var currency:Currency = .RUB
+        var percent:Double = 0.0
+        var note:String = ""
+    }
+    
+    var data = Data()
+    
+    let validColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0)
+    let invalidColor = UIColor(red: 204/255, green: 81/255, blue: 43/255, alpha: 1.0)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -84,9 +85,11 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         cancelButton.action = "cancelPressed"
         saveButton.target = self
         saveButton.action = "savePressed"
+        saveButton.enabled = false
         
         print("> StockEditViewController > SELECTED TYPE: \(self.selectedType)")
 
+        generateInputViews()
         
         
         // Set up views if editing an existing Stock.
@@ -94,12 +97,19 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             navigationItem.title = stock.type_name
             textFieldName.text = stock.name
             textFieldValue.text = "\(stock.value)"
-            textFieldPercent.text = "\(stock.percent * 100)"
+            textFieldPercent.text = "\(stock.percent)"
+            
+            textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            
+            //textFieldValue.text = formatter.stringFromNumber(stock.value)
+            //textFieldPercent.text = formatter.stringFromNumber(stock.percent * 100)
             segmentedControlCurrency.selectedSegmentIndex = currencyToInt(stock.currency)
             
             //stockTypePicker.selectRow(stock.type, inComponent: 0, animated: false)
             editMode = true
         } else {
+            print(selectedType)
             textFieldName.text = typeToName(selectedType)
             segmentedControlCurrency.selectedSegmentIndex = currencyToInt(defaultCurrency)
             navigationItem.title = typeToName(selectedType)
@@ -110,7 +120,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         //addDoneButtonToKeyboard()
         
-        generateInputViews()
+        
         
        // checkValidData()
     }
@@ -134,7 +144,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         //self.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
         
-        validationTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "validateInputFields", userInfo: nil, repeats: true)
+        //validationTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "validationTimerTick", userInfo: nil, repeats: true)
         
         
 
@@ -142,7 +152,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(animated: Bool) {
   
-        validationTimer.invalidate()
+        //validationTimer.invalidate()
         
         
     }
@@ -225,7 +235,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         percentSymbol.font = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
         percentSymbol.sizeToFit()
         // (0.0, 0.0, 16.5, 26.5)
-        print(percentSymbol.frame)
+        //print(percentSymbol.frame)
         percentSymbol.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         //percentSymbol.backgroundColor = UIColor.yellowColor()
         textFieldPercent.rightView = percentSymbol
@@ -271,9 +281,31 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         
         
+        
+        
+        
         textFieldName.delegate = self
         textFieldValue.delegate = self
         textFieldPercent.delegate = self
+        
+        
+        
+        textFieldName.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.EditingChanged)
+        textFieldValue.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.EditingChanged)
+        textFieldPercent.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.EditingChanged)
+        
+        segmentedControlCurrency.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        //textFieldName.sen
+        
+        //textFieldName.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        //textFieldValue.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        //textFieldPercent.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        
+        
+        
+        //textViewNote.addTarget(self, action: Selector("validationEventTick"), forControlEvents: UIControlEvents.ValueChanged)
+
         
         
         
@@ -319,6 +351,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         // as moving the insertion point.
         //
         // We still return true to allow the change to take place.
+        //validateInputFields(true)
+        
         
         if string.characters.count == 0 {
             return true
@@ -333,7 +367,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         switch textField {
         case textFieldValue, textFieldPercent:
-            let inverseSet = NSCharacterSet(charactersInString:"-.0123456789").invertedSet
+            let inverseSet = NSCharacterSet(charactersInString:"-.,0123456789").invertedSet
             let components = string.componentsSeparatedByCharactersInSet(inverseSet)
             let filtered = components.joinWithSeparator("")  // use join("", components) if you are using Swift 1.2
             return string == filtered
@@ -442,6 +476,14 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             }
             nameTextFieldWasTouchedByUser = true
         }
+        
+        if sender === textFieldValue {
+            textFieldValue.selectedTextRange = textFieldValue.textRangeFromPosition(textFieldValue.beginningOfDocument, toPosition: textFieldValue.endOfDocument)
+        }
+        
+        if sender === textFieldPercent {
+            textFieldPercent.selectedTextRange = textFieldPercent.textRangeFromPosition(textFieldPercent.beginningOfDocument, toPosition: textFieldPercent.endOfDocument)
+        }
 
         activeField = sender
     }
@@ -455,47 +497,105 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         //activeField = nil
     }
     
+    
+    
+    func shakeTextField(field:UITextField){
+        
+        // https://github.com/icanzilb/EasyAnimation
+        
+        let time:Double = 0.1
+        let delta:CGFloat = 8
+        
+        UIView.animateAndChainWithDuration(time, delay: 0.0,
+            options: .CurveEaseInOut, animations: {
+                field.center.x += delta
+            }, completion: nil).animateWithDuration(time, animations: {
+                field.center.x -= delta
+            }).animateWithDuration(time, animations: {
+                field.center.x += delta
+            }).animateWithDuration(time, animations: {
+                field.center.x -= delta
+            })
+        
+    }
+    
+    func validationEventTick(sender:UITextField){
+        validateInputFields()
+    }
+    
     func validateInputFields() {
-        //print("> validateInputFields")
+        print("> validateInputFields")
         var valid = false
         
-        
-        // Disable the Save button if the text field is empty.
+                var validName = false
+        var validValue = false
+        var validPercent = false
+
         let name = textFieldName.text ?? ""
-        let nameIsValid = !name.isEmpty
+        if name.stringByTrimmingCharactersInSet(whitespaceSet) != "" {
+            validName = true
+        }
         
-        var valueIsValid = false
-        if let value = Double(textFieldValue.text!) {
-            if value > 0 {
-                valueIsValid = true
+        let maybeValue = formatter.numberFromString(textFieldValue.text!)
+        if let value = maybeValue {
+            if value.doubleValue > 0.0 {
+                validValue = true
             }
         }
         
-        var percentIsValid = false
-        let percent = textFieldPercent.text ?? ""
-        if !percent.isEmpty {
-            if let value = Double(textFieldPercent.text!) {
-                if value >= 0 {
-                    percentIsValid = true
-                }
+        let maybePercent = formatter.numberFromString(textFieldPercent.text!)
+        if let percent = maybePercent {
+            if percent.doubleValue >= 0.0 {
+                validPercent = true
             }
+        }
+        
+        
+        if validName {
+            //labelName.textColor = validColor
         } else {
-            percentIsValid = true
+            //labelName.textColor = invalidColor
+            shakeTextField(textFieldName)
         }
         
-        if (nameIsValid && valueIsValid && percentIsValid) {
+        if validValue {
+            //labelValue.textColor = validColor
+        } else {
+            //labelValue.textColor = invalidColor
+            shakeTextField(textFieldValue)
+        }
+        
+        if validPercent {
+            //labelPercent.textColor = validColor
+        } else {
+            //labelPercent.textColor = invalidColor
+            shakeTextField(textFieldPercent)
+        }
+        
+        
+        
+        if (validName && validValue && validPercent) {
             valid = true
         }
         
+        if valid {
+            data.name = name
+            data.value = maybeValue!.doubleValue
+            data.percent = maybePercent!.doubleValue / 100
+            data.currency = intToCurrency(segmentedControlCurrency.selectedSegmentIndex)
+            data.note = textViewNote.text
+        }
+        
+
         saveButton.enabled = valid
     }
     
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+//    func textFieldShouldReturn(textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
     
     // MARK: Navigation
@@ -508,23 +608,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         if saveButton === sender {
             print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
-            let name = textFieldName.text ?? ""
+            stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent)
             
-            let value = textFieldValue.text ?? "0"
-            let percent = textFieldPercent.text ?? "0"
-            let currency = intToCurrency(segmentedControlCurrency.selectedSegmentIndex);
-            
-            let percentCleaned = percent.stringByReplacingOccurrencesOfString(",", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            
-            var percentNatural: Double = 0.0
-            if percent != "" {
-                percentNatural = Double(percentCleaned)! / 100
-            }
-            
-            // Set the meal to be passed to MealTableViewController after the unwind segue.
-            if value != "" {
-                stock = Stock(type: self.selectedType, name: name , value: Double(value)!, currency: currency, percent: percentNatural)
-            }
        }
     }
 
