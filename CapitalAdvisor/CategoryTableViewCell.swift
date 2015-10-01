@@ -1,5 +1,5 @@
 //
-//  AddStockTableViewCell.swift
+//  CategoryTableViewCell.swift
 //  Capital
 //
 //  Created by Alex Antipov on 21/09/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddStockTableViewCell: UITableViewCell {
+class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
         

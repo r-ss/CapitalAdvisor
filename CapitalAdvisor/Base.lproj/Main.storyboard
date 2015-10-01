@@ -202,14 +202,14 @@
         <!--Новый актив-->
         <scene sceneID="Jo7-AN-ccx">
             <objects>
-                <tableViewController id="oiN-cH-dI6" customClass="AddStockTableViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="oiN-cH-dI6" customClass="CategoryTableViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="142" sectionHeaderHeight="28" sectionFooterHeight="28" id="kWP-dX-yOR">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="AddStockTableViewCell" rowHeight="142" id="XYe-Bd-cdq" customClass="AddStockTableViewCell" customModule="CapitalAdvisor" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="CategoryTableViewCell" rowHeight="142" id="XYe-Bd-cdq" userLabel="CategoryTableViewCell" customClass="CategoryTableViewCell" customModule="CapitalAdvisor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="142"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XYe-Bd-cdq" id="WPe-2V-i4f">
@@ -459,6 +459,6 @@
         <image name="icon-tabbar-stocks" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eYz-Ey-oN4"/>
+        <segue reference="HVf-7l-oZP"/>
     </inferredMetricsTieBreakers>
 </document>

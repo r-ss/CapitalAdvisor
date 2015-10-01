@@ -1,5 +1,5 @@
 //
-//  AddStockTableViewController.swift
+//  CategoryTableViewController.swift
 //  Capital
 //
 //  Created by Alex Antipov on 21/09/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddStockTableViewController: UITableViewController {
+class CategoryTableViewController: UITableViewController {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
@@ -44,7 +44,7 @@ class AddStockTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cellIdentifier = "AddStockTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier("AddStockTableViewCell", forIndexPath: indexPath) as! AddStockTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
         //let stockTypeName = appDelegate.container.stocksTypesArray[indexPath.row]
         
@@ -68,7 +68,7 @@ class AddStockTableViewController: UITableViewController {
         if segue.identifier == "AddItemWithType" {
             let stockEditViewController = segue.destinationViewController as! StockEditViewController
             // Get the cell that generated this segue.
-            if let selectedTypeCell = sender as? AddStockTableViewCell {
+            if let selectedTypeCell = sender as? CategoryTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedTypeCell)!
                 //print(indexPath.row)
                 //let selectedStockType = indexPath.row

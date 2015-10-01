@@ -19,33 +19,8 @@ class RealmStock: Object {
     dynamic var percent:Double = 0.0
 }
 
-//let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
 
-var type:Type = .Cash
-//var type_name:String {
-//    switch type {
-//    case .Bank:
-//        return typeNamesArray[1]
-//    case .Deposit:
-//        return typeNamesArray[2]
-//    case .Debit:
-//        return typeNamesArray[3]
-//    case .Credit:
-//        return typeNamesArray[4]
-//    case .Asset:
-//        return typeNamesArray[5]
-//    case .Income:
-//        return typeNamesArray[6]
-//    default:
-//        return typeNamesArray[0]
-//    }
-//}
-
-var name: String = ""
-var value: Double = 0.0
-var currency:Currency = .RUB
-var percent: Double = 0.0
-var color: UIColor = UIColor.whiteColor()
+//var type:Type = .Cash
 
 let valueFormat:ValueFormat = ValueFormat()
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

@@ -61,24 +61,13 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     var data = Data()
     
-    let validColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0)
-    let invalidColor = UIColor(red: 204/255, green: 81/255, blue: 43/255, alpha: 1.0)
+    //let validColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0)
+    //let invalidColor = UIColor(red: 204/255, green: 81/255, blue: 43/255, alpha: 1.0)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        
-//        notesTextView.layer.backgroundColor = UIColor.whiteColor().CGColor
-//        notesTextView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
-//        notesTextView.layer.borderWidth = 1.0
-//        notesTextView.layer.cornerRadius = 5
-//        
-//        
-//        
-        
-        
+
         self.view.backgroundColor = UIColor.whiteColor()
         
         cancelButton.target = self
@@ -88,10 +77,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         saveButton.enabled = false
         
         print("> StockEditViewController > SELECTED TYPE: \(self.selectedType)")
-
         generateInputViews()
-        
-        
+
         // Set up views if editing an existing Stock.
         if let stock = stock {
             navigationItem.title = stock.type_name
@@ -99,14 +86,12 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             textFieldValue.text = "\(stock.value)"
             textFieldPercent.text = "\(stock.percent)"
             
-            textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            //textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            //textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
             
             //textFieldValue.text = formatter.stringFromNumber(stock.value)
             //textFieldPercent.text = formatter.stringFromNumber(stock.percent * 100)
             segmentedControlCurrency.selectedSegmentIndex = currencyToInt(stock.currency)
-            
-            //stockTypePicker.selectRow(stock.type, inComponent: 0, animated: false)
             editMode = true
         } else {
             print(selectedType)
@@ -115,14 +100,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             navigationItem.title = typeToName(selectedType)
         }
         
-        
         //registerForKeyboardNotifications()
-        
         //addDoneButtonToKeyboard()
-        
-        
-        
-       // checkValidData()
+        validateInputFields(false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -140,24 +120,11 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         }
         */
         
-       // self.scrollView.
-        
-        //self.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-        
-        //validationTimer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "validationTimerTick", userInfo: nil, repeats: true)
-        
-        
-
     }
     
     override func viewWillDisappear(animated: Bool) {
-  
-        //validationTimer.invalidate()
-        
-        
+
     }
-    
-    
     
     
     func generateInputViews(){
@@ -346,24 +313,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        // We ignore any change that doesn't add characters to the text field.
-        // These changes are things like character deletions and cuts, as well
-        // as moving the insertion point.
-        //
-        // We still return true to allow the change to take place.
-        //validateInputFields(true)
-        
-        
         if string.characters.count == 0 {
             return true
         }
-        
-        // Check to see if the text field's contents still fit the constraints
-        // with the new content added to it.
-        // If the contents still fit the constraints, allow the change
-        // by returning true; otherwise disallow the change by returning false.
-        //let currentText = textField.text ?? ""
-        //let prospectiveText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
         switch textField {
         case textFieldValue, textFieldPercent:
@@ -374,8 +326,6 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         default:
             return true
         }
-        
-        
         
     }
     
@@ -523,7 +473,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         validateInputFields()
     }
     
-    func validateInputFields() {
+    func validateInputFields(animation:Bool = true) {
         print("> validateInputFields")
         var valid = false
         
@@ -551,24 +501,15 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        if validName {
-            //labelName.textColor = validColor
-        } else {
-            //labelName.textColor = invalidColor
+        if !validName && animation {
             shakeTextField(textFieldName)
         }
         
-        if validValue {
-            //labelValue.textColor = validColor
-        } else {
-            //labelValue.textColor = invalidColor
+        if !validValue && animation {
             shakeTextField(textFieldValue)
         }
         
-        if validPercent {
-            //labelPercent.textColor = validColor
-        } else {
-            //labelPercent.textColor = invalidColor
+        if !validPercent && animation {
             shakeTextField(textFieldPercent)
         }
         
