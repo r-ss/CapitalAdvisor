@@ -83,8 +83,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         if let stock = stock {
             navigationItem.title = stock.type_name
             textFieldName.text = stock.name
-            textFieldValue.text = "\(stock.value)"
-            textFieldPercent.text = "\(stock.percent)"
+            textFieldValue.text = stock.value.convertedToString
+            textFieldPercent.text = "\((stock.percent * 100).convertedToString)"
             
             //textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
             //textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -319,7 +319,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         switch textField {
         case textFieldValue, textFieldPercent:
-            let inverseSet = NSCharacterSet(charactersInString:"-.,0123456789").invertedSet
+            let inverseSet = NSCharacterSet(charactersInString:"-.,0123456789.,..,,").invertedSet
             let components = string.componentsSeparatedByCharactersInSet(inverseSet)
             let filtered = components.joinWithSeparator("")  // use join("", components) if you are using Swift 1.2
             return string == filtered

@@ -25,6 +25,9 @@
 //    }
 //}
 
+import Foundation
+
+
 func typeToInt(type:Type) -> Int {
     switch type {
     case .Bank:

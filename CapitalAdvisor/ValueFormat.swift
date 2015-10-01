@@ -8,6 +8,42 @@
 
 import UIKit
 
+extension String {
+    var convertedToDouble: Double {
+        let converter = NSNumberFormatter()
+        converter.decimalSeparator = ","
+        converter.usesSignificantDigits = false
+        
+        converter.minimumFractionDigits = 0
+        converter.maximumFractionDigits = 2
+        converter.roundingMode = NSNumberFormatterRoundingMode.RoundFloor
+        converter.locale = NSLocale(localeIdentifier: "ru_RU")
+        if let result = converter.numberFromString(self) {
+            return result.doubleValue
+        } else {
+            converter.decimalSeparator = "."
+            if let result = converter.numberFromString(self) {
+                return result.doubleValue            }
+        }
+        return 0
+    }
+}
+
+extension Double {
+    var convertedToString: String {
+        let converter = NSNumberFormatter()
+        converter.decimalSeparator = "."
+        converter.usesSignificantDigits = true
+        converter.minimumFractionDigits = 0
+        converter.maximumFractionDigits = 10
+        converter.maximumSignificantDigits = 10
+        if let result = converter.stringFromNumber(self) {
+            return result
+        }
+        return ""
+    }
+}
+
 class ValueFormat {
     // MARK: Actions
     func format(number: Double, currency: Currency, adaptive: Bool = false) -> String {
