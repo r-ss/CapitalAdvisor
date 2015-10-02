@@ -276,11 +276,11 @@
                         <viewControllerLayoutGuide type="bottom" id="abU-ZZ-nhQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1ci-cG-kdN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="t7n-Up-svA">
-                                <rect key="frame" x="20" y="106" width="560" height="29"/>
+                                <rect key="frame" x="20" y="42" width="560" height="29"/>
                                 <segments>
                                     <segment title="Рубль"/>
                                     <segment title="Доллар"/>
@@ -288,19 +288,32 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Основная валюта" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1J-im-q9j">
-                                <rect key="frame" x="20" y="81" width="119" height="17"/>
+                                <rect key="frame" x="20" y="17" width="119" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Использовать Touch ID для входа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBb-me-kee">
+                                <rect key="frame" x="20" y="102" width="261" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aaY-oB-l7q">
+                                <rect key="frame" x="531" y="95" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="t7n-Up-svA" firstAttribute="leading" secondItem="1ci-cG-kdN" secondAttribute="leadingMargin" id="7YW-uZ-fYr"/>
+                            <constraint firstItem="mBb-me-kee" firstAttribute="top" secondItem="t7n-Up-svA" secondAttribute="bottom" constant="32" id="DjH-Rg-tdX"/>
                             <constraint firstItem="t7n-Up-svA" firstAttribute="trailing" secondItem="1ci-cG-kdN" secondAttribute="trailingMargin" id="UTC-hF-nti"/>
                             <constraint firstItem="D1J-im-q9j" firstAttribute="leading" secondItem="1ci-cG-kdN" secondAttribute="leadingMargin" id="Xqk-w4-IX0"/>
+                            <constraint firstItem="mBb-me-kee" firstAttribute="leading" secondItem="1ci-cG-kdN" secondAttribute="leadingMargin" id="Zul-zj-2Td"/>
                             <constraint firstItem="t7n-Up-svA" firstAttribute="top" secondItem="D1J-im-q9j" secondAttribute="bottom" constant="8" id="bab-Bd-HP7"/>
+                            <constraint firstItem="aaY-oB-l7q" firstAttribute="trailing" secondItem="1ci-cG-kdN" secondAttribute="trailingMargin" id="psT-bo-KKi"/>
                             <constraint firstItem="D1J-im-q9j" firstAttribute="top" secondItem="aoY-7H-jw8" secondAttribute="bottom" constant="17" id="snY-SQ-SiB"/>
+                            <constraint firstItem="aaY-oB-l7q" firstAttribute="top" secondItem="t7n-Up-svA" secondAttribute="bottom" constant="25" id="tyJ-QK-5xr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="nC2-Qn-S24"/>
@@ -402,7 +415,7 @@
         <!--Capital View Controller-->
         <scene sceneID="2Tk-VL-828">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="t6b-oK-Hrd" customClass="CapitalViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ID_CapitalViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t6b-oK-Hrd" customClass="CapitalViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="998-PV-YzP">
                         <autoresizingMask key="autoresizingMask"/>
@@ -418,13 +431,53 @@
             </objects>
             <point key="canvasLocation" x="-1439" y="569"/>
         </scene>
+        <!--Welcome Screen View Controller-->
+        <scene sceneID="Vik-ZU-wcK">
+            <objects>
+                <viewController storyboardIdentifier="welcomeScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ffA-PZ-ELG" customClass="WelcomeScreenViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jzc-Cx-Tj5"/>
+                        <viewControllerLayoutGuide type="bottom" id="zhI-C5-dCq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NcR-TW-48h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome 😎" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsd-FY-oRm">
+                                <rect key="frame" x="213" y="289" width="173" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFu-7L-6Vh">
+                                <rect key="frame" x="276" y="501" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cuntinueButtonAction:" destination="ffA-PZ-ELG" eventType="touchUpInside" id="a9Z-zh-r0Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zhI-C5-dCq" firstAttribute="top" secondItem="JFu-7L-6Vh" secondAttribute="bottom" constant="69" id="9ZQ-Qg-P5k"/>
+                            <constraint firstItem="JFu-7L-6Vh" firstAttribute="centerX" secondItem="gsd-FY-oRm" secondAttribute="centerX" id="Lru-mU-l61"/>
+                            <constraint firstItem="gsd-FY-oRm" firstAttribute="centerY" secondItem="NcR-TW-48h" secondAttribute="centerY" id="SKm-4H-Fb1"/>
+                            <constraint firstItem="gsd-FY-oRm" firstAttribute="centerX" secondItem="NcR-TW-48h" secondAttribute="centerX" id="yfS-g5-KX5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qpY-7s-b4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-683" y="9"/>
+        </scene>
         <!--Настройки-->
         <scene sceneID="ubz-1i-C0A">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J0Y-ab-TXs" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Настройки" image="icon-tabbar-settings" id="gHz-AJ-twH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eWh-ei-LxP">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eWh-ei-LxP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

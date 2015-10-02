@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let valueFormat:ValueFormat = ValueFormat()
 
     var window: UIWindow?
+    //var window: UIWindow!
     let userDefaults = NSUserDefaults.standardUserDefaults()
     
     //var stocksTableViewControler:UITableViewController?
@@ -51,8 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //exchangeRates.load()
-                
-                
+        
+        //firstStartRoutine()
+        
+        
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
             defaultCurrency = intToCurrency(loadedDefaultCurrency)
         } else {
@@ -75,8 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func firstStartRoutine() {
+        print("firstStartRoutine")
         
-        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("welcomeScreen") as UIViewController
+        self.window!.rootViewController = vc
     }
 
     func applicationWillResignActive(application: UIApplication) {

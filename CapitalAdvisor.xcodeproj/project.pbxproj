@@ -11,6 +11,7 @@
 		D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0142A711BB1517A0006CC54 /* StocksContainer.swift */; };
 		D03AA34F1BB4358200BE872C /* misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03AA34E1BB4358200BE872C /* misc.swift */; };
 		D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05467C71BB06C9F00768626 /* ColorTools.swift */; };
+		D05DFB791BBE8421005ED8D7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */; };
 		D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361D31BA94029008FB1ED /* ExchangeRates.swift */; };
 		D06361FA1BA94EA7008FB1ED /* ValueFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361F91BA94EA7008FB1ED /* ValueFormat.swift */; };
 		D06B803E1BA5599D00258C0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B803D1BA5599D00258C0D /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		D0142A711BB1517A0006CC54 /* StocksContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StocksContainer.swift; sourceTree = "<group>"; };
 		D03AA34E1BB4358200BE872C /* misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = misc.swift; sourceTree = "<group>"; };
 		D05467C71BB06C9F00768626 /* ColorTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTools.swift; sourceTree = "<group>"; };
+		D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		D06361D31BA94029008FB1ED /* ExchangeRates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRates.swift; sourceTree = "<group>"; };
 		D06361F91BA94EA7008FB1ED /* ValueFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueFormat.swift; sourceTree = "<group>"; };
 		D06B803A1BA5599D00258C0D /* CapitalAdvisor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapitalAdvisor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 				D0E5839A1BAEE1BD00739767 /* StockViewController.swift */,
 				D06B803F1BA5599D00258C0D /* StockEditViewController.swift */,
 				D06B80411BA5599D00258C0D /* Main.storyboard */,
+				D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */,
 				D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */,
 				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
 				D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */,
@@ -270,6 +273,7 @@
 				D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */,
 				D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */,
 				D06B803E1BA5599D00258C0D /* AppDelegate.swift in Sources */,
+				D05DFB791BBE8421005ED8D7 /* WelcomeScreenViewController.swift in Sources */,
 				D0D848F61BB02DF400C90AB5 /* CategoryTableViewController.swift in Sources */,
 				D0F9B1441BB00D670012D7D3 /* SettingsViewController.swift in Sources */,
 				D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */,
