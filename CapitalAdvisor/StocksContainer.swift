@@ -17,6 +17,7 @@ class RealmStock: Object {
     dynamic var currency_int:Int = 0
     dynamic var value:Double = 0.0
     dynamic var percent:Double = 0.0
+    dynamic var note:String = ""
 }
 
 
@@ -115,6 +116,7 @@ class StocksContainer {
             rs.currency_int = currencyToInt(stock.currency)
             rs.value = stock.value
             rs.percent = stock.percent
+            rs.note = stock.note
             
             realm.write {
                 self.realm.add(rs)
@@ -131,7 +133,8 @@ class StocksContainer {
                 name: rs.name,
                 value: rs.value,
                 currency: intToCurrency(rs.currency_int),
-                percent: rs.percent)!
+                percent: rs.percent,
+                note: rs.note)!
             self.stocks += [stock]
         }
     }

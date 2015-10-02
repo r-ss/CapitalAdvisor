@@ -20,6 +20,7 @@ class Stock {
     var value: Double = 0.0
     var currency:Currency = .RUB
     var percent: Double = 0.0
+    var note: String = ""
     var color: UIColor = UIColor.whiteColor()
 
     let valueFormat:ValueFormat = ValueFormat()
@@ -41,6 +42,7 @@ class Stock {
             value: Double,
             currency:Currency,
             percent: Double = 0.0,
+            note: String = "",
             color:UIColor = UIColor.blackColor())
     {
         self.name = name
@@ -48,6 +50,7 @@ class Stock {
         self.value = value
         self.currency = currency
         self.percent = percent
+        self.note = note
         self.color = color
         
         //super.init()

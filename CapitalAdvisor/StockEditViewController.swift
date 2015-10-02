@@ -85,6 +85,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             textFieldName.text = stock.name
             textFieldValue.text = stock.value.convertedToString
             textFieldPercent.text = "\((stock.percent * 100).convertedToString)"
+            textViewNote.text = stock.note
             
             //textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
             //textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -382,6 +383,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     func savePressed() {
         print("> StockEditViewController > savePressed")
+        
+        data.note = textViewNote.text
+        
         if editMode {
             self.performSegueWithIdentifier("unwindToStockDetails", sender: self.saveButton)
         } else {
@@ -549,7 +553,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         if saveButton === sender {
             print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
-            stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent)
+            stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent, note: data.note)
+            
             
        }
     }
