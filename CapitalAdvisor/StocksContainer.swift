@@ -112,8 +112,8 @@ class StocksContainer {
         for stock in stocks {
             let rs:RealmStock = RealmStock()
             rs.name = stock.name
-            rs.type_int = typeToInt(stock.type)
-            rs.currency_int = currencyToInt(stock.currency)
+            rs.type_int = stock.type.id
+            rs.currency_int = stock.currency.id
             rs.value = stock.value
             rs.percent = stock.percent
             rs.note = stock.note
@@ -129,10 +129,10 @@ class StocksContainer {
         //print(realmStocks)
         for rs in realmStocks {
             //print(rs.value)
-            let stock = Stock(type: intToType(rs.type_int),
+            let stock = Stock(type: Type(id: rs.type_int),
                 name: rs.name,
                 value: rs.value,
-                currency: intToCurrency(rs.currency_int),
+                currency: Currency(id: rs.currency_int),
                 percent: rs.percent,
                 note: rs.note)!
             self.stocks += [stock]

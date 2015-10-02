@@ -206,7 +206,7 @@ class StockTableViewController: UITableViewController {
         
         cell.nameLabel.text = stock.name
         cell.valueLabel.text = stock.formattedValue
-        cell.percentLabel.text = "\(stock.type_name) \(stock.formattedPercent)"
+        cell.percentLabel.text = "\(stock.type.title) \(stock.formattedPercent)"
         cell.profitLabel.text = stock.formattedDevidendMonth
         cell.colorRectangleView.backgroundColor = stock.color
 

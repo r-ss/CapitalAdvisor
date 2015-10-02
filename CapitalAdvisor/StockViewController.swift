@@ -29,7 +29,7 @@ class StockViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {        
         // Set up views if editing an existing Stock.
         if let stock = stock {
-            navigationItem.title = stock.type_name
+            navigationItem.title = stock.type.title
             nameLabel.text = stock.name
             let valueFormattedString:String = appDelegate.valueFormat.format(stock.value, currency: stock.currency) as String
             let percentsString:String = String(stock.percent * 100)

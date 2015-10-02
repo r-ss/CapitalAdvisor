@@ -13,26 +13,99 @@ enum Currency {
     init () {
         self = .RUB
     }
+    
+    init (id:Int) {
+        switch id {
+        case 0: self = .RUB
+        case 1: self = .USD
+        case 2: self = .EUR
+        default: self = .RUB
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .RUB: return "Рубль"
+        case .USD: return "Доллар"
+        case .EUR: return "Евро"
+        }
+    }
+    
+    var pluralTitle: String {
+        switch self {
+        case .RUB: return "Рубли"
+        case .USD: return "Доллары"
+        case .EUR: return "Евро"
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .RUB: return 0
+        case .USD: return 1
+        case .EUR: return 2
+        }
+    }
+    
 }
 enum Type {
     case Cash, Bank, Deposit, Debit, Credit, Asset, Income
     init () {
         self = .Cash
     }
+    
+    init (id:Int) {
+        switch id {
+        case 0: self = .Cash
+        case 1: self = .Bank
+        case 2: self = .Deposit
+        case 3: self = .Debit
+        case 4: self = .Credit
+        case 5: self = .Asset
+        case 6: self = .Income
+        default: self = .Cash
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .Cash: return "Наличные"
+        case .Bank: return "Счёт"
+        case .Deposit: return "Депозит"
+        case .Debit: return "Дебетовая карта"
+        case .Credit: return "Кредитная карта"
+        case .Asset: return "Актив"
+        case .Income: return "Доход"
+        }
+    }
+    
+    var id: Int {
+        switch self {
+        case .Cash: return 0
+        case .Bank: return 1
+        case .Deposit: return 2
+        case .Debit: return 3
+        case .Credit: return 4
+        case .Asset: return 5
+        case .Income: return 6
+        }
+    }
 }
+
 
 let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
 //var typeNamesArray = [String]()
-let typeNamesArray = ["Наличные", "Счёт", "Депозит", "Дебетовая карта", "Кредитная карта", "Актив", "Доход"]
+//let typeNamesArray = [Type.Cash.title, Type.Bank.title, Type.Deposit.title, Type.Debit.title, Type.Credit.title, Type.Asset.title, Type.Income.title]
 
-var defaultCurrency:Currency = .RUB
-
-let typesNamesDictionary = [Type.Cash:"Наличные", .Bank:"Счёт", .Deposit:"Депозит", .Debit:"Дебетовая карта", .Credit:"Кредитная карта", .Asset:"Актив", .Income:"Доход"]
-
-func typeToName(type:Type) -> String? {
-    return typesNamesDictionary[type]
+var typeNamesArray:[String] {
+    var a = [String]()
+    for type in typesArray {
+        a.append(type.title)
+    }
+    return a
 }
 
+var defaultCurrency:Currency = .RUB
 
 
 @UIApplicationMain
@@ -54,10 +127,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //exchangeRates.load()
         
         //firstStartRoutine()
-        
-        
+
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
-            defaultCurrency = intToCurrency(loadedDefaultCurrency)
+            defaultCurrency = Currency(id: loadedDefaultCurrency)
         } else {
             userDefaults.setObject(0, forKey: "defaultCurrency")
             userDefaults.synchronize()

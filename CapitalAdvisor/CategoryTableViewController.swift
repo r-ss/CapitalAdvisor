@@ -72,7 +72,7 @@ class CategoryTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForCell(selectedTypeCell)!
                 //print(indexPath.row)
                 //let selectedStockType = indexPath.row
-                stockEditViewController.selectedType = intToType(indexPath.row)
+                stockEditViewController.selectedType = Type(id: indexPath.row)
             }
         }
     }

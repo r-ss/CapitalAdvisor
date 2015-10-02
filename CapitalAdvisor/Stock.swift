@@ -12,9 +12,6 @@ class Stock {
 
     
     var type:Type = .Cash
-    var type_name:String {
-        return typeToName(self.type)!
-    }
     
     var name: String = ""
     var value: Double = 0.0

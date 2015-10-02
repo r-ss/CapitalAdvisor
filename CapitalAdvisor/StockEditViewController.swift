@@ -81,7 +81,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
 
         // Set up views if editing an existing Stock.
         if let stock = stock {
-            navigationItem.title = stock.type_name
+            navigationItem.title = stock.type.title
             textFieldName.text = stock.name
             textFieldValue.text = stock.value.convertedToString
             textFieldPercent.text = "\((stock.percent * 100).convertedToString)"
@@ -92,13 +92,13 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             
             //textFieldValue.text = formatter.stringFromNumber(stock.value)
             //textFieldPercent.text = formatter.stringFromNumber(stock.percent * 100)
-            segmentedControlCurrency.selectedSegmentIndex = currencyToInt(stock.currency)
+            segmentedControlCurrency.selectedSegmentIndex = stock.currency.id
             editMode = true
         } else {
             print(selectedType)
-            textFieldName.text = typeToName(selectedType)
-            segmentedControlCurrency.selectedSegmentIndex = currencyToInt(defaultCurrency)
-            navigationItem.title = typeToName(selectedType)
+            textFieldName.text = selectedType.title
+            segmentedControlCurrency.selectedSegmentIndex = defaultCurrency.id
+            navigationItem.title = selectedType.title
         }
         
         //registerForKeyboardNotifications()
@@ -527,7 +527,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             data.name = name
             data.value = maybeValue!.doubleValue
             data.percent = maybePercent!.doubleValue / 100
-            data.currency = intToCurrency(segmentedControlCurrency.selectedSegmentIndex)
+            data.currency = Currency(id: segmentedControlCurrency.selectedSegmentIndex)
             data.note = textViewNote.text
         }
         
