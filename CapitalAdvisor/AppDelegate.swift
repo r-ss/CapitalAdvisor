@@ -8,106 +8,6 @@
 
 import UIKit
 
-enum Currency {
-    case RUB, USD, EUR
-    init () {
-        self = .RUB
-    }
-    
-    init (id:Int) {
-        switch id {
-        case 0: self = .RUB
-        case 1: self = .USD
-        case 2: self = .EUR
-        default: self = .RUB
-        }
-    }
-    
-    var title: String {
-        switch self {
-        case .RUB: return "Рубль"
-        case .USD: return "Доллар"
-        case .EUR: return "Евро"
-        }
-    }
-    
-    var pluralTitle: String {
-        switch self {
-        case .RUB: return "Рубли"
-        case .USD: return "Доллары"
-        case .EUR: return "Евро"
-        }
-    }
-    
-    var id: Int {
-        switch self {
-        case .RUB: return 0
-        case .USD: return 1
-        case .EUR: return 2
-        }
-    }
-    
-}
-enum Type {
-    case Cash, Bank, Deposit, Debit, Credit, Asset, Income
-    init () {
-        self = .Cash
-    }
-    
-    init (id:Int) {
-        switch id {
-        case 0: self = .Cash
-        case 1: self = .Bank
-        case 2: self = .Deposit
-        case 3: self = .Debit
-        case 4: self = .Credit
-        case 5: self = .Asset
-        case 6: self = .Income
-        default: self = .Cash
-        }
-    }
-    
-    var title: String {
-        switch self {
-        case .Cash: return "Наличные"
-        case .Bank: return "Счёт"
-        case .Deposit: return "Депозит"
-        case .Debit: return "Дебетовая карта"
-        case .Credit: return "Кредитная карта"
-        case .Asset: return "Актив"
-        case .Income: return "Доход"
-        }
-    }
-    
-    var id: Int {
-        switch self {
-        case .Cash: return 0
-        case .Bank: return 1
-        case .Deposit: return 2
-        case .Debit: return 3
-        case .Credit: return 4
-        case .Asset: return 5
-        case .Income: return 6
-        }
-    }
-}
-
-
-let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
-//var typeNamesArray = [String]()
-//let typeNamesArray = [Type.Cash.title, Type.Bank.title, Type.Deposit.title, Type.Debit.title, Type.Credit.title, Type.Asset.title, Type.Income.title]
-
-var typeNamesArray:[String] {
-    var a = [String]()
-    for type in typesArray {
-        a.append(type.title)
-    }
-    return a
-}
-
-var defaultCurrency:Currency = .RUB
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -123,10 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        //exchangeRates.load()
-        
-        //firstStartRoutine()
 
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
             defaultCurrency = Currency(id: loadedDefaultCurrency)

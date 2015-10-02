@@ -40,7 +40,7 @@ class Stock {
             currency:Currency,
             percent: Double = 0.0,
             note: String = "",
-            color:UIColor = UIColor.blackColor())
+            color:UIColor = UIColor.whiteColor())
     {
         self.name = name
         self.type = type
