@@ -25,6 +25,13 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     let segmentedControlCurrency = UISegmentedControl(items: ["Рубли", "Доллары", "Евро"])
     
+    let labelDepositDate = UILabel()
+    let textFieldDepositDate = UITextField()
+    let depositDatePickerView = UIDatePicker()
+    var depositDatePicked: NSDate?
+    let depositNotifyLabel = UILabel()
+    let depositNotifySwitch = UISwitch()
+    
     let labelNote = UILabel()
     let textViewNote = UITextView()
 
@@ -78,6 +85,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         print("> StockEditViewController > SELECTED TYPE: \(self.selectedType)")
         generateInputViews()
+        
 
         // Set up views if editing an existing Stock.
         if let stock = stock {
@@ -231,6 +239,43 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         topMarginSummary += fieldHeight + bigMargin
         
         
+        
+        //
+        // Deposit date
+        //
+        labelDepositDate.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth * 0.5, height: labelHeight)
+        styleLabel(labelDepositDate)
+        labelDepositDate.text = "Окончание депозита"
+        self.view.addSubview(labelDepositDate)
+        topMarginSummary += labelHeight + smallMargin
+        
+        textFieldDepositDate.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth * 0.65 - fieldMargin, height: fieldHeight)
+        styleTextField(textFieldDepositDate)
+        textFieldDepositDate.text = ""
+        //textFieldDepositDate.keyboardType = UIKeyboardType.ASCIICapable
+        self.view.addSubview(textFieldDepositDate)
+        depositDatePickerView.datePickerMode = UIDatePickerMode.Date
+        textFieldDepositDate.tintColor = UIColor.clearColor() // to hide blinking cursor caret
+        textFieldDepositDate.inputView = depositDatePickerView
+        depositDatePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        //let labelPercentWidth = labelWidth * 0.5
+        depositNotifyLabel.frame = CGRect(x: screenWidth - labelPercentWidth - labelMargin, y: topMarginSummary - labelHeight - smallMargin, width: labelPercentWidth, height: labelHeight)
+        styleLabel(depositNotifyLabel)
+        depositNotifyLabel.text = "Напомнить?"
+        depositNotifyLabel.textAlignment = .Right
+        //labelPercent.backgroundColor = UIColor.yellowColor()
+        self.view.addSubview(depositNotifyLabel)
+        
+        //depositNotifySwitch.frame = CGRect(x: screenWidth - textFieldPercentWidth - fieldMargin, y: topMarginSummary, width: textFieldPercentWidth, height: fieldHeight)
+        depositNotifySwitch.frame.origin = CGPoint(x: screenWidth - 72, y: topMarginSummary + 5)
+
+        
+        self.view.addSubview(depositNotifySwitch)
+        
+        topMarginSummary += fieldHeight + bigMargin
+        
+        
         //
         // Note
         //
@@ -308,6 +353,14 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     func styleView(view:UIView){
         view.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func handleDatePicker(sender: UIDatePicker) {
+        self.depositDatePicked = sender.date
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .LongStyle
+        textFieldDepositDate.text = dateFormatter.stringFromDate(self.depositDatePicked!)
     }
     
     
@@ -438,6 +491,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         if sender === textFieldPercent {
             textFieldPercent.selectedTextRange = textFieldPercent.textRangeFromPosition(textFieldPercent.beginningOfDocument, toPosition: textFieldPercent.endOfDocument)
         }
+        
 
         activeField = sender
     }

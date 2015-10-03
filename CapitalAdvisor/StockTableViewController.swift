@@ -63,16 +63,13 @@ class StockTableViewController: UITableViewController {
     
     func setChart(dataPoints: [String], values: [Double]) {
         var dataEntries = [ChartDataEntry]()
-        
         for i in 0..<dataPoints.count {
             let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
         let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Stocks")
         let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
-        
         let totalStocksValue:Double = appDelegate.container.totalStocksValueInCurrency(defaultCurrency)
-        
         pieChartView.data = pieChartData
         pieChartView.descriptionText = ""
         pieChartView.usePercentValuesEnabled = false
@@ -85,7 +82,6 @@ class StockTableViewController: UITableViewController {
         pieChartDataSet.drawValuesEnabled = false
         pieChartView.drawSliceTextEnabled = false
         pieChartView.userInteractionEnabled = false
-        
         var colors = [UIColor]()
         for stock in appDelegate.container.stocks {
             colors.append(stock.color)

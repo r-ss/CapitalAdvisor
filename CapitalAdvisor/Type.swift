@@ -54,7 +54,10 @@ enum Type {
 
 
 let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
+let typeNamesArray:[String] = typesArray.map { $0.title }
 
+
+/*
 var typeNamesArray:[String] {
     var a = [String]()
     for type in typesArray {
@@ -62,3 +65,4 @@ var typeNamesArray:[String] {
     }
     return a
 }
+*/
