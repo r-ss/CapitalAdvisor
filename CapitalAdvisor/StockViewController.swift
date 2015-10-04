@@ -89,6 +89,7 @@ class StockViewController: UIViewController {
         if segue.identifier == "EditStock" {
             let stockEditViewController = segue.destinationViewController as! StockEditViewController
             stockEditViewController.stock = self.stock
+            stockEditViewController.selectedType = self.stock!.type
             
         } else {
             print("> StockViewController > prepareForSegue")

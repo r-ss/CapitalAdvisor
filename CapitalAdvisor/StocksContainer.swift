@@ -18,6 +18,7 @@ class RealmStock: Object {
     dynamic var value:Double = 0.0
     dynamic var percent:Double = 0.0
     dynamic var note:String = ""
+    dynamic var deposit_due_date:String = ""
 }
 
 
@@ -118,6 +119,12 @@ class StocksContainer {
             rs.percent = stock.percent
             rs.note = stock.note
             
+            if let dddate:NSDate = stock.depositDueDate {
+                rs.deposit_due_date = dddate.convertedToString
+            } else {
+                rs.deposit_due_date = ""
+            }
+            
             realm.write {
                 self.realm.add(rs)
             }
@@ -129,12 +136,19 @@ class StocksContainer {
         //print(realmStocks)
         for rs in realmStocks {
             //print(rs.value)
+            
+            var dddate:NSDate?
+            if !rs.deposit_due_date.isEmpty {
+                dddate = rs.deposit_due_date.convertedToDate
+            }
+            
             let stock = Stock(type: Type(id: rs.type_int),
                 name: rs.name,
                 value: rs.value,
                 currency: Currency(id: rs.currency_int),
                 percent: rs.percent,
-                note: rs.note)!
+                note: rs.note,
+                depositDueDate: dddate)!
             self.stocks += [stock]
         }
     }

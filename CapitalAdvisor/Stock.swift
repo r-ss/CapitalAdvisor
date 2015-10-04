@@ -18,6 +18,7 @@ class Stock {
     var currency:Currency = .RUB
     var percent: Double = 0.0
     var note: String = ""
+    var depositDueDate: NSDate?
     var color: UIColor = UIColor.whiteColor()
 
     let valueFormat:ValueFormat = ValueFormat()
@@ -33,6 +34,17 @@ class Stock {
     var formattedValue:String { return valueFormat.format(self.value, currency: self.currency) }
     var formattedPercent:String { return "\(self.percent * 100)%" }
     
+    var infoText:String {
+        
+        if let _:NSDate = self.depositDueDate  {
+            if self.type == Type.Deposit {
+                return "\(self.type.title) \(self.formattedPercent) – до \(self.depositDueDate!.convertedToString)"
+            }
+        }
+        
+        return "\(self.type.title) \(self.formattedPercent)"
+    }
+    
     // MARK: Initialization
     init?(  type: Type,
             name: String,
@@ -40,6 +52,7 @@ class Stock {
             currency:Currency,
             percent: Double = 0.0,
             note: String = "",
+            depositDueDate: NSDate? = nil,
             color:UIColor = UIColor.whiteColor())
     {
         self.name = name
@@ -48,6 +61,7 @@ class Stock {
         self.currency = currency
         self.percent = percent
         self.note = note
+        self.depositDueDate = depositDueDate
         self.color = color
         
         //super.init()

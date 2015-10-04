@@ -27,6 +27,16 @@ extension String {
         }
         return 0
     }
+    
+    var convertedToDate: NSDate? {
+        let converter = NSDateFormatter()
+        converter.dateFormat = "dd.MM.yyyy"
+        if let result:NSDate = converter.dateFromString(self) {
+            return result
+        } else {
+            return nil
+        }
+    }
 }
 
 extension Double {
@@ -43,6 +53,19 @@ extension Double {
         return ""
     }
 }
+
+extension NSDate {
+    var convertedToString: String {
+        let converter = NSDateFormatter()
+        converter.dateFormat = "dd.MM.yyyy"
+        if let result:String = converter.stringFromDate(self) {
+            return result
+        } else {
+            return "Error"
+        }
+    }
+}
+
 
 class ValueFormat {
     // MARK: Actions

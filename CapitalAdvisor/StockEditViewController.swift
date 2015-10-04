@@ -29,8 +29,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     let textFieldDepositDate = UITextField()
     let depositDatePickerView = UIDatePicker()
     var depositDatePicked: NSDate?
-    let depositNotifyLabel = UILabel()
-    let depositNotifySwitch = UISwitch()
+    //let depositNotifyLabel = UILabel()
+    //let depositNotifySwitch = UISwitch()
     
     let labelNote = UILabel()
     let textViewNote = UITextView()
@@ -94,6 +94,11 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             textFieldValue.text = stock.value.convertedToString
             textFieldPercent.text = "\((stock.percent * 100).convertedToString)"
             textViewNote.text = stock.note
+            
+            if let _:NSDate = stock.depositDueDate {
+                applyDate(stock.depositDueDate!)
+            }
+            
             
             //textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
             //textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -165,7 +170,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         textFieldName.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight)
         styleTextField(textFieldName)
         textFieldName.text = "Название"
-        textFieldName.keyboardType = UIKeyboardType.ASCIICapable
+        textFieldName.keyboardType = UIKeyboardType.Default
         self.view.addSubview(textFieldName)
         topMarginSummary += fieldHeight + bigMargin
         
@@ -243,13 +248,13 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         //
         // Deposit date
         //
-        labelDepositDate.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth * 0.5, height: labelHeight)
+        labelDepositDate.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
         styleLabel(labelDepositDate)
         labelDepositDate.text = "Окончание депозита"
         self.view.addSubview(labelDepositDate)
         topMarginSummary += labelHeight + smallMargin
         
-        textFieldDepositDate.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth * 0.65 - fieldMargin, height: fieldHeight)
+        textFieldDepositDate.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight)
         styleTextField(textFieldDepositDate)
         textFieldDepositDate.text = ""
         //textFieldDepositDate.keyboardType = UIKeyboardType.ASCIICapable
@@ -257,21 +262,32 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         depositDatePickerView.datePickerMode = UIDatePickerMode.Date
         textFieldDepositDate.tintColor = UIColor.clearColor() // to hide blinking cursor caret
         textFieldDepositDate.inputView = depositDatePickerView
+        depositDatePickerView.locale = NSLocale(localeIdentifier: "ru_RU")
+        
+
+        if let _:Stock = self.stock {
+            if let _:NSDate = self.stock!.depositDueDate {
+                depositDatePickerView.date = self.stock!.depositDueDate!
+            }
+        }
+        
+        depositDatePickerView.minimumDate = NSDate()
+        let maxDate:NSDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Year, value: 10, toDate: NSDate(), options: NSCalendarOptions.WrapComponents)!
+        depositDatePickerView.maximumDate = maxDate
+        
         depositDatePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         
-        //let labelPercentWidth = labelWidth * 0.5
+        /*
         depositNotifyLabel.frame = CGRect(x: screenWidth - labelPercentWidth - labelMargin, y: topMarginSummary - labelHeight - smallMargin, width: labelPercentWidth, height: labelHeight)
         styleLabel(depositNotifyLabel)
         depositNotifyLabel.text = "Напомнить?"
         depositNotifyLabel.textAlignment = .Right
         //labelPercent.backgroundColor = UIColor.yellowColor()
         self.view.addSubview(depositNotifyLabel)
-        
         //depositNotifySwitch.frame = CGRect(x: screenWidth - textFieldPercentWidth - fieldMargin, y: topMarginSummary, width: textFieldPercentWidth, height: fieldHeight)
         depositNotifySwitch.frame.origin = CGPoint(x: screenWidth - 72, y: topMarginSummary + 5)
-
-        
         self.view.addSubview(depositNotifySwitch)
+        */
         
         topMarginSummary += fieldHeight + bigMargin
         
@@ -288,7 +304,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         textViewNote.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 2)
         styleTextView(textViewNote)
         textViewNote.text = ""
-        textViewNote.keyboardType = UIKeyboardType.ASCIICapable
+        textViewNote.keyboardType = UIKeyboardType.Default
         self.view.addSubview(textViewNote)
         topMarginSummary += fieldHeight + bigMargin
         
@@ -357,13 +373,15 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     func handleDatePicker(sender: UIDatePicker) {
         self.depositDatePicked = sender.date
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        textFieldDepositDate.text = dateFormatter.stringFromDate(self.depositDatePicked!)
+        applyDate(sender.date)
     }
     
-    
+    func applyDate(date:NSDate){
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .LongStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "ru_RU")
+        textFieldDepositDate.text = dateFormatter.stringFromDate(date)
+    }
     
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -607,7 +625,15 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         
         if saveButton === sender {
             print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
+            
             stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent, note: data.note)
+            
+            print (stock?.depositDueDate)
+            if let date = self.depositDatePicked {
+                stock!.depositDueDate = date
+            }
+            
+            print (stock?.depositDueDate)
             
             
        }
