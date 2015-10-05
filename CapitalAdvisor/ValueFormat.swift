@@ -9,23 +9,23 @@
 import UIKit
 
 extension String {
-    var convertedToDouble: Double {
+    var convertedToDouble: Double? {
         let converter = NSNumberFormatter()
-        converter.decimalSeparator = ","
+        converter.decimalSeparator = "."
         converter.usesSignificantDigits = false
         
         converter.minimumFractionDigits = 0
-        converter.maximumFractionDigits = 2
+        converter.maximumFractionDigits = 5
         converter.roundingMode = NSNumberFormatterRoundingMode.RoundFloor
         converter.locale = NSLocale(localeIdentifier: "ru_RU")
         if let result = converter.numberFromString(self) {
             return result.doubleValue
         } else {
-            converter.decimalSeparator = "."
+            converter.decimalSeparator = ","
             if let result = converter.numberFromString(self) {
                 return result.doubleValue            }
         }
-        return 0
+        return nil
     }
     
     var convertedToDate: NSDate? {
@@ -40,7 +40,7 @@ extension String {
 }
 
 extension Double {
-    var convertedToString: String {
+    var convertedToString: String? {
         let converter = NSNumberFormatter()
         converter.decimalSeparator = "."
         converter.usesSignificantDigits = true
@@ -50,18 +50,18 @@ extension Double {
         if let result = converter.stringFromNumber(self) {
             return result
         }
-        return ""
+        return nil
     }
 }
 
 extension NSDate {
-    var convertedToString: String {
+    var convertedToString: String? {
         let converter = NSDateFormatter()
         converter.dateFormat = "dd.MM.yyyy"
         if let result:String = converter.stringFromDate(self) {
             return result
         } else {
-            return "Error"
+            return nil
         }
     }
 }

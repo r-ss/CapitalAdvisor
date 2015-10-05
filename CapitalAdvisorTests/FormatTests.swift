@@ -25,6 +25,7 @@ class FormatTests: XCTestCase {
     
     func testStringToDoubleConversion() {
         XCTAssertEqual("5.75".convertedToDouble, 5.75)
+        XCTAssertEqual("5,75".convertedToDouble, 5.75)
         XCTAssertEqual("2".convertedToDouble, 2)
         XCTAssertEqual("0".convertedToDouble, 0)
         XCTAssertEqual("-5.99".convertedToDouble, -5.99)

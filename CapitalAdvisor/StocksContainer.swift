@@ -120,7 +120,7 @@ class StocksContainer {
             rs.note = stock.note
             
             if let dddate:NSDate = stock.depositDueDate {
-                rs.deposit_due_date = dddate.convertedToString
+                rs.deposit_due_date = dddate.convertedToString!
             } else {
                 rs.deposit_due_date = ""
             }

@@ -47,9 +47,6 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
     
     var activeField: UITextField? // for scrolling in case of keyboard overlapping
     
-    let formatter = NSNumberFormatter()
-    let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
-    
     var editMode:Bool = false // Are we editing or adding new Stock
     var nameTextFieldWasTouchedByUser:Bool = false
     
@@ -84,8 +81,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         if let stock = stock {
             navigationItem.title = stock.type.title
             textFieldName.text = stock.name
-            textFieldValue.text = stock.value.convertedToString
-            textFieldPercent.text = "\((stock.percent * 100).convertedToString)"
+            textFieldValue.text = stock.value.convertedToString!
+            textFieldPercent.text = "\((stock.percent * 100).convertedToString!)"
             textViewNote.text = stock.note
             
             if let _:NSDate = stock.depositDueDate {
@@ -494,25 +491,28 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         print("> validateInputFields")
         var valid = false
         
-                var validName = false
+        var validName = false
         var validValue = false
         var validPercent = false
+        
+        //let formatter = NSNumberFormatter()
+        let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
 
         let name = textFieldName.text ?? ""
         if name.stringByTrimmingCharactersInSet(whitespaceSet) != "" {
             validName = true
         }
         
-        let maybeValue = formatter.numberFromString(textFieldValue.text!)
+        let maybeValue = textFieldValue.text!.convertedToDouble
         if let value = maybeValue {
-            if value.doubleValue > 0.0 {
+            if value > 0.0 {
                 validValue = true
             }
         }
         
-        let maybePercent = formatter.numberFromString(textFieldPercent.text!)
+        let maybePercent = textFieldPercent.text!.convertedToDouble
         if let percent = maybePercent {
-            if percent.doubleValue >= 0.0 {
+            if percent >= 0.0 {
                 validPercent = true
             }
         }
@@ -530,8 +530,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         if (validName && validValue && validPercent) { valid = true }
         if valid {
             data.name = name
-            data.value = maybeValue!.doubleValue
-            data.percent = maybePercent!.doubleValue / 100
+            data.value = maybeValue!
+            data.percent = maybePercent! / 100
             data.currency = Currency(id: segmentedControlCurrency.selectedSegmentIndex)
             data.note = textViewNote.text
         }

@@ -38,7 +38,7 @@ class Stock {
         
         if let _:NSDate = self.depositDueDate  {
             if self.type == Type.Deposit {
-                return "\(self.type.title) \(self.formattedPercent) – до \(self.depositDueDate!.convertedToString)"
+                return "\(self.type.title) \(self.formattedPercent) – до \(self.depositDueDate!.convertedToString!)"
             }
         }
         
