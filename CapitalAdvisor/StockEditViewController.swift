@@ -372,11 +372,12 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleDatePicker(sender: UIDatePicker) {
-        self.depositDatePicked = sender.date
+        //self.depositDatePicked = sender.date
         applyDate(sender.date)
     }
     
     func applyDate(date:NSDate){
+        self.depositDatePicked = date
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .LongStyle
         dateFormatter.locale = NSLocale(localeIdentifier: "ru_RU")
@@ -400,9 +401,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
-
-    
+        
     
     func registerForKeyboardNotifications() {
         //Adding notifies on keyboard appearing

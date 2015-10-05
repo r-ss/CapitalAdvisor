@@ -90,16 +90,10 @@ class ValueFormat {
         switch currency {
         case .USD:
             formatter.locale = NSLocale(localeIdentifier: "en_US")
-            //formatter.positivePrefix = "$"
-            //formatter.maximumFractionDigits = 3
         case .EUR:
             formatter.locale = NSLocale(localeIdentifier: "de_DE")
-            //formatter.positivePrefix = "€"
-            //formatter.maximumFractionDigits = 3
         default:
             formatter.locale = NSLocale(localeIdentifier: "ru_RU")
-            //formatter.positiveSuffix = "р."
-            //formatter.maximumFractionDigits = 3
         }
         
         if adaptive {

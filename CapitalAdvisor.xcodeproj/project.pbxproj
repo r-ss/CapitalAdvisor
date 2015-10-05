@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D008A0B61BA96F44008B79CA /* CapitalViewController.swift */; };
 		D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0142A711BB1517A0006CC54 /* StocksContainer.swift */; };
+		D041807C1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */; };
+		D04180841BC1A90800D4AC16 /* FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04180831BC1A90800D4AC16 /* FormatTests.swift */; };
 		D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05467C71BB06C9F00768626 /* ColorTools.swift */; };
 		D05DFB791BBE8421005ED8D7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */; };
 		D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361D31BA94029008FB1ED /* ExchangeRates.swift */; };
@@ -30,6 +32,16 @@
 		DE424DEE3F4E537297C01A9D /* Pods_CapitalAdvisor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D041807E1BC1A8C200D4AC16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D06B80321BA5599D00258C0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D06B80391BA5599D00258C0D;
+			remoteInfo = CapitalAdvisor;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		D03607BA1BA7F40200B0E147 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -48,6 +60,10 @@
 		B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapitalAdvisor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D008A0B61BA96F44008B79CA /* CapitalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalViewController.swift; sourceTree = "<group>"; };
 		D0142A711BB1517A0006CC54 /* StocksContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StocksContainer.swift; sourceTree = "<group>"; };
+		D04180791BC1A8C200D4AC16 /* CapitalAdvisorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitalAdvisorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalAdvisorTests.swift; sourceTree = "<group>"; };
+		D041807D1BC1A8C200D4AC16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D04180831BC1A90800D4AC16 /* FormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatTests.swift; sourceTree = "<group>"; };
 		D05467C71BB06C9F00768626 /* ColorTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTools.swift; sourceTree = "<group>"; };
 		D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		D06361D31BA94029008FB1ED /* ExchangeRates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRates.swift; sourceTree = "<group>"; };
@@ -72,6 +88,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D04180761BC1A8C200D4AC16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D06B80371BA5599D00258C0D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -91,10 +114,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D041807A1BC1A8C200D4AC16 /* CapitalAdvisorTests */ = {
+			isa = PBXGroup;
+			children = (
+				D04180831BC1A90800D4AC16 /* FormatTests.swift */,
+				D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */,
+				D041807D1BC1A8C200D4AC16 /* Info.plist */,
+			);
+			path = CapitalAdvisorTests;
+			sourceTree = "<group>";
+		};
 		D06B80311BA5599D00258C0D = {
 			isa = PBXGroup;
 			children = (
 				D06B803C1BA5599D00258C0D /* CapitalAdvisor */,
+				D041807A1BC1A8C200D4AC16 /* CapitalAdvisorTests */,
 				D06B803B1BA5599D00258C0D /* Products */,
 				D6E6FC654B2533D7E8155AD1 /* Pods */,
 				96925200F07748565B53F9EC /* Frameworks */,
@@ -105,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				D06B803A1BA5599D00258C0D /* CapitalAdvisor.app */,
+				D04180791BC1A8C200D4AC16 /* CapitalAdvisorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +184,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D04180781BC1A8C200D4AC16 /* CapitalAdvisorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D04180801BC1A8C200D4AC16 /* Build configuration list for PBXNativeTarget "CapitalAdvisorTests" */;
+			buildPhases = (
+				D04180751BC1A8C200D4AC16 /* Sources */,
+				D04180761BC1A8C200D4AC16 /* Frameworks */,
+				D04180771BC1A8C200D4AC16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D041807F1BC1A8C200D4AC16 /* PBXTargetDependency */,
+			);
+			name = CapitalAdvisorTests;
+			productName = CapitalAdvisorTests;
+			productReference = D04180791BC1A8C200D4AC16 /* CapitalAdvisorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D06B80391BA5599D00258C0D /* CapitalAdvisor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D06B804C1BA5599D00258C0D /* Build configuration list for PBXNativeTarget "CapitalAdvisor" */;
@@ -181,6 +234,10 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Alex Antipov";
 				TargetAttributes = {
+					D04180781BC1A8C200D4AC16 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = D06B80391BA5599D00258C0D;
+					};
 					D06B80391BA5599D00258C0D = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 7R7Q2CDK95;
@@ -201,11 +258,19 @@
 			projectRoot = "";
 			targets = (
 				D06B80391BA5599D00258C0D /* CapitalAdvisor */,
+				D04180781BC1A8C200D4AC16 /* CapitalAdvisorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D04180771BC1A8C200D4AC16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D06B80381BA5599D00258C0D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -267,6 +332,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D04180751BC1A8C200D4AC16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04180841BC1A90800D4AC16 /* FormatTests.swift in Sources */,
+				D041807C1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D06B80361BA5599D00258C0D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +367,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D041807F1BC1A8C200D4AC16 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D06B80391BA5599D00258C0D /* CapitalAdvisor */;
+			targetProxy = D041807E1BC1A8C200D4AC16 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		D06B80411BA5599D00258C0D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -313,6 +395,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D04180811BC1A8C200D4AC16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CapitalAdvisorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.CapitalAdvisorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CapitalAdvisor.app/CapitalAdvisor";
+			};
+			name = Debug;
+		};
+		D04180821BC1A8C200D4AC16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CapitalAdvisorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ress.CapitalAdvisorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CapitalAdvisor.app/CapitalAdvisor";
+			};
+			name = Release;
+		};
 		D06B804A1BA5599D00258C0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -427,6 +533,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D04180801BC1A8C200D4AC16 /* Build configuration list for PBXNativeTarget "CapitalAdvisorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D04180811BC1A8C200D4AC16 /* Debug */,
+				D04180821BC1A8C200D4AC16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D06B80351BA5599D00258C0D /* Build configuration list for PBXProject "CapitalAdvisor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
