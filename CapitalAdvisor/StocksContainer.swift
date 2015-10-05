@@ -24,7 +24,7 @@ class RealmStock: Object {
 
 //var type:Type = .Cash
 
-let valueFormat:ValueFormat = ValueFormat()
+//let valueFormat:ValueFormat = ValueFormat()
 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 
@@ -154,12 +154,9 @@ class StocksContainer {
     }
     
     func loadSampleStocks() {
-        
         let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
         let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
-        
         self.stocks += [stock1, stock2]
-        
     }
     
 }
