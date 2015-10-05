@@ -10,7 +10,7 @@ import UIKit
 
 import EasyAnimation
 
-class StockEditViewController: UIViewController, UITextFieldDelegate {
+class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     // MARK: Properties
     
@@ -41,22 +41,19 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
 
     
     var stock: Stock?
-    
     var selectedType:Type = .Cash
     
-    var validationTimer = NSTimer()
+    //var validationTimer = NSTimer()
     
     var activeField: UITextField? // for scrolling in case of keyboard overlapping
     
     let formatter = NSNumberFormatter()
     let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
     
-    
     var editMode:Bool = false // Are we editing or adding new Stock
     var nameTextFieldWasTouchedByUser:Bool = false
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
     
     struct Data {
         var name:String = ""
@@ -65,12 +62,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         var percent:Double = 0.0
         var note:String = ""
     }
-    
     var data = Data()
-    
-    //let validColor = UIColor(red: 10/255, green: 10/255, blue: 10/255, alpha: 1.0)
-    //let invalidColor = UIColor(red: 204/255, green: 81/255, blue: 43/255, alpha: 1.0)
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,22 +134,31 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    var scrollView: UIScrollView!
+    
     func generateInputViews(){
         
         let viewSize = self.view.frame.size
         let screenWidth = viewSize.width
-        
         let labelMargin:CGFloat = 20.0
         let fieldMargin:CGFloat = 13.0
         let smallMargin:CGFloat = 2.0
         let bigMargin:CGFloat = smallMargin * 2
         let fieldHeight:CGFloat = 40.0
         let labelHeight:CGFloat = 18.0
-        
         let longFieldWidth = screenWidth - fieldMargin * 2
         let labelWidth = screenWidth - labelMargin * 2
-        
         var topMarginSummary:CGFloat = 20
+        
+        
+        self.scrollView = UIScrollView()
+        //self.scrollView.frame = self.view.bounds
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 100)
+        self.scrollView.delegate = self
+        self.scrollView.contentSize = viewSize
+        self.view.addSubview(self.scrollView)
+        
+        print(self.scrollView.contentSize)
         
         //
         // Name
@@ -164,14 +166,14 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         labelName.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
         styleLabel(labelName)
         labelName.text = "Название"
-        self.view.addSubview(labelName)
+        self.scrollView.addSubview(labelName)
         topMarginSummary += labelHeight + smallMargin
         
         textFieldName.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight)
         styleTextField(textFieldName)
         textFieldName.text = "Название"
         textFieldName.keyboardType = UIKeyboardType.Default
-        self.view.addSubview(textFieldName)
+        self.scrollView.addSubview(textFieldName)
         topMarginSummary += fieldHeight + bigMargin
         
         //
@@ -180,14 +182,14 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         labelValue.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth * 0.5, height: labelHeight)
         styleLabel(labelValue)
         labelValue.text = "Сумма"
-        self.view.addSubview(labelValue)
+        self.scrollView.addSubview(labelValue)
         topMarginSummary += labelHeight + smallMargin
         
         textFieldValue.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth * 0.65 - fieldMargin, height: fieldHeight)
         styleTextField(textFieldValue)
         textFieldValue.text = "0"
         textFieldValue.keyboardType = UIKeyboardType.DecimalPad
-        self.view.addSubview(textFieldValue)
+        self.scrollView.addSubview(textFieldValue)
         //topMarginSummary += fieldHeight + bigMargin
         
         //
@@ -199,7 +201,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         labelPercent.text = "Процентная ставка"
         labelPercent.textAlignment = .Right
         //labelPercent.backgroundColor = UIColor.yellowColor()
-        self.view.addSubview(labelPercent)
+        self.scrollView.addSubview(labelPercent)
         //topMarginSummary += labelHeight + smallMargin
         
         let textFieldPercentWidth = longFieldWidth * 0.35
@@ -208,7 +210,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         textFieldPercent.text = "0"
         textFieldPercent.keyboardType = UIKeyboardType.DecimalPad
         textFieldPercent.textAlignment = .Right
-        self.view.addSubview(textFieldPercent)
+        self.scrollView.addSubview(textFieldPercent)
         
         let percentSymbol = UILabel()
         percentSymbol.text = "%"
@@ -221,28 +223,16 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         //percentSymbol.backgroundColor = UIColor.yellowColor()
         textFieldPercent.rightView = percentSymbol
         textFieldPercent.rightViewMode = UITextFieldViewMode.Always
-        
         topMarginSummary += fieldHeight + bigMargin
         
         //
         // Currency
         //
-        /*
-        let labelCurrency: UILabel = UILabel(frame: CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight))
-        styleLabel(labelCurrency)
-        labelCurrency.text = "Валюта"
-        self.view.addSubview(labelCurrency)
-        topMarginSummary += labelHeight + smallMargin
-        */
-        
         topMarginSummary += smallMargin
-        
         segmentedControlCurrency.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 0.75)
         segmentedControlCurrency.selectedSegmentIndex = 0
-        
-        self.view.addSubview(segmentedControlCurrency)
+        self.scrollView.addSubview(segmentedControlCurrency)
         topMarginSummary += fieldHeight + bigMargin
-        
         
         
         //
@@ -251,44 +241,26 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         labelDepositDate.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
         styleLabel(labelDepositDate)
         labelDepositDate.text = "Окончание депозита"
-        self.view.addSubview(labelDepositDate)
+        self.scrollView.addSubview(labelDepositDate)
         topMarginSummary += labelHeight + smallMargin
         
         textFieldDepositDate.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight)
         styleTextField(textFieldDepositDate)
         textFieldDepositDate.text = ""
-        //textFieldDepositDate.keyboardType = UIKeyboardType.ASCIICapable
-        self.view.addSubview(textFieldDepositDate)
+        self.scrollView.addSubview(textFieldDepositDate)
         depositDatePickerView.datePickerMode = UIDatePickerMode.Date
         textFieldDepositDate.tintColor = UIColor.clearColor() // to hide blinking cursor caret
         textFieldDepositDate.inputView = depositDatePickerView
         depositDatePickerView.locale = NSLocale(localeIdentifier: "ru_RU")
-        
-
         if let _:Stock = self.stock {
             if let _:NSDate = self.stock!.depositDueDate {
                 depositDatePickerView.date = self.stock!.depositDueDate!
             }
         }
-        
         depositDatePickerView.minimumDate = NSDate()
         let maxDate:NSDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Year, value: 10, toDate: NSDate(), options: NSCalendarOptions.WrapComponents)!
         depositDatePickerView.maximumDate = maxDate
-        
         depositDatePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
-        
-        /*
-        depositNotifyLabel.frame = CGRect(x: screenWidth - labelPercentWidth - labelMargin, y: topMarginSummary - labelHeight - smallMargin, width: labelPercentWidth, height: labelHeight)
-        styleLabel(depositNotifyLabel)
-        depositNotifyLabel.text = "Напомнить?"
-        depositNotifyLabel.textAlignment = .Right
-        //labelPercent.backgroundColor = UIColor.yellowColor()
-        self.view.addSubview(depositNotifyLabel)
-        //depositNotifySwitch.frame = CGRect(x: screenWidth - textFieldPercentWidth - fieldMargin, y: topMarginSummary, width: textFieldPercentWidth, height: fieldHeight)
-        depositNotifySwitch.frame.origin = CGPoint(x: screenWidth - 72, y: topMarginSummary + 5)
-        self.view.addSubview(depositNotifySwitch)
-        */
-        
         topMarginSummary += fieldHeight + bigMargin
         
         
@@ -298,52 +270,28 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         labelNote.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
         styleLabel(labelNote)
         labelNote.text = "Заметки"
-        self.view.addSubview(labelNote)
+        self.scrollView.addSubview(labelNote)
         topMarginSummary += labelHeight + smallMargin
         
         textViewNote.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 2)
         styleTextView(textViewNote)
         textViewNote.text = ""
         textViewNote.keyboardType = UIKeyboardType.Default
-        self.view.addSubview(textViewNote)
+        self.scrollView.addSubview(textViewNote)
         topMarginSummary += fieldHeight + bigMargin
-        
-        
-        
-        
+
         
         
         textFieldName.delegate = self
         textFieldValue.delegate = self
         textFieldPercent.delegate = self
         
-        
-        
         textFieldName.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.EditingChanged)
         textFieldValue.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.EditingChanged)
         textFieldPercent.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.EditingChanged)
         
         segmentedControlCurrency.addTarget(self, action: Selector("validationEventTick:"), forControlEvents: UIControlEvents.ValueChanged)
-        
-        //textFieldName.sen
-        
-        //textFieldName.sendActionsForControlEvents(UIControlEvents.ValueChanged)
-        //textFieldValue.sendActionsForControlEvents(UIControlEvents.ValueChanged)
-        //textFieldPercent.sendActionsForControlEvents(UIControlEvents.ValueChanged)
-        
-        
-        
-        //textViewNote.addTarget(self, action: Selector("validationEventTick"), forControlEvents: UIControlEvents.ValueChanged)
 
-        
-        
-        
-        //        let textFieldPercent: UITextField = UITextField(frame: CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight))
-        //        styleTextField(textFieldPercent)
-        //        textFieldPercent.text = "12%"
-        //        self.view.addSubview(textFieldPercent)
-        //        topMarginSummary += fieldHeight + bigMargin
-        
     }
     
     func styleLabel(label:UILabel) {
@@ -401,7 +349,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-        
+    
     
     func registerForKeyboardNotifications() {
         //Adding notifies on keyboard appearing
@@ -482,17 +430,15 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         percentTextField.resignFirstResponder()
     }
 */
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    //override func didReceiveMemoryWarning() {
+    //    super.didReceiveMemoryWarning()
+    //}
     
     // MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(sender: UITextField) {
-        // Disable the Save button while editing.
-        
+
         if sender === textFieldName {
             if !nameTextFieldWasTouchedByUser {
                 textFieldName.becomeFirstResponder()
@@ -508,18 +454,14 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
         if sender === textFieldPercent {
             textFieldPercent.selectedTextRange = textFieldPercent.textRangeFromPosition(textFieldPercent.beginningOfDocument, toPosition: textFieldPercent.endOfDocument)
         }
-        
 
         activeField = sender
     }
     
     func textFieldDidEndEditing(sender: UITextField) {
-        
-        if sender === textFieldName {
-            navigationItem.title = sender.text
-        }
-        
-        //activeField = nil
+        //if sender === textFieldName {
+        //    navigationItem.title = sender.text
+        //}
     }
     
     
@@ -575,25 +517,17 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        
         if !validName && animation {
             shakeTextField(textFieldName)
         }
-        
         if !validValue && animation {
             shakeTextField(textFieldValue)
         }
-        
         if !validPercent && animation {
             shakeTextField(textFieldPercent)
         }
         
-        
-        
-        if (validName && validValue && validPercent) {
-            valid = true
-        }
-        
+        if (validName && validValue && validPercent) { valid = true }
         if valid {
             data.name = name
             data.value = maybeValue!.doubleValue
@@ -601,40 +535,24 @@ class StockEditViewController: UIViewController, UITextFieldDelegate {
             data.currency = Currency(id: segmentedControlCurrency.selectedSegmentIndex)
             data.note = textViewNote.text
         }
-        
-
         saveButton.enabled = valid
     }
     
     
-    
-//    func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
-    
-    
     // MARK: Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {     
-        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if cancelButton === sender {
             print("> StockEditViewController > prepareForSegue > CANCEL PRESSED")
         }
-        
         if saveButton === sender {
             print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
-            
             stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent, note: data.note)
-            
-            print (stock?.depositDueDate)
+            //print (stock?.depositDueDate)
             if let date = self.depositDatePicked {
                 stock!.depositDueDate = date
             }
-            
-            print (stock?.depositDueDate)
-            
-            
+            //print (stock?.depositDueDate)
        }
     }
 
