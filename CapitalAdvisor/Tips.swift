@@ -75,7 +75,7 @@ class Tips {
         let totalEUR:Double = appDelegate.container.totalByCurrencies[.EUR]!
         
         if totalUSD == 0 && totalEUR == 0 {
-            let tip = Tip(text: "Похоже, вы держите все свои деньги в рублях. 😆")
+            let tip = Tip(text: "Похоже, вы храните все свои деньги в рублях 😆")
             self.tips.append(tip)
         }
         

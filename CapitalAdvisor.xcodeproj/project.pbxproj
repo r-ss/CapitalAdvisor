@@ -28,6 +28,7 @@
 		D077CA101BC3EED000815232 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077CA0F1BC3EED000815232 /* Tips.swift */; };
 		D077CA121BC3EEF300815232 /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077CA111BC3EEF300815232 /* Tip.swift */; };
 		D077CA141BC4005000815232 /* UILabel+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077CA131BC4005000815232 /* UILabel+Highlight.swift */; };
+		D077CA161BC440F200815232 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077CA151BC440F200815232 /* Palette.swift */; };
 		D08A15831BBEC75B00D2FCD7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A15821BBEC75B00D2FCD7 /* Currency.swift */; };
 		D08A15851BBEC79600D2FCD7 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A15841BBEC79600D2FCD7 /* Type.swift */; };
 		D0D848F61BB02DF400C90AB5 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */; };
@@ -88,6 +89,7 @@
 		D077CA0F1BC3EED000815232 /* Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		D077CA111BC3EEF300815232 /* Tip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		D077CA131BC4005000815232 /* UILabel+Highlight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Highlight.swift"; sourceTree = "<group>"; };
+		D077CA151BC440F200815232 /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		D08A15821BBEC75B00D2FCD7 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		D08A15841BBEC79600D2FCD7 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +165,6 @@
 				D0E5839A1BAEE1BD00739767 /* StockViewController.swift */,
 				D06B803F1BA5599D00258C0D /* StockEditViewController.swift */,
 				D06B80411BA5599D00258C0D /* Main.storyboard */,
-				D077CA0D1BC3DB3700815232 /* IdeaViewController.swift */,
 				D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */,
 				D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */,
 				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
@@ -171,6 +172,8 @@
 				D0D848FB1BB02E2200C90AB5 /* CategoryTableViewCell.swift */,
 				D05D22131BC28F4600A81507 /* AuthenticationViewController.swift */,
 				D06B80531BA59E2200258C0D /* StockTableViewController.swift */,
+				D077CA0D1BC3DB3700815232 /* IdeaViewController.swift */,
+				D077CA151BC440F200815232 /* Palette.swift */,
 				D077CA0F1BC3EED000815232 /* Tips.swift */,
 				D077CA111BC3EEF300815232 /* Tip.swift */,
 				D06B80511BA59BF800258C0D /* StockTableViewCell.swift */,
@@ -362,6 +365,7 @@
 			files = (
 				D06B80401BA5599D00258C0D /* StockEditViewController.swift in Sources */,
 				D077CA101BC3EED000815232 /* Tips.swift in Sources */,
+				D077CA161BC440F200815232 /* Palette.swift in Sources */,
 				D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */,
 				D077CA141BC4005000815232 /* UILabel+Highlight.swift in Sources */,
 				D077CA121BC3EEF300815232 /* Tip.swift in Sources */,

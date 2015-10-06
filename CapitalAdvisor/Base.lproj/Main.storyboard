@@ -34,7 +34,7 @@
                                                     <string key="text">166 768р. в год
 13 894р. в месяц
 457р. в день</string>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -252,7 +252,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wTE-VP-p14" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Активы" image="icon-tabbar-stocks" id="HrG-XY-c4c"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="33v-yw-t31">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -276,10 +275,10 @@
                         <viewControllerLayoutGuide type="bottom" id="abU-ZZ-nhQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1ci-cG-kdN">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="t7n-Up-svA">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="t7n-Up-svA">
                                 <rect key="frame" x="20" y="42" width="560" height="29"/>
                                 <segments>
                                     <segment title="Рубль"/>
@@ -287,13 +286,13 @@
                                     <segment title="Евро"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Основная валюта" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1J-im-q9j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Основная валюта" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1J-im-q9j">
                                 <rect key="frame" x="20" y="17" width="119" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aaY-oB-l7q">
+                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aaY-oB-l7q">
                                 <rect key="frame" x="531" y="95" width="51" height="31"/>
                             </switch>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Использовать Touch ID для входа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBb-me-kee">
@@ -417,6 +416,8 @@
             <objects>
                 <tabBarController storyboardIdentifier="ID_CapitalViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="t6b-oK-Hrd" customClass="CapitalViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="998-PV-YzP">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -523,8 +524,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J0Y-ab-TXs" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Настройки" image="icon-tabbar-settings" id="gHz-AJ-twH"/>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eWh-ei-LxP">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eWh-ei-LxP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -537,30 +538,27 @@
             </objects>
             <point key="canvasLocation" x="1105" y="1418"/>
         </scene>
-        <!--Idea View Controller-->
+        <!--Идеи-->
         <scene sceneID="t3Y-or-PbK">
             <objects>
                 <viewController id="UJW-jr-Pnk" customClass="IdeaViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OlF-fU-9ai"/>
-                        <viewControllerLayoutGuide type="bottom" id="eED-2U-FkR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ACE-nP-dxr">
+                    <navigationBar key="view" contentMode="scaleToFill" id="XpF-Re-XOY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="aVl-Xq-Xeg"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </navigationBar>
+                    <navigationItem key="navigationItem" title="Идеи" id="aVl-Xq-Xeg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRT-6W-h0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-584" y="1501"/>
         </scene>
-        <!--Item-->
+        <!--Идеи-->
         <scene sceneID="XWp-46-bEI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HTV-xM-aas" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="nNK-vS-RKZ"/>
+                    <tabBarItem key="tabBarItem" title="Идеи" image="icon-tabbar-stocks" id="nNK-vS-RKZ"/>
                     <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8kl-By-up6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

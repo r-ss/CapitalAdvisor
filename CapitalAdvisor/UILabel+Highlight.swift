@@ -34,16 +34,19 @@ extension UILabel {
     }
     
     private func attributedTextFromHtml(htmlText: String) {
-        var text = NSMutableString(string: htmlText)
-        var rangesOfAttributes = getRangeToHighlight(text)
+        let text = NSMutableString(string: htmlText)
+        let rangesOfAttributes = getRangeToHighlight(text)
         
         let attributedString = NSMutableAttributedString(string: String(text))
         for range in rangesOfAttributes {
-            let color = highlightedTextColor ?? UIColor.yellowColor()
+            //let color = highlightedTextColor ?? UIColor.yellowColor()
+            let color = highlightedTextColor ?? Palette.Lightest.color
             attributedString.addAttribute(NSBackgroundColorAttributeName, value: color, range: range)
         }
         
         attributedText = attributedString
+        
+        
     }
     
     private func getRangeToHighlight(text: NSMutableString) -> [NSRange] {
