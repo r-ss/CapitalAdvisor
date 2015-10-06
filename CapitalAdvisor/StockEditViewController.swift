@@ -23,7 +23,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
     let labelPercent = UILabel()
     let textFieldPercent = UITextField()
     
-    let segmentedControlCurrency = UISegmentedControl(items: ["Рубли", "Доллары", "Евро"])
+    let segmentedControlCurrency = UISegmentedControl(items: [Currency.RUB.pluralTitle, Currency.USD.pluralTitle, Currency.EUR.pluralTitle])
     
     let labelDepositDate = UILabel()
     let textFieldDepositDate = UITextField()
@@ -34,6 +34,8 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
     
     let labelNote = UILabel()
     let textViewNote = UITextView()
+    
+    var scrollView: UIScrollView!
 
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -73,7 +75,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         saveButton.action = "savePressed"
         saveButton.enabled = false
         
-        print("> StockEditViewController > SELECTED TYPE: \(self.selectedType)")
+        //print("> StockEditViewController > SELECTED TYPE: \(self.selectedType)")
         generateInputViews()
         
 
@@ -131,7 +133,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
     }
     
     
-    var scrollView: UIScrollView!
+    
     
     func generateInputViews(){
         
@@ -154,8 +156,6 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         self.scrollView.delegate = self
         self.scrollView.contentSize = viewSize
         self.view.addSubview(self.scrollView)
-        
-        print(self.scrollView.contentSize)
         
         //
         // Name
@@ -488,7 +488,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
     }
     
     func validateInputFields(animation:Bool = true) {
-        print("> validateInputFields")
+        //print("> validateInputFields")
         var valid = false
         
         var validName = false

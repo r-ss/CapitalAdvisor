@@ -24,6 +24,7 @@
 		D06B80501BA599B200258C0D /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B804F1BA599B200258C0D /* Stock.swift */; };
 		D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B80511BA59BF800258C0D /* StockTableViewCell.swift */; };
 		D06B80541BA59E2200258C0D /* StockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B80531BA59E2200258C0D /* StockTableViewController.swift */; };
+		D077CA0E1BC3DB3700815232 /* IdeaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077CA0D1BC3DB3700815232 /* IdeaViewController.swift */; };
 		D08A15831BBEC75B00D2FCD7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A15821BBEC75B00D2FCD7 /* Currency.swift */; };
 		D08A15851BBEC79600D2FCD7 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A15841BBEC79600D2FCD7 /* Type.swift */; };
 		D0D848F61BB02DF400C90AB5 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */; };
@@ -80,6 +81,7 @@
 		D06B804F1BA599B200258C0D /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		D06B80511BA59BF800258C0D /* StockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
 		D06B80531BA59E2200258C0D /* StockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockTableViewController.swift; sourceTree = "<group>"; };
+		D077CA0D1BC3DB3700815232 /* IdeaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaViewController.swift; sourceTree = "<group>"; };
 		D08A15821BBEC75B00D2FCD7 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		D08A15841BBEC79600D2FCD7 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				D0E5839A1BAEE1BD00739767 /* StockViewController.swift */,
 				D06B803F1BA5599D00258C0D /* StockEditViewController.swift */,
 				D06B80411BA5599D00258C0D /* Main.storyboard */,
+				D077CA0D1BC3DB3700815232 /* IdeaViewController.swift */,
 				D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */,
 				D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */,
 				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
@@ -365,6 +368,7 @@
 				D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */,
 				D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */,
 				D06B80501BA599B200258C0D /* Stock.swift in Sources */,
+				D077CA0E1BC3DB3700815232 /* IdeaViewController.swift in Sources */,
 				D06361FA1BA94EA7008FB1ED /* ValueFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

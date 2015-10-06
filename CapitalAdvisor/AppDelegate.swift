@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let latestStartTime = userDefaults.objectForKey("LatestStartTime") as? NSDate {
             print("Latest Start Time: \(latestStartTime)")
+            container.loadStocks()
         } else {
             print("First Start")
             firstStartRoutine()
@@ -43,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults.setObject(NSDate(), forKey: "LatestStartTime")
         userDefaults.synchronize()
         
-        container.loadStocks()
+        
         
         //authenticationRoutine()
         
@@ -66,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("welcomeScreen") as UIViewController
         self.window!.rootViewController = vc
+        
+        container.loadExampleStockAtFirstRun()
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -153,6 +153,13 @@ class StocksContainer {
         }
     }
     
+    func loadExampleStockAtFirstRun() {
+        let stock1 = Stock(type: .Cash, name: "Наличные", value: 15000.0, currency:.RUB)!
+        let stock2 = Stock(type: .Deposit, name: "Сбербанк", value: 250000.0, currency:.RUB, percent: 0.12)!
+        self.stocks += [stock1, stock2]
+        saveStocks()
+    }
+    
     func loadSampleStocks() {
         let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
         let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
