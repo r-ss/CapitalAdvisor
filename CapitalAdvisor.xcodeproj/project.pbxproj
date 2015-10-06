@@ -12,6 +12,7 @@
 		D041807C1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */; };
 		D04180841BC1A90800D4AC16 /* FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04180831BC1A90800D4AC16 /* FormatTests.swift */; };
 		D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05467C71BB06C9F00768626 /* ColorTools.swift */; };
+		D05D22141BC28F4600A81507 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D22131BC28F4600A81507 /* AuthenticationViewController.swift */; };
 		D05DFB791BBE8421005ED8D7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */; };
 		D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361D31BA94029008FB1ED /* ExchangeRates.swift */; };
 		D06361FA1BA94EA7008FB1ED /* ValueFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06361F91BA94EA7008FB1ED /* ValueFormat.swift */; };
@@ -65,6 +66,7 @@
 		D041807D1BC1A8C200D4AC16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D04180831BC1A90800D4AC16 /* FormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatTests.swift; sourceTree = "<group>"; };
 		D05467C71BB06C9F00768626 /* ColorTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTools.swift; sourceTree = "<group>"; };
+		D05D22131BC28F4600A81507 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		D06361D31BA94029008FB1ED /* ExchangeRates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRates.swift; sourceTree = "<group>"; };
 		D06361F91BA94EA7008FB1ED /* ValueFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueFormat.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
 				D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */,
 				D0D848FB1BB02E2200C90AB5 /* CategoryTableViewCell.swift */,
+				D05D22131BC28F4600A81507 /* AuthenticationViewController.swift */,
 				D06B80531BA59E2200258C0D /* StockTableViewController.swift */,
 				D06B80511BA59BF800258C0D /* StockTableViewCell.swift */,
 				D06B804F1BA599B200258C0D /* Stock.swift */,
@@ -349,6 +352,7 @@
 				D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */,
 				D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */,
 				D08A15851BBEC79600D2FCD7 /* Type.swift in Sources */,
+				D05D22141BC28F4600A81507 /* AuthenticationViewController.swift in Sources */,
 				D06B803E1BA5599D00258C0D /* AppDelegate.swift in Sources */,
 				D08A15831BBEC75B00D2FCD7 /* Currency.swift in Sources */,
 				D05DFB791BBE8421005ED8D7 /* WelcomeScreenViewController.swift in Sources */,

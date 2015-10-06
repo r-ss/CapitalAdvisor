@@ -11,6 +11,8 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var defaultCurrencyControl: UISegmentedControl!
+    //@IBOutlet weak var touchIDSwitch: UISwitch!
+    
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
@@ -19,8 +21,20 @@ class SettingsViewController: UIViewController {
         
         defaultCurrencyControl.selectedSegmentIndex = defaultCurrency.id
         
+        /*
+        if let useTouchID = appDelegate.userDefaults.objectForKey("useTouchID") as? Bool {
+            touchIDSwitch.on = useTouchID
+        } else {
+            touchIDSwitch.on = false
+        }
+        */
+        
         defaultCurrencyControl.addTarget(self, action: "currencyControlPressed:", forControlEvents:.ValueChanged)
         defaultCurrencyControl.addTarget(self, action: "currencyControlPressed:", forControlEvents:.TouchUpInside)
+        
+       //touchIDSwitch.addTarget(self, action: "touchIDSwitchPressed:", forControlEvents:.TouchUpInside)
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -32,6 +46,13 @@ class SettingsViewController: UIViewController {
         defaultCurrency = Currency(id: sender.selectedSegmentIndex)
         
         //appDelegate.updateDefaultCurrency()
+    }
+    
+    func touchIDSwitchPressed(sender: UISwitch){
+        print(sender.on)
+        let useTouchID:Bool = sender.on
+        appDelegate.userDefaults.setObject(useTouchID, forKey: "useTouchID")
+        appDelegate.userDefaults.synchronize()
     }
 
     override func didReceiveMemoryWarning() {

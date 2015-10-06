@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let exchangeRates:ExchangeRates = ExchangeRates()!
     let container:StocksContainer = StocksContainer()
     let valueFormat:ValueFormat = ValueFormat()
+    
+    private var firstStart = false // will set to true at first start of the application
 
     var window: UIWindow?
     //var window: UIWindow!
@@ -42,12 +44,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults.synchronize()
         
         container.loadStocks()
+        
+        //authenticationRoutine()
+        
         return true
+    }
+    
+    func authenticationRoutine() {
+        if let useTouchID = userDefaults.objectForKey("useTouchID") as? Bool {
+            if useTouchID {
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("authenticationScreen") as UIViewController
+                self.window!.rootViewController = vc
+            }
+        }
     }
     
     func firstStartRoutine() {
         print("firstStartRoutine")
-        
+        self.firstStart = true
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("welcomeScreen") as UIViewController
         self.window!.rootViewController = vc
