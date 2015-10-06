@@ -8,12 +8,17 @@
 
 import UIKit
 
+//let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+//var appDelegate:AppDelegate!
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let exchangeRates:ExchangeRates = ExchangeRates()!
     let container:StocksContainer = StocksContainer()
     let valueFormat:ValueFormat = ValueFormat()
+    var tips:Tips!
     
     private var firstStart = false // will set to true at first start of the application
 
@@ -25,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.tips = Tips()
+        
+        //appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         if let loadedDefaultCurrency = userDefaults.objectForKey("defaultCurrency") as? Int {
             defaultCurrency = Currency(id: loadedDefaultCurrency)

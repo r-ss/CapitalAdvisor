@@ -25,12 +25,13 @@ class RealmStock: Object {
 //var type:Type = .Cash
 
 //let valueFormat:ValueFormat = ValueFormat()
-let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
 
 
 
 class StocksContainer {
+    
+    //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
     
     // MARK: Properties
     var stocks = [Stock]()
@@ -67,6 +68,16 @@ class StocksContainer {
         var totalValue:Double = 0.0
         for stock in self.stocks {
             totalValue += stock.getValueInCurrency(currency)
+        }
+        return totalValue
+    }
+    
+    func totalStocksValueOfTypeInCurrency(type:Type, currency:Currency) -> Double {
+        var totalValue:Double = 0.0
+        for stock in self.stocks {
+            if stock.type == type {
+                totalValue += stock.getValueInCurrency(currency)
+            }
         }
         return totalValue
     }
