@@ -30,8 +30,7 @@ class Tips {
     func analyse() {
         
         self.tips.removeAll()
-        
-        print("ANALYSE")
+
         searchPercentOfInvested()
         whatIfYouInvestAllCashFor12Percent()
         searchPercentOfRoubles()
@@ -64,7 +63,7 @@ class Tips {
         let cash = stocks.totalStocksValueOfTypeInCurrency(.Cash, currency: .RUB)
         if cash > 100 {
             let devidend = cash * 0.12
-            let tip = Tip(text: "Если положить все ваши наличные на рублевый депозит под 12% годовых, то через год вы получите <em> \(valueFormat.format(devidend, currency: .RUB)) </em> девидендов.")
+            let tip = Tip(text: "Если положить все ваши наличные на рублевый депозит под 12% годовых, то через год вы получите доход <em> \(valueFormat.format(devidend, currency: .RUB)) </em>")
             self.tips.append(tip)
         }
     }
@@ -74,9 +73,6 @@ class Tips {
         //let totalRUB:Double = appDelegate.container.totalByCurrencies[.RUB]!
         let totalUSD:Double = appDelegate.container.totalByCurrencies[.USD]!
         let totalEUR:Double = appDelegate.container.totalByCurrencies[.EUR]!
-        
-        print(totalUSD)
-        print(totalEUR)
         
         if totalUSD == 0 && totalEUR == 0 {
             let tip = Tip(text: "Похоже, вы держите все свои деньги в рублях. 😆")

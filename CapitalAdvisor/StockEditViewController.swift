@@ -147,138 +147,148 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         let labelHeight:CGFloat = 18.0
         let longFieldWidth = screenWidth - fieldMargin * 2
         let labelWidth = screenWidth - labelMargin * 2
-        var topMarginSummary:CGFloat = 20
+        
+        
+        
+        let navCont = parentViewController! as! UINavigationController
+        let navBarHeight = navCont.navigationBar.frame.size.height
+        print("Navigation Bar Height = \(navBarHeight)")
+        
+        var topMarginSummary:CGFloat = navBarHeight + 20
+        
+        topMarginSummary = 20
         
         
         self.scrollView = UIScrollView()
         //self.scrollView.frame = self.view.bounds
-        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 100)
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.scrollView.delegate = self
         self.scrollView.contentSize = viewSize
         self.view.addSubview(self.scrollView)
         
+        
+        func addLabel(label:UILabel, text:String, frame:CGRect){
+            label.frame = frame
+            styleLabel(label)
+            label.text = text
+            self.scrollView.addSubview(label)
+            topMarginSummary += (labelHeight + smallMargin)
+        }
+        
+        func addTextField(field:UITextField, text:String, frame:CGRect){
+            field.frame = frame
+            styleTextField(field)
+            field.text = text
+            field.keyboardType = .Default
+            self.scrollView.addSubview(field)
+            topMarginSummary += (fieldHeight + bigMargin)
+        }
+        
         //
         // Name
         //
-        labelName.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
-        styleLabel(labelName)
-        labelName.text = "Название"
-        self.scrollView.addSubview(labelName)
-        topMarginSummary += labelHeight + smallMargin
-        
-        textFieldName.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight)
-        styleTextField(textFieldName)
-        textFieldName.text = "Название"
-        textFieldName.keyboardType = UIKeyboardType.Default
-        self.scrollView.addSubview(textFieldName)
-        topMarginSummary += fieldHeight + bigMargin
+        addLabel(labelName, text:"Название", frame: CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight))
+        addTextField(textFieldName, text:"Название", frame: CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight))
         
         //
         // Value
         //
-        labelValue.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth * 0.5, height: labelHeight)
-        styleLabel(labelValue)
-        labelValue.text = "Сумма"
-        self.scrollView.addSubview(labelValue)
-        topMarginSummary += labelHeight + smallMargin
-        
-        textFieldValue.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth * 0.65 - fieldMargin, height: fieldHeight)
-        styleTextField(textFieldValue)
-        textFieldValue.text = "0"
+        addLabel(labelValue, text:"Сумма", frame: CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth * 0.5, height: labelHeight))
+        addTextField(textFieldValue, text:"0", frame: CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth * 0.65 - fieldMargin, height: fieldHeight))
         textFieldValue.keyboardType = UIKeyboardType.DecimalPad
-        self.scrollView.addSubview(textFieldValue)
-        //topMarginSummary += fieldHeight + bigMargin
         
         //
         // Percent
         //
-        let labelPercentWidth = labelWidth * 0.5
-        labelPercent.frame = CGRect(x: screenWidth - labelPercentWidth - labelMargin, y: topMarginSummary - labelHeight - smallMargin, width: labelPercentWidth, height: labelHeight)
-        styleLabel(labelPercent)
-        labelPercent.text = "Процентная ставка"
-        labelPercent.textAlignment = .Right
-        //labelPercent.backgroundColor = UIColor.yellowColor()
-        self.scrollView.addSubview(labelPercent)
-        //topMarginSummary += labelHeight + smallMargin
-        
-        let textFieldPercentWidth = longFieldWidth * 0.35
-        textFieldPercent.frame = CGRect(x: screenWidth - textFieldPercentWidth - fieldMargin, y: topMarginSummary, width: textFieldPercentWidth, height: fieldHeight)
-        styleTextField(textFieldPercent)
-        textFieldPercent.text = "0"
-        textFieldPercent.keyboardType = UIKeyboardType.DecimalPad
-        textFieldPercent.textAlignment = .Right
-        self.scrollView.addSubview(textFieldPercent)
-        
-        let percentSymbol = UILabel()
-        percentSymbol.text = "%"
-        percentSymbol.textColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
-        percentSymbol.font = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
-        percentSymbol.sizeToFit()
-        // (0.0, 0.0, 16.5, 26.5)
-        //print(percentSymbol.frame)
-        percentSymbol.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        //percentSymbol.backgroundColor = UIColor.yellowColor()
-        textFieldPercent.rightView = percentSymbol
-        textFieldPercent.rightViewMode = UITextFieldViewMode.Always
-        topMarginSummary += fieldHeight + bigMargin
+        func addPercent(){
+            let labelPercentWidth = labelWidth * 0.5
+            let textFieldPercentWidth = longFieldWidth * 0.35
+            //topMarginSummary -= (labelHeight + smallMargin)
+            topMarginSummary -= (fieldHeight + bigMargin)
+            addLabel(labelPercent, text:"Процентная ставка", frame: CGRect(x: screenWidth - labelPercentWidth - labelMargin, y: topMarginSummary - labelHeight - smallMargin, width: labelPercentWidth, height: labelHeight))
+            topMarginSummary -= (labelHeight + smallMargin)
+            addTextField(textFieldPercent, text:"0", frame: CGRect(x: screenWidth - textFieldPercentWidth - fieldMargin, y: topMarginSummary, width: textFieldPercentWidth, height: fieldHeight))
+            labelPercent.textAlignment = .Right
+            textFieldPercent.keyboardType = UIKeyboardType.DecimalPad
+            textFieldPercent.textAlignment = .Right
+            
+            let percentSymbol = UILabel()
+            percentSymbol.text = "%"
+            percentSymbol.textColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
+            percentSymbol.font = UIFont.systemFontOfSize(22, weight: UIFontWeightLight)
+            percentSymbol.sizeToFit()
+            percentSymbol.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+            textFieldPercent.rightView = percentSymbol
+            textFieldPercent.rightViewMode = UITextFieldViewMode.Always
+        }
         
         //
         // Currency
         //
-        topMarginSummary += smallMargin
-        segmentedControlCurrency.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 0.75)
-        segmentedControlCurrency.selectedSegmentIndex = 0
-        self.scrollView.addSubview(segmentedControlCurrency)
-        topMarginSummary += fieldHeight + bigMargin
-        
+        func addCurrency(){
+            topMarginSummary += smallMargin
+            segmentedControlCurrency.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 0.75)
+            segmentedControlCurrency.selectedSegmentIndex = 0
+            self.scrollView.addSubview(segmentedControlCurrency)
+            topMarginSummary += fieldHeight + bigMargin
+        }
         
         //
         // Deposit date
         //
-        labelDepositDate.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
-        styleLabel(labelDepositDate)
-        labelDepositDate.text = "Окончание депозита"
-        self.scrollView.addSubview(labelDepositDate)
-        topMarginSummary += labelHeight + smallMargin
-        
-        textFieldDepositDate.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight)
-        styleTextField(textFieldDepositDate)
-        textFieldDepositDate.text = ""
-        self.scrollView.addSubview(textFieldDepositDate)
-        depositDatePickerView.datePickerMode = UIDatePickerMode.Date
-        textFieldDepositDate.tintColor = UIColor.clearColor() // to hide blinking cursor caret
-        textFieldDepositDate.inputView = depositDatePickerView
-        depositDatePickerView.locale = NSLocale(localeIdentifier: "ru_RU")
-        if let _:Stock = self.stock {
-            if let _:NSDate = self.stock!.depositDueDate {
-                depositDatePickerView.date = self.stock!.depositDueDate!
+        func addDepositDate(){
+            addLabel(labelDepositDate, text:"Окончание депозита", frame: CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight))
+            addTextField(textFieldDepositDate, text:"", frame: CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight))
+            depositDatePickerView.datePickerMode = UIDatePickerMode.Date
+            textFieldDepositDate.tintColor = UIColor.clearColor() // to hide blinking cursor caret
+            textFieldDepositDate.inputView = depositDatePickerView
+            depositDatePickerView.locale = NSLocale(localeIdentifier: "ru_RU")
+            if let _:Stock = self.stock {
+                if let _:NSDate = self.stock!.depositDueDate {
+                    depositDatePickerView.date = self.stock!.depositDueDate!
+                }
             }
+            depositDatePickerView.minimumDate = NSDate()
+            let maxDate:NSDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Year, value: 10, toDate: NSDate(), options: NSCalendarOptions.WrapComponents)!
+            depositDatePickerView.maximumDate = maxDate
+            depositDatePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
         }
-        depositDatePickerView.minimumDate = NSDate()
-        let maxDate:NSDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Year, value: 10, toDate: NSDate(), options: NSCalendarOptions.WrapComponents)!
-        depositDatePickerView.maximumDate = maxDate
-        depositDatePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
-        topMarginSummary += fieldHeight + bigMargin
         
         
         //
         // Note
         //
-        labelNote.frame = CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight)
-        styleLabel(labelNote)
-        labelNote.text = "Заметки"
-        self.scrollView.addSubview(labelNote)
-        topMarginSummary += labelHeight + smallMargin
+        func addNote(){
+            addLabel(labelNote, text:"Заметки", frame: CGRect(x: labelMargin, y: topMarginSummary, width: labelWidth, height: labelHeight))
+            textViewNote.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 2)
+            styleTextView(textViewNote)
+            textViewNote.text = ""
+            textViewNote.keyboardType = UIKeyboardType.Default
+            self.scrollView.addSubview(textViewNote)
+            topMarginSummary += fieldHeight + bigMargin
+        }
         
-        textViewNote.frame = CGRect(x: fieldMargin, y: topMarginSummary, width: longFieldWidth, height: fieldHeight * 2)
-        styleTextView(textViewNote)
-        textViewNote.text = ""
-        textViewNote.keyboardType = UIKeyboardType.Default
-        self.scrollView.addSubview(textViewNote)
-        topMarginSummary += fieldHeight + bigMargin
+        
+        switch self.selectedType {
+        case .Deposit, .Debit, .Credit, .Asset:
+            addPercent()
+        default:
+            textFieldPercent.text = "0" // OH...
+            textFieldValue.frame.size.width = longFieldWidth
+        }
+        
+        addCurrency()
+        
+        
+        switch self.selectedType {
+        case .Deposit:
+            addDepositDate()
+        default: break
+        }
+        
+        addNote()
+        
 
-        
-        
         textFieldName.delegate = self
         textFieldValue.delegate = self
         textFieldPercent.delegate = self
