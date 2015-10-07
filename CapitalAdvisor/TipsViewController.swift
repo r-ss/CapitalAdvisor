@@ -1,5 +1,5 @@
 //
-//  IdeaViewController.swift
+//  TipsViewController.swift
 //  CapitalAdvisor
 //
 //  Created by Alex Antipov on 06/10/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IdeaViewController: UIViewController {
+class TipsViewController: UIViewController {
     
     var scrollView: UIScrollView!
     
@@ -20,6 +20,7 @@ class IdeaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
         self.tips = appDelegate.tips
 
         self.view.backgroundColor = Palette.White.color
@@ -28,11 +29,11 @@ class IdeaViewController: UIViewController {
         self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         //self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
-        
         self.scrollView.backgroundColor = Palette.White.color
+        self.scrollView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
         
-
-        
+        //self.edgesForExtendedLayout = UIRectEdge.All
+        //self.automaticallyAdjustsScrollViewInsets = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +71,7 @@ class IdeaViewController: UIViewController {
             
             let cell = UIView.init(frame: CGRect(x: margin, y: top, width: cellWidth, height: height))
             cell.backgroundColor = Palette.White.color
-            cell.userInteractionEnabled = true
+            //cell.userInteractionEnabled = true
             self.scrollView.addSubview(cell)
             
             let label = UILabel.init(frame: CGRect(x: textMargin, y: textMargin, width: cellWidth - textMargin * 2, height: height))
@@ -117,7 +118,7 @@ class IdeaViewController: UIViewController {
         top += 70
         
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
-        self.scrollView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
+    
         
     }
     

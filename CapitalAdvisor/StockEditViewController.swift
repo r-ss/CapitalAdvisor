@@ -35,7 +35,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
     let labelNote = UILabel()
     let textViewNote = UITextView()
     
-    var scrollView: UIScrollView!
+    var scrollView = UIScrollView()
 
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -76,6 +76,16 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         saveButton.enabled = false
         
         //print("> StockEditViewController > SELECTED TYPE: \(self.selectedType)")
+        
+        //self.scrollView = UIScrollView()
+        //self.scrollView.frame = self.view.bounds
+        
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.scrollView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
+        self.view.addSubview(self.scrollView)
+        
+        self.scrollView.delegate = self
+        
         generateInputViews()
         
 
@@ -159,15 +169,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         //topMarginSummary = 20
         
         
-        self.scrollView = UIScrollView()
-        //self.scrollView.frame = self.view.bounds
         
-        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        self.scrollView.contentInset = UIEdgeInsets(top: topMarginSummary, left: 0, bottom: 0, right: 0)
-        
-        self.scrollView.delegate = self
         self.scrollView.contentSize = viewSize
-        self.view.addSubview(self.scrollView)
+        
         
         
         func addLabel(label:UILabel, text:String, frame:CGRect){

@@ -541,7 +541,7 @@
         <!--Идеи-->
         <scene sceneID="t3Y-or-PbK">
             <objects>
-                <viewController id="UJW-jr-Pnk" customClass="IdeaViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UJW-jr-Pnk" customClass="TipsViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bPn-oR-z4e"/>
                         <viewControllerLayoutGuide type="bottom" id="4c6-29-9DN"/>
