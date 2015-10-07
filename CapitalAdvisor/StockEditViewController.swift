@@ -154,14 +154,17 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         let navBarHeight = navCont.navigationBar.frame.size.height
         print("Navigation Bar Height = \(navBarHeight)")
         
-        var topMarginSummary:CGFloat = navBarHeight + 20
+        var topMarginSummary:CGFloat = navBarHeight
         
-        topMarginSummary = 20
+        //topMarginSummary = 20
         
         
         self.scrollView = UIScrollView()
         //self.scrollView.frame = self.view.bounds
+        
         self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.scrollView.contentInset = UIEdgeInsets(top: topMarginSummary, left: 0, bottom: 0, right: 0)
+        
         self.scrollView.delegate = self
         self.scrollView.contentSize = viewSize
         self.view.addSubview(self.scrollView)

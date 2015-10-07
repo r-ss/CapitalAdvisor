@@ -15,6 +15,7 @@ class IdeaViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var tips:Tips!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +30,7 @@ class IdeaViewController: UIViewController {
         
         self.scrollView.backgroundColor = Palette.White.color
         
+
         
     }
 
@@ -40,6 +42,9 @@ class IdeaViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.tips.analyse()
         self.generateCells()
+        
+        
+        //self.performSegueWithIdentifier("tipDetails", sender: self)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -64,6 +69,7 @@ class IdeaViewController: UIViewController {
             
             let cell = UIView.init(frame: CGRect(x: margin, y: top, width: cellWidth, height: height))
             cell.backgroundColor = Palette.White.color
+            cell.userInteractionEnabled = true
             self.scrollView.addSubview(cell)
             
             let label = UILabel.init(frame: CGRect(x: textMargin, y: textMargin, width: cellWidth - textMargin * 2, height: height))
@@ -77,13 +83,31 @@ class IdeaViewController: UIViewController {
             cell.addSubview(label)
             top += cell.frame.size.height + 75
             
-            let button = UILabel.init(frame: CGRect(x:textMargin, y:cell.frame.size.height - textMargin, width: cellWidth - textMargin * 2, height: 30))
-            button.text = "Подробнее"
-            button.textAlignment = .Right
-            button.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+            //let buttonLabel = UILabel.init(frame: CGRect(x:textMargin, y:cell.frame.size.height, width: cellWidth - textMargin * 2, height: 30))
+            //buttonLabel.text = "Подробнее"
+            //buttonLabel.textAlignment = .Right
+            //buttonLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
             //button.backgroundColor = Palette.W.color
-            button.textColor = Palette.Dark.color
-            cell.addSubview(button)
+            //buttonLabel.textColor = Palette.Dark.color
+            
+            //let button = UIButton.init(frame: buttonLabel.frame)
+            
+            
+            let myButton = UIButton()
+            myButton.setTitle("Подробнее", forState: .Normal)
+            myButton.setTitleColor(Palette.Dark.color, forState: .Normal)
+            myButton.titleLabel?.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+            myButton.contentHorizontalAlignment = .Right
+            myButton.frame = CGRect(x:textMargin, y:cell.frame.size.height, width: cellWidth - textMargin * 2, height: 30)
+            myButton.userInteractionEnabled = true
+            myButton.addTarget(self, action: "pressedAction:", forControlEvents: .TouchUpInside)
+            cell.addSubview(myButton)
+            
+            cell.frame.size.height = cell.frame.size.height + 30
+            
+            
+            
+            //cell.addSubview(button)
             
         }
         
@@ -92,6 +116,12 @@ class IdeaViewController: UIViewController {
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
         
         
+    }
+    
+    func pressedAction(sender: UIButton) {
+        // do your stuff here
+        print("you clicked on button")
+        self.performSegueWithIdentifier("tipDetails", sender: self)
     }
 
 

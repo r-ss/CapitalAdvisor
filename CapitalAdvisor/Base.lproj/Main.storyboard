@@ -174,7 +174,7 @@
         <!--Новый актив-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="StockEditViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="BYZ-38-t0r" customClass="StockEditViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -197,7 +197,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="hHC-yv-upa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2690" y="569"/>
+            <point key="canvasLocation" x="2747" y="-151"/>
         </scene>
         <!--Новый актив-->
         <scene sceneID="Jo7-AN-ccx">
@@ -244,7 +244,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fss-j7-J75" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="246"/>
+            <point key="canvasLocation" x="1900" y="-151"/>
         </scene>
         <!--Активы-->
         <scene sceneID="jFO-N5-l43">
@@ -409,7 +409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0RN-02-VQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2728" y="979"/>
+            <point key="canvasLocation" x="1900" y="579"/>
         </scene>
         <!--Capital View Controller-->
         <scene sceneID="2Tk-VL-828">
@@ -542,15 +542,41 @@
         <scene sceneID="t3Y-or-PbK">
             <objects>
                 <viewController id="UJW-jr-Pnk" customClass="IdeaViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="view" contentMode="scaleToFill" id="XpF-Re-XOY">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bPn-oR-z4e"/>
+                        <viewControllerLayoutGuide type="bottom" id="4c6-29-9DN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8oP-QS-s4z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    </navigationBar>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <navigationItem key="navigationItem" title="Идеи" id="aVl-Xq-Xeg"/>
+                    <connections>
+                        <segue destination="o5B-90-Vea" kind="show" identifier="tipDetails" id="o7J-D8-Ck1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRT-6W-h0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-584" y="1501"/>
+        </scene>
+        <!--Tip Details View Controller-->
+        <scene sceneID="DQb-61-Dcq">
+            <objects>
+                <viewController id="o5B-90-Vea" customClass="TipDetailsViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="msu-uw-Wv7"/>
+                        <viewControllerLayoutGuide type="bottom" id="IQf-b9-34M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BTa-ny-RFa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qv0-mx-Iou" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="1501"/>
         </scene>
         <!--Идеи-->
         <scene sceneID="XWp-46-bEI">
@@ -578,6 +604,6 @@
         <image name="icon-tabbar-stocks" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eYz-Ey-oN4"/>
+        <segue reference="HVf-7l-oZP"/>
     </inferredMetricsTieBreakers>
 </document>

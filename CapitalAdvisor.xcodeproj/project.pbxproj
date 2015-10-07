@@ -33,6 +33,7 @@
 		D08A15851BBEC79600D2FCD7 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A15841BBEC79600D2FCD7 /* Type.swift */; };
 		D0D848F61BB02DF400C90AB5 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */; };
 		D0D848FC1BB02E2200C90AB5 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D848FB1BB02E2200C90AB5 /* CategoryTableViewCell.swift */; };
+		D0E21E4F1BC51AF2000AB825 /* TipDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E21E4E1BC51AF2000AB825 /* TipDetailsViewController.swift */; };
 		D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5839A1BAEE1BD00739767 /* StockViewController.swift */; };
 		D0F9B1441BB00D670012D7D3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */; };
 		DE424DEE3F4E537297C01A9D /* Pods_CapitalAdvisor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -94,6 +95,7 @@
 		D08A15841BBEC79600D2FCD7 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		D0D848FB1BB02E2200C90AB5 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		D0E21E4E1BC51AF2000AB825 /* TipDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipDetailsViewController.swift; sourceTree = "<group>"; };
 		D0E5839A1BAEE1BD00739767 /* StockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D40BFBD3ABD5834BE0E7FB54 /* Pods-CapitalAdvisor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CapitalAdvisor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CapitalAdvisor/Pods-CapitalAdvisor.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,7 +166,6 @@
 				D08A15821BBEC75B00D2FCD7 /* Currency.swift */,
 				D0E5839A1BAEE1BD00739767 /* StockViewController.swift */,
 				D06B803F1BA5599D00258C0D /* StockEditViewController.swift */,
-				D06B80411BA5599D00258C0D /* Main.storyboard */,
 				D05DFB781BBE8421005ED8D7 /* WelcomeScreenViewController.swift */,
 				D0F9B1431BB00D670012D7D3 /* SettingsViewController.swift */,
 				D008A0B61BA96F44008B79CA /* CapitalViewController.swift */,
@@ -183,6 +184,8 @@
 				D06361F91BA94EA7008FB1ED /* ValueFormat.swift */,
 				D05467C71BB06C9F00768626 /* ColorTools.swift */,
 				D077CA131BC4005000815232 /* UILabel+Highlight.swift */,
+				D06B80411BA5599D00258C0D /* Main.storyboard */,
+				D0E21E4E1BC51AF2000AB825 /* TipDetailsViewController.swift */,
 				D06B80441BA5599D00258C0D /* Assets.xcassets */,
 				D06B80461BA5599D00258C0D /* LaunchScreen.storyboard */,
 				D06B80491BA5599D00258C0D /* Info.plist */,
@@ -366,6 +369,7 @@
 				D06B80401BA5599D00258C0D /* StockEditViewController.swift in Sources */,
 				D077CA101BC3EED000815232 /* Tips.swift in Sources */,
 				D077CA161BC440F200815232 /* Palette.swift in Sources */,
+				D0E21E4F1BC51AF2000AB825 /* TipDetailsViewController.swift in Sources */,
 				D0E5839B1BAEE1BD00739767 /* StockViewController.swift in Sources */,
 				D077CA141BC4005000815232 /* UILabel+Highlight.swift in Sources */,
 				D077CA121BC3EEF300815232 /* Tip.swift in Sources */,
