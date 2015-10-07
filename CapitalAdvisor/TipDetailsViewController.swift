@@ -53,7 +53,12 @@ class TipDetailsViewController: UIViewController {
         label.numberOfLines = 0
         //label.text = tip!.text
         label.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
-        label.highlightedText = "\(tip!.intro)\n\n\(tip!.text!)"
+        
+        
+        let nbsp = tip!.intro.stringByReplacingOccurrencesOfString("_", withString:"\u{00a0}")
+        
+        
+        label.highlightedText = "\(nbsp)\n\n\(tip!.text!)"
         label.sizeToFit()
         //cell.frame.size.height = label.frame.size.height + textMargin * 2
         self.scrollView.addSubview(label)

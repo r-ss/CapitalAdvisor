@@ -30,7 +30,9 @@ class TipsViewController: UIViewController {
         //self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
         self.scrollView.backgroundColor = Palette.White.color
+        
         self.scrollView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
+        
         
         //self.edgesForExtendedLayout = UIRectEdge.All
         //self.automaticallyAdjustsScrollViewInsets = true
@@ -79,7 +81,16 @@ class TipsViewController: UIViewController {
             label.numberOfLines = 0
             //label.text = tip.text
             label.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
-            label.highlightedText = tip.intro
+            
+            
+            
+            
+            let nbsp = tip.intro.stringByReplacingOccurrencesOfString("_", withString:"\u{00a0}")
+            
+            label.highlightedText = nbsp
+            
+            
+            
             label.sizeToFit()
             cell.frame.size.height = label.frame.size.height + textMargin * 2
             cell.addSubview(label)

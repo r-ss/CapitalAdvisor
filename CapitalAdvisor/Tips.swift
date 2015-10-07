@@ -33,6 +33,7 @@ class Tips {
 
         searchPercentOfInvested()
         whatIfYouInvestAllCashFor12Percent()
+        whatIfInvestFor10Years()
         searchPercentOfRoubles()
         
         fillStocksAndSeeMore()
@@ -72,10 +73,37 @@ class Tips {
         
         if cash > 100 {
             let devidend = cash * 0.12
-            let tip = Tip(intro: "Если положить все ваши наличные на рублевый депозит под 12% годовых, то через год вы получите доход <em> \(valueFormat.format(devidend, currency: .RUB)) </em>", teaser:"Узнать больше", text: long)
+            let tip = Tip(intro: "Если положить все ваши наличные на рублевый депозит под 12% годовых, то через год вы получите доход <em>_\(valueFormat.format(devidend, currency: .RUB))_</em>", teaser:"Узнать больше", text: long)
             self.tips.append(tip)
         }
     }
+    
+    
+    func whatIfInvestFor10Years(){
+        
+        let long = ""
+        
+        let currentTotal = stocks.totalStocksValueInCurrency(.RUB)
+        
+        var total = currentTotal
+        var totalDevidents:Double = 0
+        let monthly:Double = 10000
+        let percent:Double = 0.10
+        
+        
+        for index in 0...9 {
+            total += monthly * 12
+            let devidends = total * percent
+            totalDevidents += devidends
+            total += devidends
+            print("index: \(index), devidends: \(devidends) total:\(total)")
+        }
+        
+        let tip = Tip(intro: "Если вы начнете инвестировать сейчас свой капитал <em>_\(valueFormat.format(currentTotal, currency: .RUB))_</em> под 10% годовых и ежемесячно будете добавлять к сумме <em>_\(valueFormat.format(monthly, currency: .RUB))_</em>, то через десять лет ваш капитал составит <em>_\(valueFormat.format(total, currency: .RUB))_</em> из которых <em>_\(valueFormat.format(stocks.totalStocksValueInCurrency(.RUB) + (monthly * 12 * 10), currency: .RUB))_</em> — вложенные вами деньги и <em>_\(valueFormat.format(totalDevidents, currency: .RUB))_</em> — девиденды", teaser:"Узнать больше", text: long)
+        self.tips.append(tip)
+        
+    }
+    
     
     func searchPercentOfRoubles(){
         
@@ -101,8 +129,8 @@ class Tips {
     }
     
     func bewareOfForex(){
-        let long = "Внниманиt"
-        let tip = Tip(intro: "Наша задача помочь вам начать инвестировать, но вы должны понимать, что не все финансовые инструменты можно назвать надежными. В частности мы призываем вас не вкладыть деньги в Forex ⚠️", teaser: "Подробнее", text: long)
+        let long = ""
+        let tip = Tip(intro: "Наша задача помочь вам начать инвестировать, но вы должны понимать, что не все финансовые инструменты можно назвать надежными. В частности мы призываем вас не вкладыть деньги в Forex_⚠️", teaser: "Подробнее", text: long)
         self.tips.append(tip)
         
     }
