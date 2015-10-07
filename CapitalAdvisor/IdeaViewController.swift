@@ -15,6 +15,7 @@ class IdeaViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var tips:Tips!
     
+    var selectedTag:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,13 +57,13 @@ class IdeaViewController: UIViewController {
     func generateCells() {
         
         
-        var top:CGFloat = 100
+        var top:CGFloat = 10
         let margin:CGFloat = 16
         let textMargin:CGFloat = 5
         let screenWidth = self.view.frame.size.width
         let cellWidth = screenWidth - margin * 2
 
-        
+        var i:Int = 0
         for tip in self.tips.tips {
             
             let height:CGFloat = 150
@@ -77,7 +78,7 @@ class IdeaViewController: UIViewController {
             label.numberOfLines = 0
             //label.text = tip.text
             label.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
-            label.highlightedText = tip.text!
+            label.highlightedText = tip.intro
             label.sizeToFit()
             cell.frame.size.height = label.frame.size.height + textMargin * 2
             cell.addSubview(label)
@@ -94,19 +95,21 @@ class IdeaViewController: UIViewController {
             
             
             let myButton = UIButton()
-            myButton.setTitle("Подробнее", forState: .Normal)
+            myButton.setTitle("\(tip.teaser) ➝", forState: .Normal)
+            //myButton.setTitle("\(tip.teaser) ➡", forState: .Normal)
             myButton.setTitleColor(Palette.Dark.color, forState: .Normal)
             myButton.titleLabel?.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
             myButton.contentHorizontalAlignment = .Right
             myButton.frame = CGRect(x:textMargin, y:cell.frame.size.height, width: cellWidth - textMargin * 2, height: 30)
             myButton.userInteractionEnabled = true
+            myButton.tag = i
             myButton.addTarget(self, action: "pressedAction:", forControlEvents: .TouchUpInside)
             cell.addSubview(myButton)
             
             cell.frame.size.height = cell.frame.size.height + 30
             
             
-            
+            i += 1
             //cell.addSubview(button)
             
         }
@@ -114,14 +117,23 @@ class IdeaViewController: UIViewController {
         top += 70
         
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
-        
+        self.scrollView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
         
     }
     
     func pressedAction(sender: UIButton) {
         // do your stuff here
-        print("you clicked on button")
+        selectedTag = sender.tag
+        
         self.performSegueWithIdentifier("tipDetails", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "tipDetails" {
+            let tipDetailsViewController = segue.destinationViewController as! TipDetailsViewController
+            // Get the cell that generated this segue.
+            tipDetailsViewController.tip = tips.tips[selectedTag]
+        }
     }
 
 

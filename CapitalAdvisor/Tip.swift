@@ -11,10 +11,13 @@ import Foundation
 
 class Tip {
     
+    var intro:String = ""
+    var teaser:String = ""
     var text:String?
     
-    
-    init(text:String){
+    init(intro:String, teaser:String = "Подробнее", text:String? = nil){
+        self.intro = intro
+        self.teaser = teaser
         self.text = text
     }
 }
