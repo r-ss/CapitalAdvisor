@@ -171,10 +171,10 @@ class StocksContainer {
         saveStocks()
     }
     
-    func loadSampleStocks() {
-        let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
-        let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
-        self.stocks += [stock1, stock2]
-    }
+//    func loadSampleStocks() {
+//        let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
+//        let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
+//        self.stocks += [stock1, stock2]
+//    }
     
 }

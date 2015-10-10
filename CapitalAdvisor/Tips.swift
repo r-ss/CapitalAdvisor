@@ -96,7 +96,7 @@ class Tips {
             let devidends = total * percent
             totalDevidents += devidends
             total += devidends
-            print("index: \(index), devidends: \(devidends) total:\(total)")
+            //print("index: \(index), devidends: \(devidends) total:\(total)")
         }
         
         let tip = Tip(intro: "Если вы начнете инвестировать сейчас свой капитал <em>_\(valueFormat.format(currentTotal, currency: .RUB))_</em> под 10% годовых и ежемесячно будете добавлять к сумме <em>_\(valueFormat.format(monthly, currency: .RUB))_</em>, то через десять лет ваш капитал составит <em>_\(valueFormat.format(total, currency: .RUB))_</em> из которых <em>_\(valueFormat.format(stocks.totalStocksValueInCurrency(.RUB) + (monthly * 12 * 10), currency: .RUB))_</em> — вложенные вами деньги и <em>_\(valueFormat.format(totalDevidents, currency: .RUB))_</em> — девиденды", teaser:"Узнать больше", text: long)
@@ -130,7 +130,7 @@ class Tips {
     
     func bewareOfForex(){
         let long = ""
-        let tip = Tip(intro: "Наша задача помочь вам начать инвестировать, но вы должны понимать, что не все финансовые инструменты можно назвать надежными. В частности мы призываем вас не вкладыть деньги в Forex_⚠️", teaser: "Подробнее", text: long)
+        let tip = Tip(intro: "Наша задача помочь вам начать инвестировать, но вы должны понимать, что не все финансовые инструменты можно назвать надежными. В частности мы призываем вас не вкладывать деньги в Forex_⚠️", teaser: "Подробнее", text: long)
         self.tips.append(tip)
         
     }
