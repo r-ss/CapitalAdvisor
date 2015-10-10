@@ -147,6 +147,18 @@ class StockTableViewController: UITableViewController {
             }
         }
         
+        for income in appDelegate.container.incomes {
+            let devident:Double = income.value * 12
+            switch income.currency {
+            case .USD:
+                totalUSD += devident
+            case .EUR:
+                totalEUR += devident
+            default:
+                totalRUR += devident
+            }
+        }
+        
         let exchangeRates:ExchangeRates = appDelegate.exchangeRates
         let totalUSDinRoubles:Double = totalUSD * exchangeRates.USDRUR
         let totalEURinRoubles:Double = totalEUR * exchangeRates.EURRUR
@@ -182,11 +194,15 @@ class StockTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        return 2
+        /*
         if appDelegate.container.incomesCount >= 1 {
             return 2
         } else {
             return 1
         }
+*/
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -230,8 +246,8 @@ class StockTableViewController: UITableViewController {
             let income = appDelegate.container.incomes[indexPath.row]
             cell.nameLabel.text = income.name
             cell.valueLabel.text = income.formattedValue
-            cell.percentLabel.text = "0"
-            cell.profitLabel.text = "0"
+            cell.percentLabel.text = "Доход"
+            cell.profitLabel.text = "в месяц"
             cell.colorRectangleView.backgroundColor = UIColor.whiteColor()
         }
         
@@ -253,8 +269,21 @@ class StockTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            appDelegate.container.removeStockAtIndex(indexPath.row)
+            
+            switch indexPath.section {
+            case 0: appDelegate.container.removeStockAtIndex(indexPath.row)
+            case 1: appDelegate.container.removeIncomeAtIndex(indexPath.row)
+            default: break
+            }
+
+            //if appDelegate.container.incomesCount == 0 {
+            //    tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .Fade)
+            //}
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -282,7 +311,15 @@ class StockTableViewController: UITableViewController {
     
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        appDelegate.container.rearrangeStock(fromIndexPath.row, newIndex: toIndexPath.row)
+        
+        switch fromIndexPath.section {
+        case 0: appDelegate.container.rearrangeStock(fromIndexPath.row, newIndex: toIndexPath.row)
+        case 1: appDelegate.container.rearrangeIncome(fromIndexPath.row, newIndex: toIndexPath.row)
+        default: break
+        }
+        
+        
+        
     }
 
     // Override to support conditional rearranging of the table view.

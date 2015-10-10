@@ -23,7 +23,7 @@ class TipDetailsViewController: UIViewController {
         //self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
         self.scrollView.backgroundColor = Palette.White.color
-        self.scrollView.contentInset = UIEdgeInsets(top: 44, left: 0, bottom: 0, right: 0)
+        self.scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
     }
     
     override func viewWillAppear(animated: Bool) {

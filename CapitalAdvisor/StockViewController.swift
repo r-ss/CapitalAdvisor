@@ -112,12 +112,21 @@ class StockViewController: UIViewController {
             self.viewDidLoad()
             
             
-            if let selectedStockIndex:Int = appDelegate.container.getSelectedStockIndex()! {
-                appDelegate.container.updateStock(self.stock!, atIndex: selectedStockIndex)
+            if let selectedStockIndex:Int = appDelegate.container.getSelectedStockIndex() {
+                print("stock \(selectedStockIndex)")
+                if let stock = self.stock {
+                    appDelegate.container.updateStock(stock, atIndex: selectedStockIndex)
+                }
+                
             }
             
-            if let selectedIncomeIndex:Int = appDelegate.container.getSelectedIncomeIndex()! {
-                appDelegate.container.updateIncome(self.income!, atIndex: selectedIncomeIndex)
+            if let selectedIncomeIndex:Int = appDelegate.container.getSelectedIncomeIndex() {
+                print("income \(selectedIncomeIndex)")
+               
+                if let income = self.income {
+                    print("DADADA")
+                     appDelegate.container.updateIncome(income, atIndex: selectedIncomeIndex)
+                }
             }
             
         }

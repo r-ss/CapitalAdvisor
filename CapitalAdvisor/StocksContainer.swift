@@ -21,11 +21,16 @@ class RealmStock: Object {
     dynamic var deposit_due_date:String = ""
 }
 
+class RealmIncome: Object {
+    dynamic var name:String = ""
+    dynamic var currency_int:Int = 0
+    dynamic var value:Double = 0.0
+    dynamic var note:String = ""
+}
 
 //var type:Type = .Cash
 
 //let valueFormat:ValueFormat = ValueFormat()
-
 
 
 class StocksContainer {
@@ -35,7 +40,6 @@ class StocksContainer {
     
     // MARK: Properties
     var stocks = [Stock]()
-    
     var incomes = [Income]()
     
     
@@ -152,7 +156,7 @@ class StocksContainer {
     }
     
     func setSelectedIncomeIndex(index:Int){
-        self.selectedStockIndex = index
+        self.selectedIncomeIndex = index
     }
     
     func getSelectedIncomeIndex() -> Int? {
@@ -164,7 +168,7 @@ class StocksContainer {
 
     // MARK: NSCoding
     func saveIncomes() {
-        print("Stock Container > saveIncomes")
+        saveStocks()
     }
     
     
@@ -195,13 +199,26 @@ class StocksContainer {
                 self.realm.add(rs)
             }
         }
+        
+        for income in incomes {
+            let ri:RealmIncome = RealmIncome()
+            ri.name = income.name
+            ri.currency_int = income.currency.id
+            ri.value = income.value
+            ri.note = income.note
+            
+            realm.write {
+                self.realm.add(ri)
+            }
+        }
     }
     func loadStocks() {
         
-        loadSampleStocks()
-        /*
+        //loadSampleStocks()
+        
         print("Stock Container > loadStocks")
         let realmStocks = try!Realm().objects(RealmStock)
+        let realmIncomes = try!Realm().objects(RealmIncome)
         //print(realmStocks)
         for rs in realmStocks {
             //print(rs.value)
@@ -220,7 +237,17 @@ class StocksContainer {
                 depositDueDate: dddate)!
             self.stocks += [stock]
         }
-        */
+        
+        for ri in realmIncomes {
+            //print(rs.value)
+            
+            let income = Income(name: ri.name,
+                value: ri.value,
+                currency: Currency(id: ri.currency_int),
+                note: ri.note)!
+            self.incomes += [income]
+        }
+        
     }
     
     func loadExampleStockAtFirstRun() {
