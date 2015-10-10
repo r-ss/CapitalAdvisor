@@ -35,7 +35,12 @@ class StocksContainer {
     
     // MARK: Properties
     var stocks = [Stock]()
-    var selectedStockIndex: Int = 0 // я нуб
+    
+    var incomes = [Income]()
+    
+    
+    var selectedStockIndex: Int? // я нуб
+    var selectedIncomeIndex: Int? // я нуб
     
     let realm = try!Realm()
     
@@ -64,6 +69,10 @@ class StocksContainer {
         return self.stocks.count
     }
     
+    var incomesCount: Int {
+        return self.incomes.count
+    }
+    
     func totalStocksValueInCurrency(currency:Currency) -> Double {
         var totalValue:Double = 0.0
         for stock in self.stocks {
@@ -87,14 +96,35 @@ class StocksContainer {
         saveStocks()
     }
     
+    func addIncome(newIncome:Income) {
+        self.incomes.append(newIncome)
+        saveIncomes()
+    }
+    
     func updateStock(newStock:Stock, atIndex i:Int) {
         self.stocks[i] = newStock
         saveStocks()
     }
     
+    func updateIncome(newIncome:Income, atIndex i:Int) {
+        self.incomes[i] = newIncome
+        saveIncomes()
+    }
+    
     func removeStockAtIndex(index:Int) {
-        self.stocks.removeAtIndex(index)
-        saveStocks()
+        //print(index)
+        
+        if !self.stocks.isEmpty {
+            self.stocks.removeAtIndex(index)
+            saveStocks()
+        }
+        
+        
+    }
+    
+    func removeIncomeAtIndex(index:Int) {
+        self.incomes.removeAtIndex(index)
+        saveIncomes()
     }
     
     func rearrangeStock(oldIndex:Int, newIndex:Int) {
@@ -104,15 +134,40 @@ class StocksContainer {
         saveStocks()
     }
     
+    func rearrangeIncome(oldIndex:Int, newIndex:Int) {
+        let income = self.incomes[oldIndex]
+        self.incomes.removeAtIndex(oldIndex)
+        self.incomes.insert(income, atIndex: newIndex)
+        saveIncomes()
+    }
+
     func setSelectedStockIndex(index:Int){
         self.selectedStockIndex = index
     }
     
     func getSelectedStockIndex() -> Int? {
-        return self.selectedStockIndex
+        let index = self.selectedStockIndex
+        self.selectedStockIndex = nil
+        return index
     }
     
+    func setSelectedIncomeIndex(index:Int){
+        self.selectedStockIndex = index
+    }
+    
+    func getSelectedIncomeIndex() -> Int? {
+        let index = self.selectedIncomeIndex
+        self.selectedIncomeIndex = nil
+        return index
+    }
+    
+
     // MARK: NSCoding
+    func saveIncomes() {
+        print("Stock Container > saveIncomes")
+    }
+    
+    
     func saveStocks() {
         print("Stock Container > saveStocks")
         
@@ -142,6 +197,9 @@ class StocksContainer {
         }
     }
     func loadStocks() {
+        
+        loadSampleStocks()
+        /*
         print("Stock Container > loadStocks")
         let realmStocks = try!Realm().objects(RealmStock)
         //print(realmStocks)
@@ -162,6 +220,7 @@ class StocksContainer {
                 depositDueDate: dddate)!
             self.stocks += [stock]
         }
+        */
     }
     
     func loadExampleStockAtFirstRun() {
@@ -171,10 +230,15 @@ class StocksContainer {
         saveStocks()
     }
     
-//    func loadSampleStocks() {
-//        let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
-//        let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
-//        self.stocks += [stock1, stock2]
-//    }
+    func loadSampleStocks() {
+        print("Stock Container > loadSampleStocks")
+
+        let stock1 = Stock(type: .Cash, name: "Наличн.", value: 3290.0, currency:.RUB)!
+        let stock2 = Stock(type: .Deposit, name: "Сбер", value: 500000.0, currency:.RUB, percent: 0.125)!
+        self.stocks += [stock1, stock2]
+        let income1 = Income(name: "Пенсия", value: 13200.0, currency:.RUB)!
+        let income2 = Income(name: "Аренда", value: 99.0, currency:.USD)!
+        self.incomes += [income1, income2]
+    }
     
 }

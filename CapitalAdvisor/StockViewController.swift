@@ -19,6 +19,7 @@ class StockViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
    
     var stock: Stock?
+    var income: Income?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -53,16 +54,46 @@ class StockViewController: UIViewController {
                 inOtherCurrencies = "\(RUB)\n\(USD)"
             }
             
-            
-            
             infoLabel.text = "\(formattedPercentInAssets)% от активов\n\n\(inOtherCurrencies)\n\n\(stock.formattedDevidendYear)\n\(stock.formattedDevidendMonth)\n\(stock.formattedDevidendDay)"
             
             //infoLabel.text += "f"
             
             
-        } else {
-            print(">>> NO STOCK <<< (StockViewController)")
         }
+        
+        
+        if let income = income {
+            navigationItem.title = income.name
+            nameLabel.text = income.name
+            let valueFormattedString:String = appDelegate.valueFormat.format(income.value, currency: income.currency) as String
+            //let percentsString:String = String(stock.percent * 100)
+            valueLabel.text = valueFormattedString
+            percentsLabel.text = ""
+            
+           //let formattedPercentInAssets = NSString(format:"%.2f", stock.getPercentInTotalStocksValue() * 100)
+            
+            var inOtherCurrencies:String = ""
+            
+            let RUB = ValueFormat().format(income.getValueInCurrency(.RUB), currency: .RUB)
+            let USD = ValueFormat().format(income.getValueInCurrency(.USD), currency: .USD)
+            let EUR = ValueFormat().format(income.getValueInCurrency(.EUR), currency: .EUR)
+            
+            switch income.currency {
+            case .RUB:
+                inOtherCurrencies = "\(USD)\n\(EUR)"
+            case .USD:
+                inOtherCurrencies = "\(RUB)\n\(EUR)"
+            case .EUR:
+                inOtherCurrencies = "\(RUB)\n\(USD)"
+            }
+            
+            infoLabel.text = "\(inOtherCurrencies)"
+            
+            //infoLabel.text += "f"
+            
+            
+        }
+        
     }
     
     
@@ -71,16 +102,24 @@ class StockViewController: UIViewController {
     
     @IBAction func unwindToStockDetails(sender: UIStoryboardSegue) {
         print("> StockViewController > unwindToStockDetails")
-        if let sourceViewController = sender.sourceViewController as? StockEditViewController, stock = sourceViewController.stock {
+        if let sourceViewController = sender.sourceViewController as? StockEditViewController {
             
-            self.stock = stock
+            self.stock = sourceViewController.stock
+            self.income = sourceViewController.income
             
             //print(parentViewController)
 
             self.viewDidLoad()
+            
+            
             if let selectedStockIndex:Int = appDelegate.container.getSelectedStockIndex()! {
-                appDelegate.container.updateStock(stock, atIndex: selectedStockIndex)
+                appDelegate.container.updateStock(self.stock!, atIndex: selectedStockIndex)
             }
+            
+            if let selectedIncomeIndex:Int = appDelegate.container.getSelectedIncomeIndex()! {
+                appDelegate.container.updateIncome(self.income!, atIndex: selectedIncomeIndex)
+            }
+            
         }
     }
     
@@ -89,7 +128,14 @@ class StockViewController: UIViewController {
         if segue.identifier == "EditStock" {
             let stockEditViewController = segue.destinationViewController as! StockEditViewController
             stockEditViewController.stock = self.stock
-            stockEditViewController.selectedType = self.stock!.type
+            stockEditViewController.income = self.income
+            
+            if let _ = self.stock {
+                stockEditViewController.selectedType = self.stock!.type
+            } else {
+                stockEditViewController.selectedType = Type.Income
+            }
+            
             
         } else {
             print("> StockViewController > prepareForSegue")

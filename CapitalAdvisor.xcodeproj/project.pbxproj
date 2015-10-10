@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D008A0B61BA96F44008B79CA /* CapitalViewController.swift */; };
 		D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0142A711BB1517A0006CC54 /* StocksContainer.swift */; };
+		D022CC691BC8F3930046CCEB /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022CC681BC8F3930046CCEB /* Income.swift */; };
 		D041807C1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */; };
 		D04180841BC1A90800D4AC16 /* FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04180831BC1A90800D4AC16 /* FormatTests.swift */; };
 		D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05467C71BB06C9F00768626 /* ColorTools.swift */; };
@@ -67,6 +68,7 @@
 		B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapitalAdvisor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D008A0B61BA96F44008B79CA /* CapitalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalViewController.swift; sourceTree = "<group>"; };
 		D0142A711BB1517A0006CC54 /* StocksContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StocksContainer.swift; sourceTree = "<group>"; };
+		D022CC681BC8F3930046CCEB /* Income.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		D04180791BC1A8C200D4AC16 /* CapitalAdvisorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitalAdvisorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalAdvisorTests.swift; sourceTree = "<group>"; };
 		D041807D1BC1A8C200D4AC16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,14 +174,15 @@
 				D0D848F51BB02DF400C90AB5 /* CategoryTableViewController.swift */,
 				D0D848FB1BB02E2200C90AB5 /* CategoryTableViewCell.swift */,
 				D05D22131BC28F4600A81507 /* AuthenticationViewController.swift */,
+				D06B80511BA59BF800258C0D /* StockTableViewCell.swift */,
 				D06B80531BA59E2200258C0D /* StockTableViewController.swift */,
 				D077CA0D1BC3DB3700815232 /* TipsViewController.swift */,
 				D077CA151BC440F200815232 /* Palette.swift */,
 				D077CA0F1BC3EED000815232 /* Tips.swift */,
 				D077CA111BC3EEF300815232 /* Tip.swift */,
-				D06B80511BA59BF800258C0D /* StockTableViewCell.swift */,
 				D06B804F1BA599B200258C0D /* Stock.swift */,
 				D0142A711BB1517A0006CC54 /* StocksContainer.swift */,
+				D022CC681BC8F3930046CCEB /* Income.swift */,
 				D06361D31BA94029008FB1ED /* ExchangeRates.swift */,
 				D06361F91BA94EA7008FB1ED /* ValueFormat.swift */,
 				D05467C71BB06C9F00768626 /* ColorTools.swift */,
@@ -384,6 +387,7 @@
 				D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */,
 				D0D848FC1BB02E2200C90AB5 /* CategoryTableViewCell.swift in Sources */,
 				D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */,
+				D022CC691BC8F3930046CCEB /* Income.swift in Sources */,
 				D06B80541BA59E2200258C0D /* StockTableViewController.swift in Sources */,
 				D05467C81BB06C9F00768626 /* ColorTools.swift in Sources */,
 				D06361D41BA94029008FB1ED /* ExchangeRates.swift in Sources */,

@@ -9,7 +9,7 @@
 import Foundation
 
 enum Type {
-    case Cash, Bank, Deposit, Debit, Credit, Asset
+    case Cash, Bank, Deposit, Debit, Credit, Asset, Income
     init () {
         self = .Cash
     }
@@ -22,7 +22,7 @@ enum Type {
         case 3: self = .Debit
         case 4: self = .Credit
         case 5: self = .Asset
-        //case 6: self = .Income
+        case 6: self = .Income
         default: self = .Cash
         }
     }
@@ -35,7 +35,7 @@ enum Type {
         case .Debit: return "Дебетовая карта"
         case .Credit: return "Кредитная карта"
         case .Asset: return "Актив"
-        //case .Income: return "Доход"
+        case .Income: return "Доход"
         }
     }
     
@@ -47,13 +47,13 @@ enum Type {
         case .Debit: return 3
         case .Credit: return 4
         case .Asset: return 5
-        //case .Income: return 6
+        case .Income: return 6
         }
     }
 }
 
 
-let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset]
+let typesArray = [Type.Cash, .Bank, .Deposit, .Debit, .Credit, .Asset, .Income]
 let typeNamesArray:[String] = typesArray.map { $0.title }
 
 

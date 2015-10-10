@@ -43,6 +43,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
 
     
     var stock: Stock?
+    var income: Income?
     var selectedType:Type = .Cash
     
     //var validationTimer = NSTimer()
@@ -96,17 +97,9 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
             textFieldValue.text = stock.value.convertedToString!
             textFieldPercent.text = "\((stock.percent * 100).convertedToString!)"
             textViewNote.text = stock.note
-            
             if let _:NSDate = stock.depositDueDate {
                 applyDate(stock.depositDueDate!)
             }
-            
-            
-            //textFieldValue.text = textFieldValue.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            //textFieldPercent.text = textFieldPercent.text!.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            
-            //textFieldValue.text = formatter.stringFromNumber(stock.value)
-            //textFieldPercent.text = formatter.stringFromNumber(stock.percent * 100)
             segmentedControlCurrency.selectedSegmentIndex = stock.currency.id
             editMode = true
         } else {
@@ -114,6 +107,16 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
             textFieldName.text = selectedType.title
             segmentedControlCurrency.selectedSegmentIndex = defaultCurrency.id
             navigationItem.title = selectedType.title
+        }
+        
+        if let income = income {
+            navigationItem.title = Type.Income.title
+            textFieldName.text = income.name
+            textFieldValue.text = income.value.convertedToString!
+            textFieldPercent.text = "0"
+            textViewNote.text = income.note
+            segmentedControlCurrency.selectedSegmentIndex = income.currency.id
+            editMode = true
         }
         
         //registerForKeyboardNotifications()
@@ -162,7 +165,7 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         
         let navCont = parentViewController! as! UINavigationController
         let navBarHeight = navCont.navigationBar.frame.size.height
-        print("Navigation Bar Height = \(navBarHeight)")
+        //print("Navigation Bar Height = \(navBarHeight)")
         
         var topMarginSummary:CGFloat = navBarHeight
         
@@ -563,13 +566,20 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
             print("> StockEditViewController > prepareForSegue > CANCEL PRESSED")
         }
         if saveButton === sender {
-            print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
-            stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent, note: data.note)
-            //print (stock?.depositDueDate)
-            if let date = self.depositDatePicked {
-                stock!.depositDueDate = date
+            //print("> StockEditViewController > prepareForSegue > SAVE PRESSED")
+            
+            switch self.selectedType {
+            case .Income:
+                print("> StockEditViewController > prepareForSegue > SAVE PRESSED > Income")
+                income = Income(name: data.name , value: data.value, currency: data.currency, note: data.note)
+            default:
+                print("> StockEditViewController > prepareForSegue > SAVE PRESSED > Stock")
+                stock = Stock(type: self.selectedType, name: data.name , value: data.value, currency: data.currency, percent: data.percent, note: data.note)
+                if let date = self.depositDatePicked {
+                    stock!.depositDueDate = date
+                }
             }
-            //print (stock?.depositDueDate)
+
        }
     }
 

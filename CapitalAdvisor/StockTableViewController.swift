@@ -182,11 +182,31 @@ class StockTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if appDelegate.container.incomesCount >= 1 {
+            return 2
+        } else {
+            return 1
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.container.stocksCount
+        
+        switch section {
+        case 0: return appDelegate.container.stocksCount
+        case 1: return appDelegate.container.incomesCount
+        default: return 0
+        }
+        
+        
+        
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "Активы"
+        case 1: return "Доходы"
+        default: return ""
+        }
     }
 
     
@@ -197,15 +217,26 @@ class StockTableViewController: UITableViewController {
         let cellIdentifier = "StockTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StockTableViewCell
 
-        let stock = appDelegate.container.stocks[indexPath.row]
+        if indexPath.section == 0 {
+            let stock = appDelegate.container.stocks[indexPath.row]
+            cell.nameLabel.text = stock.name
+            cell.valueLabel.text = stock.formattedValue
+            cell.percentLabel.text = stock.infoText
+            cell.profitLabel.text = stock.formattedDevidendMonth
+            cell.colorRectangleView.backgroundColor = stock.color
+        }
+        
+        if indexPath.section == 1 {
+            let income = appDelegate.container.incomes[indexPath.row]
+            cell.nameLabel.text = income.name
+            cell.valueLabel.text = income.formattedValue
+            cell.percentLabel.text = "0"
+            cell.profitLabel.text = "0"
+            cell.colorRectangleView.backgroundColor = UIColor.whiteColor()
+        }
         
         
-        cell.nameLabel.text = stock.name
-        cell.valueLabel.text = stock.formattedValue
-        cell.percentLabel.text = stock.infoText
-        cell.profitLabel.text = stock.formattedDevidendMonth
-        cell.colorRectangleView.backgroundColor = stock.color
-
+        
         return cell
     }
     
@@ -228,6 +259,23 @@ class StockTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
         updateData()
+    }
+    
+    
+    override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+    
+        
+        if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+            var row:Int = 0
+            if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+                row = tableView.numberOfRowsInSection(sourceIndexPath.section) - 1
+            }
+            return NSIndexPath(forRow: row, inSection:sourceIndexPath.section)
+        }
+        
+        return proposedDestinationIndexPath
+        
+        
     }
     
    
@@ -256,11 +304,23 @@ class StockTableViewController: UITableViewController {
             if let selectedStockCell = sender as? StockTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedStockCell)!
                 
-                let selectedStock = appDelegate.container.stocks[indexPath.row]
+                switch indexPath.section {
+                case 0:
+                    let selectedStock = appDelegate.container.stocks[indexPath.row]
+                    stockDetailViewController.stock = selectedStock
+                    appDelegate.container.setSelectedStockIndex(indexPath.row)
+                case 1:
+                    let selectedIncome = appDelegate.container.incomes[indexPath.row]
+                    stockDetailViewController.income = selectedIncome
+                    appDelegate.container.setSelectedIncomeIndex(indexPath.row)
+                default: break
+                }
                 
-                appDelegate.container.setSelectedStockIndex(indexPath.row)
+               
                 
-                stockDetailViewController.stock = selectedStock
+                //appDelegate.container.setSelectedStockIndex(indexPath.row)
+                
+                
                 //stockDetailViewController.selectedStock = selectedStock.type
             }
         }
@@ -272,21 +332,38 @@ class StockTableViewController: UITableViewController {
     
     @IBAction func unwindToStockList(sender: UIStoryboardSegue) {
         print("> StockTableViewController > unwindToStockList")
-        if let sourceViewController = sender.sourceViewController as? StockEditViewController, stock = sourceViewController.stock {
+        if let sourceViewController = sender.sourceViewController as? StockEditViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 
                 print("AA")
                 // Update an existing stock.
-                //stocks[selectedIndexPath.row] = stock
-                appDelegate.container.updateStock(stock, atIndex: selectedIndexPath.row)
+                if let stock = sourceViewController.stock {
+                    appDelegate.container.updateStock(stock, atIndex: selectedIndexPath.row)
+                }
+                if let income = sourceViewController.income {
+                    appDelegate.container.updateIncome(income, atIndex: selectedIndexPath.row)
+                }
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
             } else {
                 print("BB")
                 // Add a new stock.
-                let newIndexPath = NSIndexPath(forRow: appDelegate.container.stocksCount, inSection: 0)
-                appDelegate.container.addStock(stock)
-                //stocks.append(stock)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                
+                
+                //let income = sourceViewController.income
+                
+                if let stock = sourceViewController.stock {
+                    let newIndexPath = NSIndexPath(forRow: appDelegate.container.stocksCount, inSection: 0)
+                    appDelegate.container.addStock(stock)
+                    //stocks.append(stock)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                }
+                
+                if let income = sourceViewController.income {
+                    let newIndexPath = NSIndexPath(forRow: appDelegate.container.incomesCount, inSection: 1)
+                    appDelegate.container.addIncome(income)
+                    //stocks.append(stock)
+                    tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                }
             }
             updateData()
             // Save stocks.
