@@ -95,6 +95,14 @@ class StocksContainer {
         return totalValue
     }
     
+    func totalIncomesValueInCurrency(currency:Currency) -> Double {
+        var totalValue:Double = 0.0
+        for income in self.incomes {
+            totalValue += income.getValueInCurrency(currency)
+        }
+        return totalValue
+    }
+    
     func addStock(newStock:Stock) {
         self.stocks.append(newStock)
         saveStocks()

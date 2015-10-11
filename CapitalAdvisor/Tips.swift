@@ -87,11 +87,17 @@ class Tips {
         
         var total = currentTotal
         var totalDevidents:Double = 0
-        let monthly:Double = 10000
+        
         let percent:Double = 0.10
         
+        let totalIncome = stocks.totalIncomesValueInCurrency(.RUB)
         
-        for index in 0...9 {
+        var monthly:Double = 10000
+        if totalIncome > 1000 {
+            monthly = totalIncome * 0.15
+        }
+        
+        for _ in 0...9 {
             total += monthly * 12
             let devidends = total * percent
             totalDevidents += devidends
@@ -99,8 +105,16 @@ class Tips {
             //print("index: \(index), devidends: \(devidends) total:\(total)")
         }
         
-        let tip = Tip(intro: "Если вы начнете инвестировать сейчас свой капитал <em>_\(valueFormat.format(currentTotal, currency: .RUB))_</em> под 10% годовых и ежемесячно будете добавлять к сумме <em>_\(valueFormat.format(monthly, currency: .RUB))_</em>, то через десять лет ваш капитал составит <em>_\(valueFormat.format(total, currency: .RUB))_</em> из которых <em>_\(valueFormat.format(stocks.totalStocksValueInCurrency(.RUB) + (monthly * 12 * 10), currency: .RUB))_</em> — вложенные вами деньги и <em>_\(valueFormat.format(totalDevidents, currency: .RUB))_</em> — девиденды", teaser:"Узнать больше", text: long)
-        self.tips.append(tip)
+        let tip1 = Tip(intro: "Если вы начнете инвестировать сейчас свой капитал <em>_\(valueFormat.format(currentTotal, currency: .RUB))_</em> под 10% годовых и ежемесячно будете добавлять к сумме 15% от ваших доходов <em>_(\(valueFormat.format(monthly, currency: .RUB)))_</em>, то через десять лет ваш капитал составит <em>_\(valueFormat.format(total, currency: .RUB))_</em> из которых <em>_\(valueFormat.format(stocks.totalStocksValueInCurrency(.RUB) + (monthly * 12 * 10), currency: .RUB))_</em> — вложенные вами деньги и <em>_\(valueFormat.format(totalDevidents, currency: .RUB))_</em> — девиденды", teaser:"Узнать больше", text: long)
+        
+        let tip2 = Tip(intro: "Если вы начнете инвестировать сейчас свой капитал <em>_\(valueFormat.format(currentTotal, currency: .RUB))_</em> под 10% годовых и ежемесячно будете добавлять к сумме <em>_\(valueFormat.format(monthly, currency: .RUB))_</em>, то через десять лет ваш капитал составит <em>_\(valueFormat.format(total, currency: .RUB))_</em> из которых <em>_\(valueFormat.format(stocks.totalStocksValueInCurrency(.RUB) + (monthly * 12 * 10), currency: .RUB))_</em> — вложенные вами деньги и <em>_\(valueFormat.format(totalDevidents, currency: .RUB))_</em> — девиденды", teaser:"Узнать больше", text: long)
+        
+        if totalIncome > 1000 {
+            self.tips.append(tip1)
+        } else {
+            self.tips.append(tip2)
+        }
+        
         
     }
     
