@@ -31,13 +31,13 @@ class Tips {
         
         self.tips.removeAll()
 
-        searchPercentOfInvested()
-        whatIfYouInvestAllCashFor12Percent()
-        whatIfInvestFor10Years()
-        searchPercentOfRoubles()
-        
-        fillStocksAndSeeMore()
-        bewareOfForex()
+        searchPercentOfInvested()               // 1
+        whatIfYouInvestAllCashFor12Percent()    // 2
+        whatIfInvestFor10Years()                // 3
+        incomeToCapitalRatio()                  // 4
+        searchPercentOfRoubles()                // 5
+        fillStocksAndSeeMore()                  // 6
+        bewareOfForex()                         // 7
     }
     
     
@@ -116,6 +116,17 @@ class Tips {
         }
         
         
+    }
+    
+    func incomeToCapitalRatio(){
+        let totalCapital = stocks.totalStocksValueInCurrency(.RUB)
+        let totalIncome = stocks.totalIncomesValueInCurrency(.RUB)
+        let x3:Double = totalIncome * 3
+        if x3 > totalCapital {
+            let long = ""
+            let tip = Tip(intro: "Сумма ваших накоплений меньше трехкратной суммы вашего ежемесяжного дохода. Рекомендуется иметь накопления, которых будет достаточно как минимум на три месяца жизни при вашем обычном уровне расходов.", teaser: "Подробнее", text: long)
+            self.tips.append(tip)
+        }
     }
     
     

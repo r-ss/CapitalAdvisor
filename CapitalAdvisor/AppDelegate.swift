@@ -73,10 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func firstStartRoutine() {
         print("firstStartRoutine")
         self.firstStart = true
+        /*
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("welcomeScreen") as UIViewController
         self.window!.rootViewController = vc
-        
+        */
         container.loadExampleStockAtFirstRun()
     }
 

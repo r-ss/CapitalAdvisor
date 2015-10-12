@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D008A0B61BA96F44008B79CA /* CapitalViewController.swift */; };
 		D0142A721BB1517A0006CC54 /* StocksContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0142A711BB1517A0006CC54 /* StocksContainer.swift */; };
+		D021731D1BCBF7E800DBDEBB /* InvestmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021731C1BCBF7E800DBDEBB /* InvestmentsViewController.swift */; };
 		D022CC691BC8F3930046CCEB /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = D022CC681BC8F3930046CCEB /* Income.swift */; };
 		D041807C1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */; };
 		D04180841BC1A90800D4AC16 /* FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04180831BC1A90800D4AC16 /* FormatTests.swift */; };
@@ -68,6 +69,7 @@
 		B669EBD2437B71D45EE5DB50 /* Pods_CapitalAdvisor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CapitalAdvisor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D008A0B61BA96F44008B79CA /* CapitalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalViewController.swift; sourceTree = "<group>"; };
 		D0142A711BB1517A0006CC54 /* StocksContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StocksContainer.swift; sourceTree = "<group>"; };
+		D021731C1BCBF7E800DBDEBB /* InvestmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestmentsViewController.swift; sourceTree = "<group>"; };
 		D022CC681BC8F3930046CCEB /* Income.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		D04180791BC1A8C200D4AC16 /* CapitalAdvisorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapitalAdvisorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D041807B1BC1A8C200D4AC16 /* CapitalAdvisorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalAdvisorTests.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				D05467C71BB06C9F00768626 /* ColorTools.swift */,
 				D077CA131BC4005000815232 /* UILabel+Highlight.swift */,
 				D06B80411BA5599D00258C0D /* Main.storyboard */,
+				D021731C1BCBF7E800DBDEBB /* InvestmentsViewController.swift */,
 				D0E21E4E1BC51AF2000AB825 /* TipDetailsViewController.swift */,
 				D06B80441BA5599D00258C0D /* Assets.xcassets */,
 				D06B80461BA5599D00258C0D /* LaunchScreen.storyboard */,
@@ -384,6 +387,7 @@
 				D05DFB791BBE8421005ED8D7 /* WelcomeScreenViewController.swift in Sources */,
 				D0D848F61BB02DF400C90AB5 /* CategoryTableViewController.swift in Sources */,
 				D0F9B1441BB00D670012D7D3 /* SettingsViewController.swift in Sources */,
+				D021731D1BCBF7E800DBDEBB /* InvestmentsViewController.swift in Sources */,
 				D06B80521BA59BF800258C0D /* StockTableViewCell.swift in Sources */,
 				D0D848FC1BB02E2200C90AB5 /* CategoryTableViewCell.swift in Sources */,
 				D008A0B71BA96F44008B79CA /* CapitalViewController.swift in Sources */,

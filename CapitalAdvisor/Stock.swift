@@ -9,7 +9,6 @@
 import UIKit
 
 class Stock {
-
     
     var type:Type = .Cash
     

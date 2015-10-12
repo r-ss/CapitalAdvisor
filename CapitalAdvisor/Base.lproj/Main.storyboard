@@ -250,7 +250,7 @@
         <scene sceneID="jFO-N5-l43">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wTE-VP-p14" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Активы" image="tab-icon-money" id="HrG-XY-c4c"/>
+                    <tabBarItem key="tabBarItem" title="Активы" image="tabbar-money" selectedImage="tabbar-money-active" id="HrG-XY-c4c"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="33v-yw-t31">
@@ -322,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zR3-D1-L5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2683" y="1418"/>
+            <point key="canvasLocation" x="3495" y="1418"/>
         </scene>
         <!--Details-->
         <scene sceneID="30m-YL-ybF">
@@ -425,13 +425,49 @@
                     <connections>
                         <segue destination="wTE-VP-p14" kind="relationship" relationship="viewControllers" id="asR-by-p6f"/>
                         <segue destination="HTV-xM-aas" kind="relationship" relationship="viewControllers" id="Wrq-bL-K4x"/>
-                        <segue destination="JY5-GJ-7N7" kind="relationship" relationship="viewControllers" id="O3Y-Qr-UNW"/>
+                        <segue destination="Jq2-2x-BDU" kind="relationship" relationship="viewControllers" id="pUc-hB-oAw"/>
                         <segue destination="J0Y-ab-TXs" kind="relationship" relationship="viewControllers" id="eVK-df-0j4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0P-PW-jre" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1439" y="569"/>
+            <point key="canvasLocation" x="-1533" y="569"/>
+        </scene>
+        <!--Инвестиции-->
+        <scene sceneID="dCz-Bd-L20">
+            <objects>
+                <viewController id="c3l-V4-jEx" customClass="InvestmentsViewController" customModule="CapitalAdvisor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B9V-5L-SfF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tgf-bG-Q5m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8cV-W3-DlO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYB-LC-KOb" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="64" width="250" height="250"/>
+                                <color key="backgroundColor" red="1" green="0.84520880700000001" blue="0.21439898499999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="FoV-uh-Png"/>
+                                    <constraint firstAttribute="height" constant="250" id="Ry2-8W-EHh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iYB-LC-KOb" firstAttribute="top" secondItem="B9V-5L-SfF" secondAttribute="bottom" id="PDV-DO-HiS"/>
+                            <constraint firstItem="iYB-LC-KOb" firstAttribute="leading" secondItem="8cV-W3-DlO" secondAttribute="leadingMargin" constant="-20" id="aj6-T3-Hcy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Инвестиции" id="zrl-5k-Gcz"/>
+                    <connections>
+                        <outlet property="currentAllocationPieChart" destination="iYB-LC-KOb" id="qnb-ie-He8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y8e-BH-E0n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1018" y="1494"/>
         </scene>
         <!--Welcome Screen View Controller-->
         <scene sceneID="Vik-ZU-wcK">
@@ -523,7 +559,7 @@
         <scene sceneID="ubz-1i-C0A">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J0Y-ab-TXs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Настройки" image="tab-icon-settings" selectedImage="tab-icon-settings" id="gHz-AJ-twH"/>
+                    <tabBarItem key="tabBarItem" title="Настройки" image="tabbar-settings" selectedImage="tabbar-settings-active" id="gHz-AJ-twH"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eWh-ei-LxP">
@@ -537,7 +573,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVu-Dp-fAz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917" y="1418"/>
+            <point key="canvasLocation" x="2729" y="1418"/>
         </scene>
         <!--Идеи-->
         <scene sceneID="t3Y-or-PbK">
@@ -559,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRT-6W-h0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="1501"/>
+            <point key="canvasLocation" x="1040" y="1501"/>
         </scene>
         <!--Tip Details View Controller-->
         <scene sceneID="DQb-61-Dcq">
@@ -577,32 +613,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qv0-mx-Iou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="980" y="1501"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="nLM-Hp-shH">
-            <objects>
-                <viewController id="f6H-QS-DRd" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K6e-E6-aev"/>
-                        <viewControllerLayoutGuide type="bottom" id="EYP-GZ-Pjn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gGB-AX-1GL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="BV7-81-Cfk"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CuF-Q0-bKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1309" y="1668"/>
+            <point key="canvasLocation" x="1792" y="1501"/>
         </scene>
         <!--Идеи-->
         <scene sceneID="XWp-46-bEI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HTV-xM-aas" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Идеи" image="tab-icon-ideas" selectedImage="tab-icon-ideas" id="nNK-vS-RKZ"/>
+                    <tabBarItem key="tabBarItem" title="Идеи" image="tabbar-idea" selectedImage="tabbar-idea-active" id="nNK-vS-RKZ"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8kl-By-up6">
@@ -616,35 +633,39 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYt-J9-6Q7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-531" y="1501"/>
+            <point key="canvasLocation" x="281" y="1501"/>
         </scene>
-        <!--Стратегия-->
-        <scene sceneID="UCk-mP-hut">
+        <!--Инвестиции-->
+        <scene sceneID="qxC-Y0-nib">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JY5-GJ-7N7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Стратегия" image="tab-icon-chart" selectedImage="tab-icon-chart" id="dsw-KU-19d"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jq2-2x-BDU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Инвестиции" image="tabbar-chart" selectedImage="tabbar-chart-active" id="VFB-Sd-p0x"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ksa-1t-0MQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ok-xv-VD7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="f6H-QS-DRd" kind="relationship" relationship="rootViewController" id="wzS-Te-Mp1"/>
+                        <segue destination="c3l-V4-jEx" kind="relationship" relationship="rootViewController" id="CB2-l1-Orn"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yLp-i2-jgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="goV-zi-ZDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2119" y="1668"/>
+            <point key="canvasLocation" x="-1902" y="1432"/>
         </scene>
     </scenes>
     <resources>
-        <image name="tab-icon-chart" width="25" height="25"/>
-        <image name="tab-icon-ideas" width="25" height="25"/>
-        <image name="tab-icon-money" width="25" height="25"/>
-        <image name="tab-icon-settings" width="25" height="25"/>
+        <image name="tabbar-chart" width="25" height="25"/>
+        <image name="tabbar-chart-active" width="25" height="25"/>
+        <image name="tabbar-idea" width="25" height="25"/>
+        <image name="tabbar-idea-active" width="25" height="25"/>
+        <image name="tabbar-money" width="25" height="25"/>
+        <image name="tabbar-money-active" width="25" height="25"/>
+        <image name="tabbar-settings" width="25" height="25"/>
+        <image name="tabbar-settings-active" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HVf-7l-oZP"/>
+        <segue reference="eYz-Ey-oN4"/>
     </inferredMetricsTieBreakers>
 </document>
