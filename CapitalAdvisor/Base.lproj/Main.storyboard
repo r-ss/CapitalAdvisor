@@ -444,26 +444,9 @@
                     <view key="view" contentMode="scaleToFill" id="8cV-W3-DlO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYB-LC-KOb" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="350" y="301" width="250" height="250"/>
-                                <color key="backgroundColor" red="1" green="0.84520880700000001" blue="0.21439898499999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="FoV-uh-Png"/>
-                                    <constraint firstAttribute="height" constant="250" id="Ry2-8W-EHh"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="iYB-LC-KOb" firstAttribute="top" secondItem="B9V-5L-SfF" secondAttribute="bottom" constant="237" id="PDV-DO-HiS"/>
-                            <constraint firstItem="iYB-LC-KOb" firstAttribute="leading" secondItem="8cV-W3-DlO" secondAttribute="leadingMargin" constant="330" id="aj6-T3-Hcy"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Инвестиции" id="zrl-5k-Gcz"/>
-                    <connections>
-                        <outlet property="currentAllocationPieChart" destination="iYB-LC-KOb" id="qnb-ie-He8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8e-BH-E0n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

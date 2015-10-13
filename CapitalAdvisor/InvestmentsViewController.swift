@@ -12,7 +12,14 @@ import Charts
 
 class InvestmentsViewController: UIViewController {
 
-    @IBOutlet weak var currentAllocationPieChart: PieChartView!
+
+    var top:CGFloat = 0
+    
+    let margin:CGFloat = 20
+    let labelHeight:CGFloat = 36
+    let lineHeight:CGFloat = 2
+    let sectionsMargin:CGFloat = 5
+    
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -22,7 +29,7 @@ class InvestmentsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        setData()
+        //setData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,34 +38,17 @@ class InvestmentsViewController: UIViewController {
     }
     
     
-    
-    func setChart(dataPoints: [String], values: [Double]) {
-        var dataEntries = [ChartDataEntry]()
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-            dataEntries.append(dataEntry)
-        }
-        let pieChartDataSet = PieChartDataSet(yVals: dataEntries, label: "Stocks")
-        let pieChartData = PieChartData(xVals: dataPoints, dataSet: pieChartDataSet)
-        //let totalStocksValue:Double = 500
-        currentAllocationPieChart.data = pieChartData
-        currentAllocationPieChart.descriptionText = ""
-        currentAllocationPieChart.usePercentValuesEnabled = false
-        currentAllocationPieChart.holeTransparent = true
-        currentAllocationPieChart.centerTextFont = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
-        currentAllocationPieChart.centerText = "75% | 25%"
-        currentAllocationPieChart.legend.enabled = false
-        currentAllocationPieChart.rotationEnabled = false
-        currentAllocationPieChart.holeRadiusPercent = 0.80
-        pieChartDataSet.drawValuesEnabled = false
-        currentAllocationPieChart.drawSliceTextEnabled = false
-        currentAllocationPieChart.userInteractionEnabled = false
-        var colors = [UIColor]()
-        for stock in appDelegate.container.stocks {
-            colors.append(stock.color)
-        }
-        pieChartDataSet.colors = colors
+    override func viewWillAppear(animated: Bool) {
+        
+        top = 100
+        
+        setData()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.view.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+    }
+    
     
     func setData(){
         var names = [String]()
@@ -91,7 +81,7 @@ class InvestmentsViewController: UIViewController {
         names.append(Type.Stock.title)
         values.append(totalStock)
         
-        setChart(names, values: values)
+        //setChart(names, values: values)
         //self.tableStocks.reloadData();
         
         
@@ -103,16 +93,7 @@ class InvestmentsViewController: UIViewController {
         addSectionMaybe(totalAsset, total: total, text: Type.Asset.pluralTitle)
         addSectionMaybe(totalStock, total: total, text: Type.Stock.pluralTitle)
         
-        currentAllocationPieChart.hidden = true
-        
     }
-    
-    var top:CGFloat = 100
-    var margin:CGFloat = 20
-    
-    let labelHeight:CGFloat = 36
-    let lineHeight:CGFloat = 2
-    let sectionsMargin:CGFloat = 5
     
     
     func addSectionMaybe(part:Double, total:Double, text:String){
