@@ -446,7 +446,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYB-LC-KOb" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="64" width="250" height="250"/>
+                                <rect key="frame" x="350" y="301" width="250" height="250"/>
                                 <color key="backgroundColor" red="1" green="0.84520880700000001" blue="0.21439898499999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="FoV-uh-Png"/>
@@ -456,8 +456,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iYB-LC-KOb" firstAttribute="top" secondItem="B9V-5L-SfF" secondAttribute="bottom" id="PDV-DO-HiS"/>
-                            <constraint firstItem="iYB-LC-KOb" firstAttribute="leading" secondItem="8cV-W3-DlO" secondAttribute="leadingMargin" constant="-20" id="aj6-T3-Hcy"/>
+                            <constraint firstItem="iYB-LC-KOb" firstAttribute="top" secondItem="B9V-5L-SfF" secondAttribute="bottom" constant="237" id="PDV-DO-HiS"/>
+                            <constraint firstItem="iYB-LC-KOb" firstAttribute="leading" secondItem="8cV-W3-DlO" secondAttribute="leadingMargin" constant="330" id="aj6-T3-Hcy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Инвестиции" id="zrl-5k-Gcz"/>
@@ -526,7 +526,7 @@
                                     <constraint firstAttribute="width" constant="248" id="M3q-J6-Mfz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Locked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuM-Jc-AP6">
@@ -535,7 +535,7 @@
                                     <constraint firstAttribute="width" constant="248" id="fPh-7E-Kdf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

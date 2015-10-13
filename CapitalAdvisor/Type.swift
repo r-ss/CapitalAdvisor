@@ -41,6 +41,19 @@ enum Type {
         }
     }
     
+    var pluralTitle: String {
+        switch self {
+        case .Cash: return "Наличные"
+        case .Bank: return "Счета"
+        case .Deposit: return "Депозиты"
+        case .Debit: return "Дебетовые карты"
+        case .Credit: return "Кредитные карты"
+        case .Asset: return "Активы"
+        case .Stock: return "Акции"
+        case .Income: return "Доходы"
+        }
+    }
+    
     var id: Int {
         switch self {
         case .Cash: return 0
