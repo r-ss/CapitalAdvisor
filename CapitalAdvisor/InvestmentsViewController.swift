@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import Charts
+//import Charts
 
 
 class InvestmentsViewController: UIViewController {
 
 
+    var scrollView: UIScrollView!
+    
     var top:CGFloat = 0
     
     let margin:CGFloat = 20
@@ -27,6 +29,14 @@ class InvestmentsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+        self.view.backgroundColor = Palette.White.color        
+        self.scrollView = UIScrollView()
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        //self.scrollView.delegate = self
+        self.view.addSubview(self.scrollView)
+        self.scrollView.backgroundColor = Palette.White.color
         
         
         //setData()
@@ -46,7 +56,7 @@ class InvestmentsViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.view.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+        self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
     }
     
     
@@ -85,6 +95,13 @@ class InvestmentsViewController: UIViewController {
         //self.tableStocks.reloadData();
         
         
+        let allocationLabel = UILabel.init(frame: CGRect(x:margin, y:top, width: self.view.frame.size.width - margin * 2, height: labelHeight * 2))
+        allocationLabel.numberOfLines = 0
+        allocationLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightRegular)
+        allocationLabel.text = "Ваши активы распределены следующим образом:"
+        self.scrollView.addSubview(allocationLabel)
+        top += labelHeight * 2
+        
         addSectionMaybe(totalCash, total: total, text: Type.Cash.pluralTitle)
         addSectionMaybe(totalBank, total: total, text: Type.Bank.pluralTitle)
         addSectionMaybe(totalDeposit, total: total, text: Type.Deposit.pluralTitle)
@@ -92,6 +109,54 @@ class InvestmentsViewController: UIViewController {
         addSectionMaybe(totalCredit, total: total, text: Type.Credit.pluralTitle)
         addSectionMaybe(totalAsset, total: total, text: Type.Asset.pluralTitle)
         addSectionMaybe(totalStock, total: total, text: Type.Stock.pluralTitle)
+        
+        /*
+        
+        let lineChart = LineChartView()
+        lineChart.frame = CGRect(x:10, y:top, width: self.view.frame.size.width - 20, height: 200)
+        self.scrollView.addSubview(lineChart)
+        
+        var dataEntries = [ChartDataEntry]()
+        for i in 0...10 {
+            let dataEntry = ChartDataEntry(value: Double(i)*(1.12*Double(i)), xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Stocks")
+        chartDataSet.drawCubicEnabled = true
+        chartDataSet.drawValuesEnabled = true
+        chartDataSet.drawCirclesEnabled = false
+        let chartData = LineChartData(xVals: dataEntries, dataSet: chartDataSet)
+        
+        lineChart.data = chartData
+        
+        
+        lineChart.descriptionText = ""
+        //lineChart.usePercentValuesEnabled = false
+        //lineChar
+        //pieChartView.centerTextFont = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+        //pieChartView.centerText = valueFormat.format(totalStocksValue, currency: defaultCurrency, adaptive: true) as String
+        lineChart.legend.enabled = false
+        lineChart.gridBackgroundColor = UIColor.whiteColor()
+        
+        lineChart.drawGridBackgroundEnabled = false
+        lineChart.xAxis.enabled = false
+
+        
+        //lineChart.drawCubic.enabled = true
+        //pieChartView.rotationEnabled = false
+        //pieChartView.holeRadiusPercent = 0.90
+        //lineChart.drawValuesEnabled = true
+        //pieChartView.drawSliceTextEnabled = false
+        lineChart.userInteractionEnabled = false
+        
+        
+        
+        
+        top += 200
+        */
+        
+        top += 70
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
         
     }
     
@@ -103,13 +168,14 @@ class InvestmentsViewController: UIViewController {
         
         if part / total > 0 {
             let label = UILabel.init(frame: CGRect(x:margin, y:top, width: allWidth, height: labelHeight))
-            label.text = "\(NSString(format:"%.1f", (part / total) * 100))% — \(text)"
+            let p:String = NSString(format:"%.1f", ((part / total) * 100)) as String
+            label.text = "\(p)% — \(text)"
             styleLabel(label)
-            self.view.addSubview(label)
+            self.scrollView.addSubview(label)
             top += labelHeight
             let line = UIView.init(frame: CGRect(x:0, y:top, width: CGFloat(part / total) * allWidthWithoutMargins, height: lineHeight))
             line.backgroundColor = Palette.Accent.color
-            self.view.addSubview(line)
+            self.scrollView.addSubview(line)
             top += lineHeight + sectionsMargin
         }
     }
