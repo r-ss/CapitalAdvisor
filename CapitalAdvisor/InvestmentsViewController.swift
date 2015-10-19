@@ -110,50 +110,38 @@ class InvestmentsViewController: UIViewController {
         addSectionMaybe(totalAsset, total: total, text: Type.Asset.pluralTitle)
         addSectionMaybe(totalStock, total: total, text: Type.Stock.pluralTitle)
         
-        /*
         
-        let lineChart = LineChartView()
-        lineChart.frame = CGRect(x:10, y:top, width: self.view.frame.size.width - 20, height: 200)
-        self.scrollView.addSubview(lineChart)
+        var totalRUB:Double = 0
+        var totalUSD:Double = 0
+        var totalEUR:Double = 0
         
-        var dataEntries = [ChartDataEntry]()
-        for i in 0...10 {
-            let dataEntry = ChartDataEntry(value: Double(i)*(1.12*Double(i)), xIndex: i)
-            dataEntries.append(dataEntry)
+        for stock in appDelegate.container.stocks {
+            switch stock.currency {
+            case .RUB: totalRUB += stock.getValueInCurrency(defaultCurrency)
+            case .USD: totalUSD += stock.getValueInCurrency(defaultCurrency)
+            case .EUR: totalEUR += stock.getValueInCurrency(defaultCurrency)
+            }
         }
-        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "Stocks")
-        chartDataSet.drawCubicEnabled = true
-        chartDataSet.drawValuesEnabled = true
-        chartDataSet.drawCirclesEnabled = false
-        let chartData = LineChartData(xVals: dataEntries, dataSet: chartDataSet)
         
-        lineChart.data = chartData
+        let totalAll:Double = totalRUB + totalUSD + totalEUR
         
-        
-        lineChart.descriptionText = ""
-        //lineChart.usePercentValuesEnabled = false
-        //lineChar
-        //pieChartView.centerTextFont = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
-        //pieChartView.centerText = valueFormat.format(totalStocksValue, currency: defaultCurrency, adaptive: true) as String
-        lineChart.legend.enabled = false
-        lineChart.gridBackgroundColor = UIColor.whiteColor()
-        
-        lineChart.drawGridBackgroundEnabled = false
-        lineChart.xAxis.enabled = false
-
-        
-        //lineChart.drawCubic.enabled = true
-        //pieChartView.rotationEnabled = false
-        //pieChartView.holeRadiusPercent = 0.90
-        //lineChart.drawValuesEnabled = true
-        //pieChartView.drawSliceTextEnabled = false
-        lineChart.userInteractionEnabled = false
+//        let percentRUB:Double = totalRUB / totalAll
+//        let percentUSD:Double = totalUSD / totalAll
+//        let percentEUR:Double = totalEUR / totalAll
         
         
+        let currenciesLabel = UILabel.init(frame: CGRect(x:margin, y:top, width: self.view.frame.size.width - margin * 2, height: labelHeight * 1))
+        currenciesLabel.numberOfLines = 1
+        currenciesLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightRegular)
+        currenciesLabel.text = "Валюты:"
+        self.scrollView.addSubview(currenciesLabel)
+        top += labelHeight
+        
+        addSectionMaybe(totalRUB, total: totalAll, text: Currency.RUB.pluralTitle)
+        addSectionMaybe(totalUSD, total: totalAll, text: Currency.USD.pluralTitle)
+        addSectionMaybe(totalEUR, total: totalAll, text: Currency.EUR.pluralTitle)
         
         
-        top += 200
-        */
         
         top += 70
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
