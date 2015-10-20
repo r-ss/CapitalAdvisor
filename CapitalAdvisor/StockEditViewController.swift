@@ -10,7 +10,7 @@ import UIKit
 
 import EasyAnimation
 
-class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+class StockEditViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     
@@ -81,11 +81,15 @@ class StockEditViewController: UIViewController, UITextFieldDelegate, UIScrollVi
         //self.scrollView = UIScrollView()
         //self.scrollView.frame = self.view.bounds
         
-        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        //self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         //self.scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
-        self.view.addSubview(self.scrollView)
+        //self.view.addSubview(self.scrollView)
+
+        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.scrollView.backgroundColor = Palette.White.color
+        self.view = self.scrollView
         
-        self.scrollView.delegate = self
+        //self.scrollView.delegate = self
         
         generateInputViews()
         

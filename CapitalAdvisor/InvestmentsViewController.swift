@@ -31,12 +31,18 @@ class InvestmentsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        self.view.backgroundColor = Palette.White.color        
+//        self.view.backgroundColor = Palette.White.color        
+//        self.scrollView = UIScrollView()
+//        self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+//        //self.scrollView.delegate = self
+//        self.view.addSubview(self.scrollView)
+//        self.scrollView.backgroundColor = Palette.Light.color
+//        
+        
         self.scrollView = UIScrollView()
         self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        //self.scrollView.delegate = self
-        self.view.addSubview(self.scrollView)
         self.scrollView.backgroundColor = Palette.White.color
+        self.view = self.scrollView
         
         
         //setData()
@@ -50,13 +56,22 @@ class InvestmentsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        top = 100
+        top = 0
         
         setData()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+        
+        self.scrollView.subviews.forEach({
+            // Preventint removing scroll indicators from UIScrollView
+            if !$0.isKindOfClass(UIImageView){
+                $0.removeFromSuperview()
+            }
+            
+        })
+        //self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+        //view.subviews.map({ $0.removeFromSuperview() }) // this returns modified array
     }
     
     
@@ -145,6 +160,9 @@ class InvestmentsViewController: UIViewController {
         
         top += 70
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
+        
+        
+        
         
     }
     

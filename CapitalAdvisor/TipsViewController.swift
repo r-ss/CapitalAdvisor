@@ -22,21 +22,35 @@ class TipsViewController: UIViewController {
         
        
         self.tips = appDelegate.tips
+        
+        //self.frameRectangle = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
-        self.view.backgroundColor = Palette.White.color
+        //self.view.backgroundColor = Palette.White.color
         
         self.scrollView = UIScrollView()
         self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        //self.scrollView.delegate = self
-        self.view.addSubview(self.scrollView)
         self.scrollView.backgroundColor = Palette.White.color
+        self.view = self.scrollView
+        
+        //self.self.scrollView.contentInset = UIEdgeInsetsMake(44,0,0,0);
         
         //self.scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
         
+        //self.edgesForExtendedLayout = .All
+        
+        //self.automaticallyAdjustsScrollViewInsets = true
+        //self.scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
+        
+        
+
+        
+        //self.navigationController?.navigationBar.translucent = false
+                //self.scrollView.delegate = self
         
         //self.edgesForExtendedLayout = UIRectEdge.All
         //self.automaticallyAdjustsScrollViewInsets = true
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,14 +59,26 @@ class TipsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.tips.analyse()
+        
+        
         self.generateCells()
         
         
+        //self.scrollView.s
+
         //self.performSegueWithIdentifier("tipDetails", sender: self)
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+       
+        self.scrollView.subviews.forEach({
+            // Preventint removing scroll indicators from UIScrollView
+            if !$0.isKindOfClass(UIImageView){
+                $0.removeFromSuperview()
+            }
+        
+        })
+        //self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
         //view.subviews.map({ $0.removeFromSuperview() }) // this returns modified array
     }
     
@@ -63,7 +89,7 @@ class TipsViewController: UIViewController {
         var top:CGFloat = 10
         let margin:CGFloat = 16
         let textMargin:CGFloat = 5
-        let screenWidth = self.view.frame.size.width
+        let screenWidth = self.scrollView.frame.size.width
         let cellWidth = screenWidth - margin * 2
 
         var i:Int = 0
@@ -128,7 +154,7 @@ class TipsViewController: UIViewController {
         
         top += 70
         
-        self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, top)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, top)
     
         
     }

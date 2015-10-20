@@ -36,8 +36,9 @@ class Tips {
         whatIfInvestFor10Years()                // 3
         incomeToCapitalRatio()                  // 4
         searchPercentOfRoubles()                // 5
-        fillStocksAndSeeMore()                  // 6
-        bewareOfForex()                         // 7
+        strahovkaDeposit()                      // 6
+        fillStocksAndSeeMore()                  // 7
+        bewareOfForex()                         // 8
     }
     
     
@@ -144,6 +145,26 @@ class Tips {
         }
         
        
+    }
+    
+    func strahovkaDeposit(){
+        
+        for stock in appDelegate.container.stocks {
+            
+            switch stock.type {
+            case .Deposit:
+                if stock.getValueInCurrency(.RUB) > 1400000 {
+                    let long = "В россии действует система страхования вкладов. Если банк, в котором у размещен ваш депозит участвует в этой программе, то все ваши вклады до 1,4 миллиона рублей в этом банеке застрахованы и даже в случае банктротства банка государство вернет вам эту сумму. Однако если депозит превышает 1,4 млн. рублей, то часть, превышающая страховую сумму не будет возвращена. Можно не слишком беспокоиться если банк надежный, но если вы хотите полностью обезопасить ваши средства, следует разделить депозиты на несколько банков, участвующих в программе страхования вкладов и разместить в каждом из них сумму не превышающую 1,4 млн. рублей."
+                    let tip = Tip(intro: "У вас есть депозиты суммой более 1,4 млн. рублей. Они не защищены системой страхования вкладов.", teaser: "Подробнее", text: long)
+                    self.tips.append(tip)
+                    return
+                }
+            default: break
+            }
+            
+        }
+        
+        
     }
     
     func fillStocksAndSeeMore(){

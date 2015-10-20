@@ -16,14 +16,12 @@ class TipDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Palette.White.color
+        //self.view.backgroundColor = Palette.White.color
 
         self.scrollView = UIScrollView()
         self.scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        //self.scrollView.delegate = self
-        self.view.addSubview(self.scrollView)
         self.scrollView.backgroundColor = Palette.White.color
-        self.scrollView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
+        self.view = self.scrollView
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,7 +29,16 @@ class TipDetailsViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+        
+        self.scrollView.subviews.forEach({
+            // Preventint removing scroll indicators from UIScrollView
+            if !$0.isKindOfClass(UIImageView){
+                $0.removeFromSuperview()
+            }
+            
+        })
+        //self.scrollView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+        //view.subviews.map({ $0.removeFromSuperview() }) // this returns modified array
     }
 
     override func didReceiveMemoryWarning() {
