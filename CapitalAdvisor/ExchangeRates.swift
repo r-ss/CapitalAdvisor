@@ -22,6 +22,8 @@ class ExchangeRates {
     init?() {
         self.load()
         self.loadFromYahoo()
+        
+        //self.loadAAPL()
     }
     
     // MARK: Actions
@@ -30,7 +32,6 @@ class ExchangeRates {
             .responseString { _, _, result in
             //print("Success: \(result.isSuccess)")
             //print("Response String: \(result.value)")
-                    
             let resultString = (result.value)
             let responseArray = resultString!.componentsSeparatedByString("\n")
                     
@@ -51,6 +52,25 @@ class ExchangeRates {
             }
         }
     }
+    
+    func loadAAPL() {
+        
+        let symbol = "AAPL"
+        let url = "https://download.finance.yahoo.com/d/quotes.csv?s=\(symbol)&f=sl1d1t1c1ohgv&e=.csv"
+        
+        Alamofire.request(.GET, url)
+            .responseString { _, _, result in
+                print("Success: \(result.isSuccess)")
+                print("Response String: \(result.value)")
+                let resultString = (result.value)
+                //let responseArray = resultString!.componentsSeparatedByString("\n")
+//                print("-----")
+//                print(resultString)
+//                print("-----")
+        }
+    }
+    
+    
     
     func save(){
         userDefaults.setDouble(self.USDRUR, forKey: "exchangeRatesUSDRUR")
